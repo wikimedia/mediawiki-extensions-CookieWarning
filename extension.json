@@ -1,0 +1,49 @@
+{
+	"name": "CookieWarning",
+	"version": "0.1.0",
+	"author": [
+		"Florian Schmidt"
+	],
+	"url": "https://www.droidwiki.de",
+	"descriptionmsg": "cookiewarning-desc",
+	"type": "other",
+	"MessagesDirs": {
+		"CookieWarning": [
+			"i18n"
+		]
+	},
+	"Hooks": {
+		"SkinTemplateOutputPageBeforeExec": [
+			"CookieWarningHooks::onSkinTemplateOutputPageBeforeExec"
+		],
+		"BeforePageDisplay": [
+			"CookieWarningHooks::onBeforePageDisplay"
+		]
+	},
+	"config": {
+		"CookieWarningEnabled": true
+	},
+	"ResourceModules": {
+		"ext.CookieWarning": {
+			"dependencies": [
+				"mediawiki.cookie"
+			],
+			"scripts": "resources/ext.CookieWarning/ext.CookieWarning.js"
+		},
+		"ext.CookieWarning.styles": {
+			"position": "top",
+			"styles": "resources/ext.CookieWarning/ext.CookieWarning.less"
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "CookieWarning"
+	},
+	"AutoloadClasses": {
+		"CookieWarningHooks": "includes/CookieWarning.hooks.php"
+	},
+	"ConfigRegistry": {
+		"cookiewarning": "GlobalVarConfig::newInstance"
+	},
+	"manifest_version": 1
+}
