@@ -2,6 +2,15 @@
 
 class CookieWarningHooks {
 	public static function onSkinTemplateOutputPageBeforeExec( SkinTemplate &$sk, &$tpl ) {
+		$conf = ConfigFactory::getDefaultInstance()->makeConfig( 'cookiewarning' );
+		$moreLink = '';
+		if ( $conf->get( 'CookieWarningMoreUrl' ) ) {
+			$moreLink = Html::element(
+				'a',
+				array( 'href' => $conf->get( 'CookieWarningMoreUrl' ) ),
+				'Mehr Informationen'
+			);
+		}
 		if ( self::showWarning( $sk ) ) {
 			$tpl->data['headelement'] .= Html::openElement(
 					'div',
@@ -16,11 +25,7 @@ class CookieWarningHooks {
 					array(),
 					$sk->msg( 'cookiewarning-info' )->text()
 				) .
-				Html::element(
-					'a',
-					array( 'href' => 'https://www.droidwiki.de/DroidWiki:Impressum#Verwendung_von_Cookies' ),
-					'Mehr Informationen'
-				) .
+				$moreLink .
 				Html::element(
 					'a',
 					array( 'class' => 'mw-cookiewarning-dismiss' ),

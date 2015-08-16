@@ -24,7 +24,8 @@
 		]
 	},
 	"config": {
-		"CookieWarningEnabled": false
+		"CookieWarningEnabled": false,
+		"CookieWarningMoreUrl": ""
 	},
 	"ResourceModules": {
 		"ext.CookieWarning": {
