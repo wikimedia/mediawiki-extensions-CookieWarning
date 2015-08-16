@@ -39,13 +39,32 @@ class CookieWarningHooks {
 	}
 
 	private static function showWarning( IContextSource $context ) {
+		$user = $context->getUser();
 		$conf = ConfigFactory::getDefaultInstance()->makeConfig( 'cookiewarning' );
 		if (
 			$conf->get( 'CookieWarningEnabled' ) &&
+			!$user->getBoolOption( 'cookiewarning_dismissed', false ) &&
 			!$context->getRequest()->getCookie( 'cookiewarning_dismissed' )
 		) {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * GetPreferences hook handler
+	 *
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/GetPreferences
+	 *
+	 * @param User $user
+	 * @param array $defaultPreferences
+	 * @return bool
+	 */
+	public static function onGetPreferences( User $user, &$defaultPreferences ) {
+		$defaultPreferences['cookiewarning_dismissed'] = array(
+			'type' => 'api',
+			'default' => '0',
+		);
+		return true;
 	}
 }

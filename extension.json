@@ -18,6 +18,9 @@
 		],
 		"BeforePageDisplay": [
 			"CookieWarningHooks::onBeforePageDisplay"
+		],
+		"GetPreferences": [
+			"CookieWarningHooks::onGetPreferences"
 		]
 	},
 	"config": {
@@ -26,13 +29,22 @@
 	"ResourceModules": {
 		"ext.CookieWarning": {
 			"dependencies": [
+				"mediawiki.api",
 				"mediawiki.cookie"
 			],
-			"scripts": "resources/ext.CookieWarning/ext.CookieWarning.js"
+			"scripts": "resources/ext.CookieWarning/ext.CookieWarning.js",
+			"targets": [
+				"mobile",
+				"desktop"
+			]
 		},
 		"ext.CookieWarning.styles": {
 			"position": "top",
-			"styles": "resources/ext.CookieWarning/ext.CookieWarning.less"
+			"styles": "resources/ext.CookieWarning/ext.CookieWarning.less",
+			"targets": [
+				"mobile",
+				"desktop"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {
