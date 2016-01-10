@@ -1,4 +1,10 @@
 {
+	"@metadata": {
+		"authors": [
+			"Florian Schmidt"
+		]
+	},
 	"cookiewarning-info": "Cookies helfen uns bei der Bereitstellung von {{SITENAME}}. Durch die Nutzung von {{SITENAME}} erklären Sie sich damit einverstanden, dass wir Cookies setzen.",
-	"cookiewarning-desc": "Stellt einern Warnhinweis über die Vernwendung von Cookies beim Seitenbesuch zur Verfügung."
+	"cookiewarning-desc": "Stellt einern Warnhinweis über die Vernwendung von Cookies beim Seitenbesuch zur Verfügung.",
+	"cookiewarning-moreinfo-label": "Mehr Informationen"
 }
