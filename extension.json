@@ -22,6 +22,9 @@
 		],
 		"GetPreferences": [
 			"CookieWarningHooks::onGetPreferences"
+		],
+		"BeforeInitialize": [
+			"CookieWarningHooks::onBeforeInitialize"
 		]
 	},
 	"config": {
