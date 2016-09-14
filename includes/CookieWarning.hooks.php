@@ -1,6 +1,36 @@
 <?php
 
 class CookieWarningHooks {
+
+	/**
+	 * BeforeInitialize hook handler.
+	 *
+	 * If the disablecookiewarning POST data is send, disables the cookiewarning bar with a
+	 * cookie or a user preference, if the user is logged in.
+	 *
+	 * @param Title $title
+	 * @param null $unused
+	 * @param OutputPage $output
+	 * @param User $user
+	 * @param WebRequest $request
+	 * @param MediaWiki $mediawiki
+	 */
+	public static function onBeforeInitialize( Title &$title, &$unused, OutputPage &$output,
+		User &$user, WebRequest $request, MediaWiki $mediawiki
+	) {
+		if ( !$request->wasPosted() || !$request->getVal( 'disablecookiewarning' ) ) {
+			return;
+		}
+
+		if ( $user->isLoggedIn() ) {
+			$user->setOption( 'cookiewarning_dismissed', 1 );
+			$user->saveSettings();
+		} else {
+			$request->response()->setCookie( 'cookiewarning_dismissed', true );
+		}
+		$output->redirect( $request->getRequestURL() );
+	}
+
 	/**
 	 * SkinTemplateOutputPageBeforeExec hook handler.
 	 *
@@ -12,6 +42,11 @@ class CookieWarningHooks {
 	public static function onSkinTemplateOutputPageBeforeExec(
 		SkinTemplate &$sk, QuickTemplate &$tpl
 	) {
+		// if the cookiewarning should not be visible to the user, exit.
+		if ( !self::showWarning( $sk->getContext() ) ) {
+			return;
+		}
+
 		// Config instance of CookieWarning
 		$conf = ConfigFactory::getDefaultInstance()->makeConfig( 'cookiewarning' );
 		$moreLink = '';
@@ -24,31 +59,32 @@ class CookieWarningHooks {
 				$sk->msg( 'cookiewarning-moreinfo-label' )->text()
 			);
 		}
-		// if the cookiewarning should be visible to the user, append the element to
-		// the head data.
-		if ( self::showWarning( $sk->getContext() ) ) {
-			$tpl->data['headelement'] .= Html::openElement(
-					'div',
-					array( 'class' => 'mw-cookiewarning-container' )
-				) .
-				Html::openElement(
-					'div',
-					array( 'class' => 'mw-cookiewarning-text' )
-				) .
-				Html::element(
-					'span',
-					array(),
-					$sk->msg( 'cookiewarning-info' )->text()
-				) .
-				$moreLink .
-				Html::element(
-					'a',
-					array( 'class' => 'mw-cookiewarning-dismiss' ),
-					'OK'
-				) .
-				Html::closeElement( 'div' ) .
-				Html::closeElement( 'div' );
-		}
+
+		$tpl->data['headelement'] .= Html::openElement(
+				'div',
+				array( 'class' => 'mw-cookiewarning-container' )
+			) .
+			Html::openElement(
+				'div',
+				array( 'class' => 'mw-cookiewarning-text' )
+			) .
+			Html::element(
+				'span',
+				array(),
+				$sk->msg( 'cookiewarning-info' )->text()
+			) .
+			$moreLink .
+			Html::openElement( 'form', array( 'method' => 'POST' ) ) .
+			Html::submitButton(
+				'OK',
+				array(
+					'name' => 'disablecookiewarning',
+					'class' => 'mw-cookiewarning-dismiss'
+				)
+			) .
+			Html::closeElement( 'form' ) .
+			Html::closeElement( 'div' ) .
+			Html::closeElement( 'div' );
 	}
 
 	/**
