@@ -14,18 +14,10 @@
 		]
 	},
 	"Hooks": {
-		"SkinTemplateOutputPageBeforeExec": [
-			"CookieWarningHooks::onSkinTemplateOutputPageBeforeExec"
-		],
-		"BeforePageDisplay": [
-			"CookieWarningHooks::onBeforePageDisplay"
-		],
-		"GetPreferences": [
-			"CookieWarningHooks::onGetPreferences"
-		],
-		"BeforeInitialize": [
-			"CookieWarningHooks::onBeforeInitialize"
-		]
+		"SkinTemplateOutputPageBeforeExec": "CookieWarningHooks::onSkinTemplateOutputPageBeforeExec",
+		"BeforePageDisplay": "CookieWarningHooks::onBeforePageDisplay",
+		"GetPreferences": "CookieWarningHooks::onGetPreferences",
+		"BeforeInitialize": "CookieWarningHooks::onBeforeInitialize"
 	},
 	"config": {
 		"CookieWarningEnabled": false,
