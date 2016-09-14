@@ -7,5 +7,6 @@
 	"cookiewarning-info": "Information message for visitors of the wiki, informing them that this wiki uses cookies.",
 	"cookiewarning-desc": "{{desc|name=CookieWarning|url=https://www.mediawiki.org/wiki/Extension:CookieWarning}}",
 	"cookiewarning-moreinfo-label": "Label for the \"More information\" link in the cookiewarning information bar.",
-	"cookiewarning-more-link": "{{notranslate}}\nUsed as an on-wiki way to edit the target of the more information link."
+	"cookiewarning-more-link": "{{notranslate}}\nUsed as an on-wiki way to edit the target of the more information link.",
+	"cookiewarning-ok-label": "The label for the \"OK\" button in the cookiewarning information bar."
 }
