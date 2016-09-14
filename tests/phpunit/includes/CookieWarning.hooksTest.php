@@ -14,10 +14,10 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 	public function testOnSkinTemplateOutputPageBeforeExec( $enabled, $morelinkConfig,
 		$morelinkCookieWarningMsg, $morelinkCookiePolicyMsg, $expectedLink
 	) {
-		$this->setMwGlobals( array(
+		$this->setMwGlobals( [
 			'wgCookieWarningEnabled' => $enabled,
 			'wgCookieWarningMoreUrl' => $morelinkConfig,
-		) );
+		] );
 		if ( $morelinkCookieWarningMsg ) {
 			$title = Title::newFromText( 'cookiewarning-more-link', NS_MEDIAWIKI );
 			$wikiPage = WikiPage::factory( $title );
@@ -50,8 +50,8 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 	}
 
 	public function providerOnSkinTemplateOutputPageBeforeExec() {
-		return array(
-			array(
+		return [
+			[
 				// $wgCookieWarningEnabled
 				true,
 				// $wgCookieWarningMoreUrl
@@ -62,58 +62,58 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 				false,
 				// expected cookie warning link (when string), nothing if false
 				'',
-			),
-			array(
+			],
+			[
 				false,
 				'',
 				false,
 				false,
 				false,
-			),
-			array(
+			],
+			[
 				true,
 				'http://google.de',
 				false,
 				false,
 				'<a href="http://google.de">More information</a>',
-			),
-			array(
-				true,
-				'',
-				'http://google.de',
-				false,
-				'<a href="http://google.de">More information</a>',
-			),
-			array(
+			],
+			[
 				true,
 				'',
+				'http://google.de',
+				false,
+				'<a href="http://google.de">More information</a>',
+			],
+			[
+				true,
+				'',
 				false,
 				'http://google.de',
 				'<a href="http://google.de">More information</a>',
-			),
+			],
 			// the config should be the used, if set (no matter if the messages are used or not)
-			array(
+			[
 				true,
 				'http://google.de',
 				false,
 				'http://google123.de',
 				'<a href="http://google.de">More information</a>',
-			),
-			array(
+			],
+			[
 				true,
 				'http://google.de',
 				'http://google1234.de',
 				'http://google123.de',
 				'<a href="http://google.de">More information</a>',
-			),
-			array(
+			],
+			[
 				true,
 				'',
 				'http://google.de',
 				'http://google123.de',
 				'<a href="http://google.de">More information</a>',
-			),
-		);
+			],
+		];
 	}
 }
 

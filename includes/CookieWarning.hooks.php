@@ -52,7 +52,7 @@ class CookieWarningHooks {
 		if ( $moreLink ) {
 			$moreLink = Html::element(
 				'a',
-				array( 'href' => $moreLink ),
+				[ 'href' => $moreLink ],
 				$sk->msg( 'cookiewarning-moreinfo-label' )->text()
 			);
 		}
@@ -62,25 +62,25 @@ class CookieWarningHooks {
 		}
 		$tpl->data['headelement'] .= Html::openElement(
 				'div',
-				array( 'class' => 'mw-cookiewarning-container' )
+				[ 'class' => 'mw-cookiewarning-container' ]
 			) .
 			Html::openElement(
 				'div',
-				array( 'class' => 'mw-cookiewarning-text' )
+				[ 'class' => 'mw-cookiewarning-text' ]
 			) .
 			Html::element(
 				'span',
-				array(),
+				[],
 				$sk->msg( 'cookiewarning-info' )->text()
 			) .
 			$moreLink .
-			Html::openElement( 'form', array( 'method' => 'POST' ) ) .
+			Html::openElement( 'form', [ 'method' => 'POST' ] ) .
 			Html::submitButton(
 				$sk->msg( 'cookiewarning-ok-label' )->text(),
-				array(
+				[
 					'name' => 'disablecookiewarning',
 					'class' => 'mw-cookiewarning-dismiss'
-				)
+				]
 			) .
 			Html::closeElement( 'form' ) .
 			Html::closeElement( 'div' ) .
@@ -122,8 +122,8 @@ class CookieWarningHooks {
 	 */
 	public static function onBeforePageDisplay( OutputPage $out ) {
 		if ( self::showWarning( $out->getContext() ) ) {
-			$out->addModuleStyles( array( 'ext.CookieWarning.styles' ) );
-			$out->addModules( array( 'ext.CookieWarning' ) );
+			$out->addModuleStyles( [ 'ext.CookieWarning.styles' ] );
+			$out->addModules( [ 'ext.CookieWarning' ] );
 		}
 	}
 
@@ -160,10 +160,10 @@ class CookieWarningHooks {
 	 * @return bool
 	 */
 	public static function onGetPreferences( User $user, &$defaultPreferences ) {
-		$defaultPreferences['cookiewarning_dismissed'] = array(
+		$defaultPreferences['cookiewarning_dismissed'] = [
 			'type' => 'api',
 			'default' => '0',
-		);
+		];
 		return true;
 	}
 }
