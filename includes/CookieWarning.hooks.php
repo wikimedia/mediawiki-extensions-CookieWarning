@@ -12,15 +12,13 @@ class CookieWarningHooks {
 	public static function onSkinTemplateOutputPageBeforeExec(
 		SkinTemplate &$sk, QuickTemplate &$tpl
 	) {
-		// Config instance of CookieWarning
-		$conf = ConfigFactory::getDefaultInstance()->makeConfig( 'cookiewarning' );
-		$moreLink = '';
+		$moreLink = self::getMoreLink();
 		// if a "more information" URL was configured, add a link to it in the cookiewarning
 		// information bar
-		if ( $conf->get( 'CookieWarningMoreUrl' ) ) {
+		if ( $moreLink ) {
 			$moreLink = Html::element(
 				'a',
-				array( 'href' => $conf->get( 'CookieWarningMoreUrl' ) ),
+				array( 'href' => $moreLink ),
 				$sk->msg( 'cookiewarning-moreinfo-label' )->text()
 			);
 		}
@@ -49,6 +47,32 @@ class CookieWarningHooks {
 				Html::closeElement( 'div' ) .
 				Html::closeElement( 'div' );
 		}
+	}
+
+	/**
+	 * Returns the target for the "More information" link of the cookie warning bar, if one is set.
+	 * The link can be set by either (checked in this order):
+	 *  - the configuration variable $wgCookieWarningMoreUrl
+	 *  - the interface message MediaWiki:Cookiewarning-more-link
+	 *  - the interface message MediaWiki:Cookie-policy-link (bc T145781)
+	 *
+	 * @return string|null The url or null if none set
+	 */
+	private static function getMoreLink() {
+		// Config instance of CookieWarning
+		$conf = ConfigFactory::getDefaultInstance()->makeConfig( 'cookiewarning' );
+		if ( $conf->get( 'CookieWarningMoreUrl' ) ) {
+			return $conf->get( 'CookieWarningMoreUrl' );
+		}
+		$cookieWarningMessage = wfMessage( 'cookiewarning-more-link' );
+		if ( $cookieWarningMessage->exists() && !$cookieWarningMessage->isDisabled() ) {
+			return $cookieWarningMessage->escaped();
+		}
+		$cookiePolicyMessage = wfMessage( 'cookie-policy-link' );
+		if ( $cookiePolicyMessage->exists() && !$cookiePolicyMessage->isDisabled() ) {
+			return $cookiePolicyMessage->escaped();
+		}
+		return null;
 	}
 
 	/**
