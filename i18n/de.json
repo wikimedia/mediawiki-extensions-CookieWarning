@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Florian Schmidt"
+			"Florian Schmidt",
+			"Metalhead64"
 		]
 	},
-	"cookiewarning-info": "Cookies helfen uns bei der Bereitstellung von {{SITENAME}}. Durch die Nutzung von {{SITENAME}} erklären Sie sich damit einverstanden, dass wir Cookies setzen.",
-	"cookiewarning-desc": "Stellt einern Warnhinweis über die Vernwendung von Cookies beim Seitenbesuch zur Verfügung.",
-	"cookiewarning-moreinfo-label": "Mehr Informationen"
+	"cookiewarning-info": "Cookies helfen uns bei der Bereitstellung von {{SITENAME}}. Durch die Nutzung von {{SITENAME}} erklärst du dich damit einverstanden, dass wir Cookies speichern.",
+	"cookiewarning-desc": "Stellt einen Hinweis über die Verwendung von Cookies beim Besuch der Website zur Verfügung.",
+	"cookiewarning-moreinfo-label": "Weitere Informationen"
 }

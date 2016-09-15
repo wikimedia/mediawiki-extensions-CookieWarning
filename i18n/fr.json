@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wladek92"
+		]
+	},
+	"cookiewarning-desc": "Fournit une note en haut de la page, concernant les cookies.",
+	"cookiewarning-moreinfo-label": "Plus d’informations"
+}
