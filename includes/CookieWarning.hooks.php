@@ -1,6 +1,7 @@
 <?php
 
 class CookieWarningHooks {
+	private static $inConfiguredRegion;
 
 	/**
 	 * BeforeInitialize hook handler.
@@ -30,7 +31,6 @@ class CookieWarningHooks {
 		}
 		$output->redirect( $request->getRequestURL() );
 	}
-
 	/**
 	 * SkinTemplateOutputPageBeforeExec hook handler.
 	 *
@@ -122,9 +122,42 @@ class CookieWarningHooks {
 	 */
 	public static function onBeforePageDisplay( OutputPage $out ) {
 		if ( self::showWarning( $out->getContext() ) ) {
-			$out->addModuleStyles( [ 'ext.CookieWarning.styles' ] );
-			$out->addModules( [ 'ext.CookieWarning' ] );
+			$moduleStyles = [ 'ext.CookieWarning.styles' ];
+			$modules = ['ext.CookieWarning' ];
+			if ( self::getConfig()->get( 'CookieWarningGeoIPLookup' ) === 'js' ) {
+				$modules[] = 'ext.CookieWarning.geolocation';
+				$moduleStyles[] = 'ext.CookieWarning.geolocation.styles';
+			}
+			$out->addModules( $modules );
+			$out->addModuleStyles( $moduleStyles );
 		}
+	}
+
+	/**
+	 * ResourceLoaderGetConfigVars hook handler.
+	 *
+	 * @param array $vars
+	 */
+	public static function onResourceLoaderGetConfigVars( array &$vars ) {
+		$conf = self::getConfig();
+		if (
+			$conf->get( 'CookieWarningGeoIPLookup' ) === 'js' &&
+			is_array( $conf->get( 'CookieWarningForCountryCodes' ) )
+		) {
+			$vars += [
+				'wgCookieWarningGeoIPServiceURL' => $conf->get( 'CookieWarningGeoIPServiceURL' ),
+				'wgCookieWarningForCountryCodes' => $conf->get( 'CookieWarningForCountryCodes' ),
+			];
+		}
+	}
+
+	/**
+	 * Retruns the Config object for the CookieWarning extension.
+	 *
+	 * @return Config
+	 */
+	private static function getConfig() {
+		return ConfigFactory::getDefaultInstance()->makeConfig( 'cookiewarning' );
 	}
 
 	/**
@@ -136,18 +169,52 @@ class CookieWarningHooks {
 	 */
 	private static function showWarning( IContextSource $context ) {
 		$user = $context->getUser();
-		$conf = ConfigFactory::getDefaultInstance()->makeConfig( 'cookiewarning' );
+		$conf = self::getConfig();
 		if (
 			// if enabled in LocalSettings.php
 			$conf->get( 'CookieWarningEnabled' ) &&
 			// if not already dismissed by this user (and saved in the user prefs)
 			!$user->getBoolOption( 'cookiewarning_dismissed', false ) &&
 			// if not already dismissed by this user (and saved in the browser cookies)
-			!$context->getRequest()->getCookie( 'cookiewarning_dismissed' )
+			!$context->getRequest()->getCookie( 'cookiewarning_dismissed' ) &&
+			(
+				$conf->get( 'CookieWarningGeoIPLookup' ) === 'js' ||
+				self::inConfiguredRegion( $context, $conf )
+			)
 		) {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Checks, if the user is in one of the configured regions.
+	 *
+	 * @TODO: This function or the function users should set the cookie or user option, if this
+	 * function returns false to avoid a location lookup on each request.
+	 * @param IContextSource $context
+	 * @param Config $conf
+	 * @return bool
+	 */
+	private static function inConfiguredRegion( IContextSource $context, Config $conf ) {
+		if ( self::$inConfiguredRegion === null ) {
+			if ( !$conf->get( 'CookieWarningForCountryCodes' ) ) {
+				self::$inConfiguredRegion = true;
+			} else {
+				$geoLocation = new GeoLocation;
+				$located = $geoLocation
+					->setConfig( $conf )
+					->setIP( $context->getRequest()->getIP() )
+					->locate();
+				if ( !$located ) {
+					self::$inConfiguredRegion = true;
+				} else {
+					self::$inConfiguredRegion = array_key_exists( $geoLocation->getCountryCode(),
+						$conf->get( 'CookieWarningForCountryCodes' ) );
+				}
+			}
+		}
+		return self::$inConfiguredRegion;
 	}
 
 	/**
