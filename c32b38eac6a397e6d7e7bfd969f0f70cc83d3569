@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e82f318_38ccc08c",
+        "filename": "includes/GeoLocation.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 243
+      },
+      "writtenOn": "2016-09-17T13:19:13Z",
+      "side": 1,
+      "message": "Out of general curiosity, why does this method return $this?",
+      "revId": "c32b38eac6a397e6d7e7bfd969f0f70cc83d3569",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e82f318_58c9747a",
+        "filename": "includes/GeoLocation.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 243
+      },
+      "writtenOn": "2016-09-17T13:19:13Z",
+      "side": 1,
+      "message": "Really tiny coding style thing: there should be a space after \"-1\" and before the closing parenthesis (of the substr call).",
+      "revId": "c32b38eac6a397e6d7e7bfd969f0f70cc83d3569",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e82f318_78a558b1",
+        "filename": "resources/ext.CookieWarning.geolocation/cookiePolicy.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 243
+      },
+      "writtenOn": "2016-09-17T13:19:13Z",
+      "side": 1,
+      "message": "Some tiny coding style (spacing) related issues here, on lines 23, 27-30.",
+      "revId": "c32b38eac6a397e6d7e7bfd969f0f70cc83d3569",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
