@@ -43,7 +43,7 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 			// @codingStandardsIgnoreStart Generic.Files.LineLength
 			$expected =
 				str_replace( '$1', $expectedLink,
-					'<div class="mw-cookiewarning-container"><div class="mw-cookiewarning-text"><span>Cookies help us deliver our services. By using our services, you agree to our use of cookies.</span>$1<a class="mw-cookiewarning-dismiss">OK</a></div></div>' );
+					'<div class="mw-cookiewarning-container"><div class="mw-cookiewarning-text"><span>Cookies help us deliver our services. By using our services, you agree to our use of cookies.</span>$1<form method="POST"><input name="disablecookiewarning" class="mw-cookiewarning-dismiss" type="submit" value="OK"/></form></div></div>' );
 			// @codingStandardsIgnoreEnd
 		}
 		$this->assertEquals( $expected, $headElement );

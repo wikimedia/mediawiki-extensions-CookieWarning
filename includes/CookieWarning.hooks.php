@@ -57,6 +57,9 @@ class CookieWarningHooks {
 			);
 		}
 
+		if ( !isset( $tpl->data['headelement'] ) ) {
+			$tpl->data['headelement'] = '';
+		}
 		$tpl->data['headelement'] .= Html::openElement(
 				'div',
 				array( 'class' => 'mw-cookiewarning-container' )
