@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "0e82f318_3333010c",
+        "filename": "includes/GeoLocation.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2016-09-17T21:49:14Z",
+      "side": 1,
+      "message": "To allow method chaining. Doing this, you can chain set-methods (e.g.). So, instead of doing:\n\n$geo \u003d new GeoLocation;\n$geo-\u003esetFrist($first);\n$geo-\u003esetSecond($second);\n\nyou can do:\n$geo \u003d GeoLocation;\n$geo\n    -\u003esetFirst($first)\n    -\u003esetSecond($second);\n\nFor me this looks much better and cleaner :P",
+      "parentUuid": "0e82f318_38ccc08c",
+      "revId": "c32b38eac6a397e6d7e7bfd969f0f70cc83d3569",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e82f318_58c9747a",
         "filename": "includes/GeoLocation.php",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "0e82f318_533075fc",
+        "filename": "includes/GeoLocation.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2016-09-17T21:49:14Z",
+      "side": 1,
+      "message": "Oops, fixed! :)",
+      "parentUuid": "0e82f318_58c9747a",
+      "revId": "c32b38eac6a397e6d7e7bfd969f0f70cc83d3569",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e82f318_78a558b1",
         "filename": "resources/ext.CookieWarning.geolocation/cookiePolicy.js",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2016-09-17T13:19:13Z",
       "side": 1,
       "message": "Some tiny coding style (spacing) related issues here, on lines 23, 27-30.",
+      "revId": "c32b38eac6a397e6d7e7bfd969f0f70cc83d3569",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e82f318_731c997d",
+        "filename": "resources/ext.CookieWarning.geolocation/cookiePolicy.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2016-09-17T21:49:14Z",
+      "side": 1,
+      "message": "Damn, I thought I captured all :P Fixed!",
+      "parentUuid": "0e82f318_78a558b1",
       "revId": "c32b38eac6a397e6d7e7bfd969f0f70cc83d3569",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
