@@ -76,7 +76,7 @@ class CookieWarningHooks {
 			$moreLink .
 			Html::openElement( 'form', array( 'method' => 'POST' ) ) .
 			Html::submitButton(
-				'OK',
+				$sk->msg( 'cookiewarning-ok-label' )->text(),
 				array(
 					'name' => 'disablecookiewarning',
 					'class' => 'mw-cookiewarning-dismiss'
