@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e82f318_5bd792c4",
+        "filename": "extension.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2016-09-21T18:25:41Z",
+      "side": 1,
+      "message": "I\u0027m not sure, if we should enable this feature by default. Sending the IP address of the user to a third-party service could be a problem from a privacy point of view. I\u0027m also not very happy with disabling the function by removing the values from $wgCookieWarningForCountryCodes. I think a better idea would be to add a third value to $wgCookieWarningGeoIPLookup, e.g. none or something else. In this way the configuration is clearer and easier to handle.",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "31309333177465166596a8301123175f02baf142",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
