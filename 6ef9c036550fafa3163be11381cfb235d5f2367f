@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e750308_af6a397c",
+        "filename": "includes/CookieWarning.hooks.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2016-10-07T10:47:39Z",
+      "side": 1,
+      "message": "this should probably the same condition as in onResourceLoaderGetConfigVars, otherwise this could lead into some problems in JS (undefined vars and so on). We even don\u0027t need to load the module, if no country codes are configured.",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 69
+      },
+      "revId": "6ef9c036550fafa3163be11381cfb235d5f2367f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8e750308_ef6431b1",
+        "filename": "includes/CookieWarning.hooks.php",
+        "patchSetId": 6
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2016-10-07T10:47:39Z",
+      "side": 1,
+      "message": "I think some wfDebugLog calls would be good to better support debugging.",
+      "range": {
+        "startLine": 199,
+        "startChar": 25,
+        "endLine": 199,
+        "endChar": 43
+      },
+      "revId": "6ef9c036550fafa3163be11381cfb235d5f2367f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
