@@ -17,6 +17,7 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( [
 			'wgCookieWarningEnabled' => $enabled,
 			'wgCookieWarningMoreUrl' => $morelinkConfig,
+			'wgCookieWarningForCountryCodes' => false,
 		] );
 		if ( $morelinkCookieWarningMsg ) {
 			$title = Title::newFromText( 'cookiewarning-more-link', NS_MEDIAWIKI );
@@ -114,6 +115,64 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 				'<a href="http://google.de">More information</a>',
 			],
 		];
+	}
+
+	/**
+	 * @dataProvider providerOnSkinTemplateOutputPageBeforeExecGeoLocation
+	 */
+	public function testOnSkinTemplateOutputPageBeforeExecGeoLocation( $ipAddress, $countryCodes,
+		$expected
+	) {
+		$this->resetCookieWarningHooks();
+		$this->setMwGlobals( [
+			'wgCookieWarningEnabled' => true,
+			'wgCookieWarningGeoIPLookup' => is_array( $countryCodes ) ? 'php' : 'none',
+			'wgCookieWarningForCountryCodes' => $countryCodes,
+		] );
+
+		$request = new FauxRequest();
+		$request->setIP( $ipAddress );
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setRequest( $request );
+		$sk = new SkinTemplate();
+		$sk->setContext( $context );
+		$tpl = new CookieWarningTestTemplate();
+		CookieWarningHooks::onSkinTemplateOutputPageBeforeExec( $sk, $tpl );
+
+		$this->assertEquals(
+			$expected,
+			isset( $tpl->data['headelement'] ) && (bool)$tpl->data['headelement']
+		);
+	}
+
+	public function providerOnSkinTemplateOutputPageBeforeExecGeoLocation() {
+		return [
+			[
+				'8.8.8.8',
+				[ 'US' => 'United States of America' ],
+				true,
+			],
+			[
+				'8.8.8.8',
+				[ 'EU' => 'European Union' ],
+				false,
+			],
+			[
+				'8.8.8.8',
+				false,
+				true,
+			],
+		];
+	}
+
+	private function resetCookieWarningHooks() {
+		// reset the inConfiguredRegion value to retrigger a location lookup, if called again
+		$singleton = CookieWarningHooks::class;
+		$reflection = new ReflectionClass( $singleton );
+		$instance = $reflection->getProperty( 'inConfiguredRegion' );
+		$instance->setAccessible( true );
+		$instance->setValue( null, null );
+		$instance->setAccessible( false );
 	}
 }
 
