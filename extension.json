@@ -91,10 +91,12 @@
 		},
 		"ext.CookieWarning.styles": {
 			"position": "top",
-			"styles": "resources/ext.CookieWarning/ext.CookieWarning.less",
+			"styles": "resources/ext.CookieWarning/ext.CookieWarning.less"
+		},
+		"ext.CookieWarning.mobile.styles": {
+			"styles": "resources/ext.CookieWarning/ext.CookieWarning.mobile.less",
 			"targets": [
-				"mobile",
-				"desktop"
+				"mobile"
 			]
 		},
 		"ext.CookieWarning.geolocation": {
