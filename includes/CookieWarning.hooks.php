@@ -50,7 +50,7 @@ class CookieWarningHooks {
 		// if a "more information" URL was configured, add a link to it in the cookiewarning
 		// information bar
 		if ( $moreLink ) {
-			$moreLink = Html::element(
+			$moreLink = '&#160;' . Html::element(
 				'a',
 				[ 'href' => $moreLink ],
 				$sk->msg( 'cookiewarning-moreinfo-label' )->text()
@@ -60,10 +60,23 @@ class CookieWarningHooks {
 		if ( !isset( $tpl->data['headelement'] ) ) {
 			$tpl->data['headelement'] = '';
 		}
+		$form = Html::openElement( 'form', [ 'method' => 'POST' ] ) .
+	        Html::submitButton(
+		        $sk->msg( 'cookiewarning-ok-label' )->text(),
+		        [
+			        'name' => 'disablecookiewarning',
+			        'class' => 'mw-cookiewarning-dismiss'
+		        ]
+	        ) .
+	        Html::closeElement( 'form' );
+
+		$isMobile = ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
+			MobileContext::singleton()->shouldDisplayMobileView();
 		$tpl->data['headelement'] .= Html::openElement(
 				'div',
 				[ 'class' => 'mw-cookiewarning-container' ]
 			) .
+		    ( $isMobile ? $form : '' ) .
 			Html::openElement(
 				'div',
 				[ 'class' => 'mw-cookiewarning-text' ]
@@ -73,16 +86,8 @@ class CookieWarningHooks {
 				[],
 				$sk->msg( 'cookiewarning-info' )->text()
 			) .
+		    ( !$isMobile ? $form : '' ) .
 			$moreLink .
-			Html::openElement( 'form', [ 'method' => 'POST' ] ) .
-			Html::submitButton(
-				$sk->msg( 'cookiewarning-ok-label' )->text(),
-				[
-					'name' => 'disablecookiewarning',
-					'class' => 'mw-cookiewarning-dismiss'
-				]
-			) .
-			Html::closeElement( 'form' ) .
 			Html::closeElement( 'div' ) .
 			Html::closeElement( 'div' );
 	}
@@ -123,7 +128,14 @@ class CookieWarningHooks {
 	public static function onBeforePageDisplay( OutputPage $out ) {
 		if ( self::showWarning( $out->getContext() ) ) {
 			$conf = self::getConfig();
-			$moduleStyles = [ 'ext.CookieWarning.styles' ];
+			if (
+				ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
+			    MobileContext::singleton()->shouldDisplayMobileView()
+			) {
+				$moduleStyles = [ 'ext.CookieWarning.mobile.styles' ];
+			} else {
+				$moduleStyles = [ 'ext.CookieWarning.styles' ];
+			}
 			$modules = [ 'ext.CookieWarning' ];
 			if (
 				$conf->get( 'CookieWarningGeoIPLookup' ) === 'js' &&
