@@ -76,21 +76,21 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 				'http://google.de',
 				false,
 				false,
-				'<a href="http://google.de">More information</a>',
+				'&#160;<a href="http://google.de">More information</a>',
 			],
 			[
 				true,
 				'',
 				'http://google.de',
 				false,
-				'<a href="http://google.de">More information</a>',
+				'&#160;<a href="http://google.de">More information</a>',
 			],
 			[
 				true,
 				'',
 				false,
 				'http://google.de',
-				'<a href="http://google.de">More information</a>',
+				'&#160;<a href="http://google.de">More information</a>',
 			],
 			// the config should be the used, if set (no matter if the messages are used or not)
 			[
@@ -98,21 +98,21 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 				'http://google.de',
 				false,
 				'http://google123.de',
-				'<a href="http://google.de">More information</a>',
+				'&#160;<a href="http://google.de">More information</a>',
 			],
 			[
 				true,
 				'http://google.de',
 				'http://google1234.de',
 				'http://google123.de',
-				'<a href="http://google.de">More information</a>',
+				'&#160;<a href="http://google.de">More information</a>',
 			],
 			[
 				true,
 				'',
 				'http://google.de',
 				'http://google123.de',
-				'<a href="http://google.de">More information</a>',
+				'&#160;<a href="http://google.de">More information</a>',
 			],
 		];
 	}
