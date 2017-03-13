@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Papuass"
+			"Papuass",
+			"Silraks"
 		]
 	},
-	"cookiewarning-moreinfo-label": "Vairāk informācijas"
+	"cookiewarning-moreinfo-label": "Vairāk informācijas",
+	"cookiewarning-ok-label": "Labi"
 }
