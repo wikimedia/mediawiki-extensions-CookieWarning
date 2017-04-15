@@ -2,11 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Florian Schmidt",
-			"Metalhead64"
+			"Metalhead64",
+			"Kghbln"
 		]
 	},
 	"cookiewarning-info": "Cookies helfen uns bei der Bereitstellung von {{SITENAME}}. Durch die Nutzung von {{SITENAME}} erklärst du dich damit einverstanden, dass wir Cookies speichern.",
-	"cookiewarning-desc": "Stellt einen Hinweis über die Verwendung von Cookies beim Besuch der Website zur Verfügung.",
+	"cookiewarning-desc": "Blendet einen Hinweis zur Verwendung von Cookies beim Besuch des Wikis ein",
 	"cookiewarning-moreinfo-label": "Weitere Informationen",
 	"cookiewarning-ok-label": "Okay"
 }
