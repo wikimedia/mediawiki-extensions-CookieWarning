@@ -61,14 +61,14 @@ class CookieWarningHooks {
 			$tpl->data['headelement'] = '';
 		}
 		$form = Html::openElement( 'form', [ 'method' => 'POST' ] ) .
-	        Html::submitButton(
-		        $sk->msg( 'cookiewarning-ok-label' )->text(),
-		        [
-			        'name' => 'disablecookiewarning',
-			        'class' => 'mw-cookiewarning-dismiss'
-		        ]
-	        ) .
-	        Html::closeElement( 'form' );
+			Html::submitButton(
+				$sk->msg( 'cookiewarning-ok-label' )->text(),
+				[
+					'name' => 'disablecookiewarning',
+					'class' => 'mw-cookiewarning-dismiss'
+				]
+			) .
+			Html::closeElement( 'form' );
 
 		$cookieImage = Html::openElement( 'div', [ 'class' => 'mw-cookiewarning-cimage' ] ) .
 			'&#127850;' .
@@ -80,19 +80,19 @@ class CookieWarningHooks {
 				'div',
 				[ 'class' => 'mw-cookiewarning-container' ]
 			) .
-		    ( $isMobile ? $form : '' ) .
+			( $isMobile ? $form : '' ) .
 			Html::openElement(
 				'div',
 				[ 'class' => 'mw-cookiewarning-text' ]
 			) .
-		    ( $isMobile ? $cookieImage : '' ) .
+			( $isMobile ? $cookieImage : '' ) .
 			Html::element(
 				'span',
 				[],
 				$sk->msg( 'cookiewarning-info' )->text()
 			) .
 			$moreLink .
-		    ( !$isMobile ? $form : '' ) .
+			( !$isMobile ? $form : '' ) .
 			Html::closeElement( 'div' ) .
 			Html::closeElement( 'div' );
 	}
