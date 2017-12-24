@@ -1,4 +1,4 @@
-/* global Geo, mediaWiki */
+/* global mediaWiki */
 ( function ( mw, $ ) {
 	'use strict';
 	var geoLocation;
