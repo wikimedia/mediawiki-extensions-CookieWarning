@@ -101,7 +101,10 @@
 		},
 		"ext.CookieWarning.geolocation": {
 			"scripts": "resources/ext.CookieWarning.geolocation/cookiePolicy.js",
-			"dependencies": "ext.CookieWarning",
+			"dependencies": [
+				"ext.CookieWarning",
+				"mediawiki.cookie"
+			],
 			"targets": [
 				"mobile",
 				"desktop"

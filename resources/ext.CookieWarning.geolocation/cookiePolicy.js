@@ -1,4 +1,4 @@
-/* global Geo, mediaWiki */
+/* global mediaWiki */
 ( function ( mw, $ ) {
 	'use strict';
 	var geoLocation;
@@ -44,7 +44,7 @@
 	};
 
 	$( function () {
-		if ( geoLocation.isInRegion() ) {
+		if ( !mw.cookie.get( 'cookiewarning_dismissed' ) && geoLocation.isInRegion() ) {
 			$( '.mw-cookiewarning-container' ).show();
 		} else {
 			$( '.mw-cookiewarning-container' ).detach();
