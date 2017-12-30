@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aeed6739_08ff4663",
+        "filename": "resources/ext.CookieWarning.geolocation/cookiePolicy.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2017-12-30T20:52:07Z",
+      "side": 1,
+      "message": "This is most likely the wrong place for this code. Imagine someone does not want to have a geo-based cookie banner, but instead for all users. They would most likely set the $wgCookieWarningGeoIPLookup configuration variable to \"none\" (or do not change the default value). The module, where this script is included, would not be delivered to the the client.\n\nI would instead propose to put this cookie check into ext.CookieWarning, detach it there (calling .show() here, will not show it again).",
+      "revId": "eaadf8e7dce055fab81802a58258dce8e0d1b860",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
