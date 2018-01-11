@@ -9,10 +9,10 @@ class CookieWarningHooks {
 	 * If the disablecookiewarning POST data is send, disables the cookiewarning bar with a
 	 * cookie or a user preference, if the user is logged in.
 	 *
-	 * @param Title $title
-	 * @param null $unused
-	 * @param OutputPage $output
-	 * @param User $user
+	 * @param Title &$title
+	 * @param null &$unused
+	 * @param OutputPage &$output
+	 * @param User &$user
 	 * @param WebRequest $request
 	 * @param MediaWiki $mediawiki
 	 */
@@ -36,8 +36,8 @@ class CookieWarningHooks {
 	 *
 	 * Adds the CookieWarning information bar to the output html.
 	 *
-	 * @param SkinTemplate $sk
-	 * @param QuickTemplate $tpl
+	 * @param SkinTemplate &$sk
+	 * @param QuickTemplate &$tpl
 	 */
 	public static function onSkinTemplateOutputPageBeforeExec(
 		SkinTemplate &$sk, QuickTemplate &$tpl
@@ -157,7 +157,7 @@ class CookieWarningHooks {
 	/**
 	 * ResourceLoaderGetConfigVars hook handler.
 	 *
-	 * @param array $vars
+	 * @param array &$vars
 	 */
 	public static function onResourceLoaderGetConfigVars( array &$vars ) {
 		$conf = self::getConfig();
@@ -186,7 +186,7 @@ class CookieWarningHooks {
 	 * this page.
 	 *
 	 * @param IContextSource $context
-	 * @return boolean Returns true, if the cookie warning should be visible, false otherwise.
+	 * @return bool Returns true, if the cookie warning should be visible, false otherwise.
 	 */
 	private static function showWarning( IContextSource $context ) {
 		$user = $context->getUser();
@@ -253,7 +253,7 @@ class CookieWarningHooks {
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/GetPreferences
 	 *
 	 * @param User $user
-	 * @param array $defaultPreferences
+	 * @param array &$defaultPreferences
 	 * @return bool
 	 */
 	public static function onGetPreferences( User $user, &$defaultPreferences ) {
