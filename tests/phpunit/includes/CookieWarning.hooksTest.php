@@ -1,5 +1,6 @@
 <?php
 /**
+ * @covers CookieWarningHooks
  * @group Database
  */
 class CookieWarningHooksTest extends MediaWikiLangTestCase {
