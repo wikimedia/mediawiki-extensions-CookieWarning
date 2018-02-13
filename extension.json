@@ -90,7 +90,6 @@
 			]
 		},
 		"ext.CookieWarning.styles": {
-			"position": "top",
 			"styles": "resources/ext.CookieWarning/ext.CookieWarning.less"
 		},
 		"ext.CookieWarning.mobile.styles": {
@@ -108,7 +107,6 @@
 			]
 		},
 		"ext.CookieWarning.geolocation.styles": {
-			"position": "top",
 			"styles": "resources/ext.CookieWarning.geolocation/styles.css",
 			"targets": [
 				"mobile",
