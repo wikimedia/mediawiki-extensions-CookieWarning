@@ -29,4 +29,4 @@
 
 		ev.preventDefault();
 	} );
-} )( mediaWiki, jQuery );
+}( mediaWiki, jQuery ) );
