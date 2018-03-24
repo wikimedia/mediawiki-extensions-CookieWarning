@@ -127,7 +127,7 @@
 		"remoteExtPath": "CookieWarning"
 	},
 	"AutoloadClasses": {
-		"CookieWarningHooks": "includes/CookieWarning.hooks.php",
+		"CookieWarningHooks": "includes/CookieWarningHooks.php",
 		"GeoLocation": "includes/GeoLocation.php"
 	},
 	"ConfigRegistry": {

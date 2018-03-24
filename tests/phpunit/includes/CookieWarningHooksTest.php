@@ -176,9 +176,3 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 		$instance->setAccessible( false );
 	}
 }
-
-class CookieWarningTestTemplate extends BaseTemplate {
-	public function execute() {
-		return;
-	}
-}
