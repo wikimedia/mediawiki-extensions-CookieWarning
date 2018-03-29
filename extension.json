@@ -81,7 +81,8 @@
 		"ext.CookieWarning": {
 			"dependencies": [
 				"mediawiki.api",
-				"mediawiki.cookie"
+				"mediawiki.cookie",
+				"mediawiki.user"
 			],
 			"scripts": "resources/ext.CookieWarning/ext.CookieWarning.js",
 			"targets": [
@@ -100,7 +101,10 @@
 		},
 		"ext.CookieWarning.geolocation": {
 			"scripts": "resources/ext.CookieWarning.geolocation/cookiePolicy.js",
-			"dependencies": "ext.CookieWarning",
+			"dependencies": [
+				"ext.CookieWarning",
+				"jquery.cookie"
+			],
 			"targets": [
 				"mobile",
 				"desktop"
