@@ -10,6 +10,9 @@
 	"descriptionmsg": "cookiewarning-desc",
 	"type": "other",
 	"license-name": "MIT",
+	"requires": {
+		"MediaWiki": ">= 1.25.0"
+	},
 	"MessagesDirs": {
 		"CookieWarning": [
 			"i18n"
@@ -81,6 +84,7 @@
 		"ext.CookieWarning": {
 			"dependencies": [
 				"mediawiki.api",
+				"mediawiki.api.options",
 				"mediawiki.cookie",
 				"mediawiki.user"
 			],

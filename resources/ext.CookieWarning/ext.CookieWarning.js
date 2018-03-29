@@ -14,14 +14,12 @@
 		// the user preferences.
 		if ( !mw.user.isAnon() ) {
 			// try to save, that the cookiewarning was disabled, in the user preferences
-			new mw.Api().postWithToken( 'options', {
-				action: 'options',
-				change: 'cookiewarning_dismissed=1'
-			} ).fail( function ( code, result ) {
-				// if it fails, fall back to the cookie
-				mw.log.warn( 'Failed to save dismissed CookieWarning: ' + code + '\n' + result.error + '. Using cookie now.' );
-				setCookie();
-			} );
+			new mw.Api().saveOption( 'cookiewarning_dismissed', '1' )
+				.fail( function ( code, result ) {
+					// if it fails, fall back to the cookie
+					mw.log.warn( 'Failed to save dismissed CookieWarning: ' + code + '\n' + result.error + '. Using cookie now.' );
+					setCookie();
+				} );
 		} else {
 			// use cookies for anonymous users
 			setCookie();
