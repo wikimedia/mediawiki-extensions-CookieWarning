@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Meno25"
+			"Meno25",
+			"ديفيد"
 		]
 	},
 	"cookiewarning-info": "الكوكيز تساعدنا على تقديم خدماتنا. باستخدام خدماتنا، فأنت توافق على استخدام الكوكيز.",
 	"cookiewarning-desc": "يوفر ملاحظة أعلى الصفحة حول الكوكيز.",
-	"cookiewarning-moreinfo-label": "المزيد من المعلومات"
+	"cookiewarning-moreinfo-label": "المزيد من المعلومات",
+	"cookiewarning-ok-label": "حسنا"
 }
