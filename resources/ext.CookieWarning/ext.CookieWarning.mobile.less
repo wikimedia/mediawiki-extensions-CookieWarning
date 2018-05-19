@@ -1,7 +1,7 @@
-@import 'minerva.variables';
-@import 'minerva.mixins';
+@import 'mediawiki.ui/variables.less';
 
 @cookieWarningFontSize: 12px;
+@contentPaddingTablet: @iconGutterWidth + @iconGutterWidth + @iconSize;
 
 .mw-cookiewarning-container {
 	background-color: #ffffff;
@@ -47,22 +47,12 @@
 	}
 }
 
-@media all and ( min-width: @deviceWidthTablet ) {
+@media all and ( min-width: @width-breakpoint-tablet ) {
 	.mw-cookiewarning-container {
-		max-width: @contentMaxWidthTablet / @cookieWarningFontSize * 16;
-		margin: 0 @contentPaddingTablet;
 		line-height: @contentPaddingTablet;
 
 		.mw-cookiewarning-cimage {
 			line-height: inherit;
 		}
-	}
-}
-
-@media all and ( min-width: @wgMFDeviceWidthDesktop ) {
-	.mw-cookiewarning-container {
-		margin-left: auto;
-		margin-right: auto;
-		max-width: @contentMaxWidthTablet / @cookieWarningFontSize * 16;
 	}
 }
