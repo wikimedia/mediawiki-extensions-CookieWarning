@@ -78,7 +78,10 @@ class CookieWarningHooks {
 			MobileContext::singleton()->shouldDisplayMobileView();
 		$tpl->data['headelement'] .= Html::openElement(
 				'div',
-				[ 'class' => 'mw-cookiewarning-container' ]
+				// banner-container marks this as a banner for Minerva
+				// Note to avoid this class, in future we may want to make use of SiteNotice
+				// or banner display
+				[ 'class' => 'mw-cookiewarning-container banner-container' ]
 			) .
 			( $isMobile ? $form : '' ) .
 			Html::openElement(
