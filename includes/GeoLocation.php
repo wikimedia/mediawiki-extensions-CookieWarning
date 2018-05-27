@@ -75,24 +75,33 @@ class GeoLocation {
 			throw new RuntimeException(
 				'You need to set the Config object first, before you can locate an IP address.' );
 		}
-		if ( !$this->config->get( 'CookieWarningGeoIPServiceURL' ) ) {
+		if ( $this->config->get( 'CookieWarningGeoIp2' ) ) {
+			try {
+				$reader = new GeoIp2\Database\Reader( $this->config->get( 'CookieWarningGeoIp2Path' ) );
+				$record = $reader->city( $this->getIP() );
+				$this->countryCode = $record->country->isoCode;
+			} catch ( Exception $ex ) {
+				return null;
+			}
+		} elseif ( $this->config->get( 'CookieWarningGeoIPServiceURL' ) ) {
+			$requestUrl = $this->config->get( 'CookieWarningGeoIPServiceURL' );
+			if ( substr( $requestUrl, -1 ) !== '/' ) {
+				$requestUrl .= '/';
+			}
+			$json = Http::get( $requestUrl . $this->getIP(), [
+				'timeout' => '2'
+			] );
+			if ( !$json ) {
+				return false;
+			}
+			$returnObject = json_decode( $json );
+			if ( $returnObject === null || !property_exists( $returnObject, 'country_code' ) ) {
+				return false;
+			}
+			$this->countryCode = $returnObject->country_code;
+		} else {
 			return null;
 		}
-		$requestUrl = $this->config->get( 'CookieWarningGeoIPServiceURL' );
-		if ( substr( $requestUrl, -1 ) !== '/' ) {
-			$requestUrl .= '/';
-		}
-		$json = Http::get( $requestUrl . $this->getIP(), [
-			'timeout' => '2'
-		] );
-		if ( !$json ) {
-			return false;
-		}
-		$returnObject = json_decode( $json );
-		if ( $returnObject === null || !property_exists( $returnObject, 'country_code' ) ) {
-			return false;
-		}
-		$this->countryCode = $returnObject->country_code;
 		return true;
 	}
 }
