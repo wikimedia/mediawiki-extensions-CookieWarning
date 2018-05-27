@@ -29,6 +29,8 @@
 		"CookieWarningEnabled": false,
 		"CookieWarningMoreUrl": "",
 		"CookieWarningGeoIPServiceURL": "//freegeoip.net/json/",
+		"CookieWarningGeoIp2": false,
+		"CookieWarningGeoIp2Path": "/usr/local/share/GeoIP/GeoIP2-City.mmdb",
 		"CookieWarningGeoIPLookup": "none",
 		"CookieWarningForCountryCodes": {
 			"EU": "Europe",
@@ -134,5 +136,6 @@
 	"ConfigRegistry": {
 		"cookiewarning": "GlobalVarConfig::newInstance"
 	},
+	"load_composer_autoloader": true,
 	"manifest_version": 1
 }
