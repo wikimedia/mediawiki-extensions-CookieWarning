@@ -15,5 +15,8 @@
 			"phpcs -p -s",
 			"minus-x check ."
 		]
+	},
+	"suggest": {
+		"geoip2/geoip2": "Installs geoip2 php library."
 	}
 }
