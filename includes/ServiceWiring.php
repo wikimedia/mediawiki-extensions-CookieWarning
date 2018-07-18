@@ -12,6 +12,6 @@ return [
 	},
 	'CookieWarning.Decisions' => function ( MediaWikiServices $services ) {
 		return new CookieWarningDecisions( $services->getService( 'CookieWarning.Config' ),
-			$services->getService( 'GeoLocation' ) );
+			$services->getService( 'GeoLocation' ), $services->getMainWANObjectCache() );
 	},
 ];
