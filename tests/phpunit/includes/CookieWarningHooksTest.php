@@ -124,12 +124,12 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 	public function testOnSkinTemplateOutputPageBeforeExecGeoLocation( $ipAddress, $countryCodes,
 		$expected
 	) {
-		$this->resetCookieWarningHooks();
 		$this->setMwGlobals( [
 			'wgCookieWarningEnabled' => true,
 			'wgCookieWarningGeoIPLookup' => is_array( $countryCodes ) ? 'php' : 'none',
 			'wgCookieWarningForCountryCodes' => $countryCodes,
 		] );
+		$this->mockGeoLocationService();
 
 		$request = new FauxRequest();
 		$request->setIP( $ipAddress );
@@ -166,13 +166,12 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 		];
 	}
 
-	private function resetCookieWarningHooks() {
-		// reset the inConfiguredRegion value to retrigger a location lookup, if called again
-		$singleton = CookieWarningHooks::class;
-		$reflection = new ReflectionClass( $singleton );
-		$instance = $reflection->getProperty( 'inConfiguredRegion' );
-		$instance->setAccessible( true );
-		$instance->setValue( null, null );
-		$instance->setAccessible( false );
+	private function mockGeoLocationService() {
+		$geoLocation = $this->getMockBuilder( GeoLocation::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$geoLocation->method( 'locate' )->willReturn( true );
+		$geoLocation->method( 'getCountryCode' )->willReturn( 'US' );
+		$this->setService( 'GeoLocation', $geoLocation );
 	}
 }
