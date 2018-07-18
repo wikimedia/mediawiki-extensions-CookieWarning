@@ -1,8 +1,6 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use MobileFrontend\Features\FeaturesManager;
-use MobileFrontend\Features\Feature;
 
 return [
 	'CookieWarning.Config' => function ( MediaWikiServices $services ) {
@@ -14,6 +12,6 @@ return [
 	},
 	'CookieWarning.Decisions' => function ( MediaWikiServices $services ) {
 		return new CookieWarningDecisions( $services->getService( 'CookieWarning.Config' ),
-			$services->getService( 'GeoLocation' ) );
+			$services->getService( 'GeoLocation' ), $services->getMainWANObjectCache() );
 	},
 ];

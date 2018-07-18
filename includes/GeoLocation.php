@@ -10,6 +10,9 @@ class GeoLocation {
 	private $config;
 	private $countryCode;
 
+	/**
+	 * @param Config $config
+	 */
 	public function __construct( Config $config ) {
 		$this->config = $config;
 	}
@@ -30,6 +33,7 @@ class GeoLocation {
 	 * other problem occures which resulted in a failed locating process, this function returns
 	 * false, otherwise it returns true.
 	 *
+	 * @param string $ip The IP address to lookup
 	 * @return bool|null NULL if no geolocation service configured, false on error, true otherwise.
 	 * @throws ConfigException
 	 */
