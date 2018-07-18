@@ -84,6 +84,7 @@
 		"ext.CookieWarning": {
 			"dependencies": [
 				"mediawiki.api",
+				"mediawiki.api.options",
 				"mediawiki.cookie",
 				"mediawiki.user"
 			],
