@@ -128,11 +128,15 @@
 	},
 	"AutoloadClasses": {
 		"CookieWarningHooks": "includes/CookieWarningHooks.php",
+		"CookieWarningDecisions": "includes/CookieWarningDecisions.php",
 		"CookieWarningTestTemplate": "tests/phpunit/includes/CookieWarningTestTemplate.php",
 		"GeoLocation": "includes/GeoLocation.php"
 	},
 	"ConfigRegistry": {
 		"cookiewarning": "GlobalVarConfig::newInstance"
 	},
+	"ServiceWiringFiles": [
+		"includes/ServiceWiring.php"
+	],
 	"manifest_version": 1
 }

@@ -7,44 +7,14 @@
  * Implements the GeoLocation class, which allows to locate the user based on the IP address.
  */
 class GeoLocation {
-	private $ip;
 	private $config;
 	private $countryCode;
 
 	/**
-	 * Set the IP address you want to locate.
-	 *
-	 * @param string $ip A valid IP address
-	 * @return $this
-	 */
-	public function setIP( $ip ) {
-		if ( !IP::isValid( $ip ) ) {
-			throw new InvalidArgumentException( "$ip is not a valid IP address." );
-		}
-		$this->ip = $ip;
-
-		return $this;
-	}
-
-	/**
-	 * Returns the IP address.
-	 *
-	 * @return null|string NULL if the address is not set so far, string otherwise.
-	 */
-	public function getIP() {
-		return $this->ip;
-	}
-
-	/**
-	 * Sets the Config object used by this class.
-	 *
 	 * @param Config $config
-	 * @return $this
 	 */
-	public function setConfig( Config $config ) {
+	public function __construct( Config $config ) {
 		$this->config = $config;
-
-		return $this;
 	}
 
 	/**
@@ -63,17 +33,14 @@ class GeoLocation {
 	 * other problem occures which resulted in a failed locating process, this function returns
 	 * false, otherwise it returns true.
 	 *
+	 * @param string $ip The IP address to lookup
 	 * @return bool|null NULL if no geolocation service configured, false on error, true otherwise.
+	 * @throws ConfigException
 	 */
-	public function locate() {
+	public function locate( $ip ) {
 		$this->countryCode = null;
-		if ( $this->ip === null ) {
-			throw new RuntimeException(
-				'No IP address set, locating now would return the servers location.' );
-		}
-		if ( $this->config === null ) {
-			throw new RuntimeException(
-				'You need to set the Config object first, before you can locate an IP address.' );
+		if ( !IP::isValid( $ip ) ) {
+			throw new InvalidArgumentException( "$ip is not a valid IP address." );
 		}
 		if ( !$this->config->get( 'CookieWarningGeoIPServiceURL' ) ) {
 			return null;
@@ -82,7 +49,7 @@ class GeoLocation {
 		if ( substr( $requestUrl, -1 ) !== '/' ) {
 			$requestUrl .= '/';
 		}
-		$json = Http::get( $requestUrl . $this->getIP(), [
+		$json = Http::get( $requestUrl . $ip, [
 			'timeout' => '2'
 		] );
 		if ( !$json ) {

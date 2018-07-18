@@ -1,8 +1,8 @@
 <?php
 
-class CookieWarningHooks {
-	private static $inConfiguredRegion;
+use MediaWiki\MediaWikiServices;
 
+class CookieWarningHooks {
 	/**
 	 * BeforeInitialize hook handler.
 	 *
@@ -15,6 +15,7 @@ class CookieWarningHooks {
 	 * @param User &$user
 	 * @param WebRequest $request
 	 * @param MediaWiki $mediawiki
+	 * @throws MWException
 	 */
 	public static function onBeforeInitialize( Title &$title, &$unused, OutputPage &$output,
 		User &$user, WebRequest $request, MediaWiki $mediawiki
@@ -31,6 +32,7 @@ class CookieWarningHooks {
 		}
 		$output->redirect( $request->getRequestURL() );
 	}
+
 	/**
 	 * SkinTemplateOutputPageBeforeExec hook handler.
 	 *
@@ -38,17 +40,21 @@ class CookieWarningHooks {
 	 *
 	 * @param SkinTemplate &$sk
 	 * @param QuickTemplate &$tpl
+	 * @throws ConfigException
+	 * @throws MWException
 	 */
 	public static function onSkinTemplateOutputPageBeforeExec(
 		SkinTemplate &$sk, QuickTemplate &$tpl
 	) {
-		// if the cookiewarning should not be visible to the user, exit.
-		if ( !self::showWarning( $sk->getContext() ) ) {
+		/** @var CookieWarningDecisions $cookieWarningDecisions */
+		$cookieWarningDecisions = MediaWikiServices::getInstance()
+			->getService( 'CookieWarning.Decisions' );
+
+		if ( !$cookieWarningDecisions->shouldShowCookieWarning( $sk->getContext() ) ) {
 			return;
 		}
 		$moreLink = self::getMoreLink();
-		// if a "more information" URL was configured, add a link to it in the cookiewarning
-		// information bar
+
 		if ( $moreLink ) {
 			$moreLink = '&#160;' . Html::element(
 				'a',
@@ -108,21 +114,24 @@ class CookieWarningHooks {
 	 *  - the interface message MediaWiki:Cookie-policy-link (bc T145781)
 	 *
 	 * @return string|null The url or null if none set
+	 * @throws ConfigException
 	 */
 	private static function getMoreLink() {
-		// Config instance of CookieWarning
-		$conf = ConfigFactory::getDefaultInstance()->makeConfig( 'cookiewarning' );
+		$conf = self::getConfig();
 		if ( $conf->get( 'CookieWarningMoreUrl' ) ) {
 			return $conf->get( 'CookieWarningMoreUrl' );
 		}
+
 		$cookieWarningMessage = wfMessage( 'cookiewarning-more-link' );
 		if ( $cookieWarningMessage->exists() && !$cookieWarningMessage->isDisabled() ) {
 			return $cookieWarningMessage->escaped();
 		}
+
 		$cookiePolicyMessage = wfMessage( 'cookie-policy-link' );
 		if ( $cookiePolicyMessage->exists() && !$cookiePolicyMessage->isDisabled() ) {
 			return $cookiePolicyMessage->escaped();
 		}
+
 		return null;
 	}
 
@@ -132,42 +141,49 @@ class CookieWarningHooks {
 	 * Adds the required style and JS module, if cookiewarning is enabled.
 	 *
 	 * @param OutputPage $out
+	 * @throws ConfigException
+	 * @throws MWException
 	 */
 	public static function onBeforePageDisplay( OutputPage $out ) {
-		if ( self::showWarning( $out->getContext() ) ) {
-			$conf = self::getConfig();
-			if (
-				ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
-				MobileContext::singleton()->shouldDisplayMobileView()
-			) {
-				$moduleStyles = [ 'ext.CookieWarning.mobile.styles' ];
-			} else {
-				$moduleStyles = [ 'ext.CookieWarning.styles' ];
-			}
-			$modules = [ 'ext.CookieWarning' ];
-			if (
-				$conf->get( 'CookieWarningGeoIPLookup' ) === 'js' &&
-				is_array( $conf->get( 'CookieWarningForCountryCodes' ) )
-			) {
-				$modules[] = 'ext.CookieWarning.geolocation';
-				$moduleStyles[] = 'ext.CookieWarning.geolocation.styles';
-			}
-			$out->addModules( $modules );
-			$out->addModuleStyles( $moduleStyles );
+		/** @var CookieWarningDecisions $cookieWarningDecisions */
+		$cookieWarningDecisions = MediaWikiServices::getInstance()
+			->getService( 'CookieWarning.Decisions' );
+
+		if ( !$cookieWarningDecisions->shouldShowCookieWarning( $out->getContext() ) ) {
+			return;
 		}
+
+		if (
+			ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
+			MobileContext::singleton()->shouldDisplayMobileView()
+		) {
+			$moduleStyles = [ 'ext.CookieWarning.mobile.styles' ];
+		} else {
+			$moduleStyles = [ 'ext.CookieWarning.styles' ];
+		}
+		$modules = [ 'ext.CookieWarning' ];
+
+		if ( $cookieWarningDecisions->shouldAddResourceLoaderComponents() ) {
+			$modules[] = 'ext.CookieWarning.geolocation';
+			$moduleStyles[] = 'ext.CookieWarning.geolocation.styles';
+		}
+		$out->addModules( $modules );
+		$out->addModuleStyles( $moduleStyles );
 	}
 
 	/**
 	 * ResourceLoaderGetConfigVars hook handler.
 	 *
 	 * @param array &$vars
+	 * @throws ConfigException
 	 */
 	public static function onResourceLoaderGetConfigVars( array &$vars ) {
+		/** @var CookieWarningDecisions $cookieWarningDecisions */
+		$cookieWarningDecisions = MediaWikiServices::getInstance()
+			->getService( 'CookieWarning.Decisions' );
 		$conf = self::getConfig();
-		if (
-			$conf->get( 'CookieWarningGeoIPLookup' ) === 'js' &&
-			is_array( $conf->get( 'CookieWarningForCountryCodes' ) )
-		) {
+
+		if ( $cookieWarningDecisions->shouldAddResourceLoaderComponents() ) {
 			$vars += [
 				'wgCookieWarningGeoIPServiceURL' => $conf->get( 'CookieWarningGeoIPServiceURL' ),
 				'wgCookieWarningForCountryCodes' => $conf->get( 'CookieWarningForCountryCodes' ),
@@ -181,73 +197,7 @@ class CookieWarningHooks {
 	 * @return Config
 	 */
 	private static function getConfig() {
-		return ConfigFactory::getDefaultInstance()->makeConfig( 'cookiewarning' );
-	}
-
-	/**
-	 * Checks, if the CookieWarning information bar should be visible to this user on
-	 * this page.
-	 *
-	 * @param IContextSource $context
-	 * @return bool Returns true, if the cookie warning should be visible, false otherwise.
-	 */
-	private static function showWarning( IContextSource $context ) {
-		$user = $context->getUser();
-		$conf = self::getConfig();
-		if (
-			// if enabled in LocalSettings.php
-			$conf->get( 'CookieWarningEnabled' ) &&
-			// if not already dismissed by this user (and saved in the user prefs)
-			!$user->getBoolOption( 'cookiewarning_dismissed', false ) &&
-			// if not already dismissed by this user (and saved in the browser cookies)
-			!$context->getRequest()->getCookie( 'cookiewarning_dismissed' ) &&
-			(
-				$conf->get( 'CookieWarningGeoIPLookup' ) === 'js' ||
-				self::inConfiguredRegion( $context, $conf )
-			)
-		) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Checks, if the user is in one of the configured regions.
-	 *
-	 * @TODO: This function or the function users should set the cookie or user option, if this
-	 * function returns false to avoid a location lookup on each request.
-	 * @param IContextSource $context
-	 * @param Config $conf
-	 * @return bool
-	 */
-	private static function inConfiguredRegion( IContextSource $context, Config $conf ) {
-		if ( self::$inConfiguredRegion === null ) {
-			if (
-				!$conf->get( 'CookieWarningForCountryCodes' ) ||
-				$conf->get( 'CookieWarningGeoIPLookup' ) === 'none'
-			) {
-				wfDebugLog( 'CookieWarning', 'IP geolocation not configured, skipping.' );
-				self::$inConfiguredRegion = true;
-			} else {
-				wfDebugLog( 'CookieWarning', 'Try to locate the user\'s IP address.' );
-				$geoLocation = new GeoLocation;
-				$located = $geoLocation
-					->setConfig( $conf )
-					->setIP( $context->getRequest()->getIP() )
-					->locate();
-				if ( !$located ) {
-					wfDebugLog( 'CookieWarning', 'Locating the user\'s IP address failed or is' .
-						' configured false.' );
-					self::$inConfiguredRegion = true;
-				} else {
-					wfDebugLog( 'CookieWarning', 'Locating the user was successful, located' .
-						' region: ' . $geoLocation->getCountryCode() );
-					self::$inConfiguredRegion = array_key_exists( $geoLocation->getCountryCode(),
-						$conf->get( 'CookieWarningForCountryCodes' ) );
-				}
-			}
-		}
-		return self::$inConfiguredRegion;
+		return MediaWikiServices::getInstance()->getService( 'CookieWarning.Config' );
 	}
 
 	/**
