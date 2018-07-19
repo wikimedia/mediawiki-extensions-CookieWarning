@@ -1,8 +1,23 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+namespace CookieWarning;
 
-class CookieWarningHooks {
+use Config;
+use ConfigException;
+use ExtensionRegistry;
+use Html;
+use MediaWiki;
+use MediaWiki\MediaWikiServices;
+use MobileContext;
+use MWException;
+use OutputPage;
+use QuickTemplate;
+use SkinTemplate;
+use Title;
+use User;
+use WebRequest;
+
+class Hooks {
 	/**
 	 * BeforeInitialize hook handler.
 	 *
@@ -46,7 +61,7 @@ class CookieWarningHooks {
 	public static function onSkinTemplateOutputPageBeforeExec(
 		SkinTemplate &$sk, QuickTemplate &$tpl
 	) {
-		/** @var CookieWarningDecisions $cookieWarningDecisions */
+		/** @var Decisions $cookieWarningDecisions */
 		$cookieWarningDecisions = MediaWikiServices::getInstance()
 			->getService( 'CookieWarning.Decisions' );
 
@@ -145,7 +160,7 @@ class CookieWarningHooks {
 	 * @throws MWException
 	 */
 	public static function onBeforePageDisplay( OutputPage $out ) {
-		/** @var CookieWarningDecisions $cookieWarningDecisions */
+		/** @var Decisions $cookieWarningDecisions */
 		$cookieWarningDecisions = MediaWikiServices::getInstance()
 			->getService( 'CookieWarning.Decisions' );
 
@@ -178,7 +193,7 @@ class CookieWarningHooks {
 	 * @throws ConfigException
 	 */
 	public static function onResourceLoaderGetConfigVars( array &$vars ) {
-		/** @var CookieWarningDecisions $cookieWarningDecisions */
+		/** @var Decisions $cookieWarningDecisions */
 		$cookieWarningDecisions = MediaWikiServices::getInstance()
 			->getService( 'CookieWarning.Decisions' );
 		$conf = self::getConfig();
