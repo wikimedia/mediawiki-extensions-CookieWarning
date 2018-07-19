@@ -11,7 +11,7 @@
 	"type": "other",
 	"license-name": "MIT",
 	"requires": {
-		"MediaWiki": ">= 1.25.0"
+		"MediaWiki": ">= 1.31.0"
 	},
 	"MessagesDirs": {
 		"CookieWarning": [
@@ -19,11 +19,11 @@
 		]
 	},
 	"Hooks": {
-		"SkinTemplateOutputPageBeforeExec": "CookieWarningHooks::onSkinTemplateOutputPageBeforeExec",
-		"BeforePageDisplay": "CookieWarningHooks::onBeforePageDisplay",
-		"GetPreferences": "CookieWarningHooks::onGetPreferences",
-		"BeforeInitialize": "CookieWarningHooks::onBeforeInitialize",
-		"ResourceLoaderGetConfigVars": "CookieWarningHooks::onResourceLoaderGetConfigVars"
+		"SkinTemplateOutputPageBeforeExec": "CookieWarning\\Hooks::onSkinTemplateOutputPageBeforeExec",
+		"BeforePageDisplay": "CookieWarning\\Hooks::onBeforePageDisplay",
+		"GetPreferences": "CookieWarning\\Hooks::onGetPreferences",
+		"BeforeInitialize": "CookieWarning\\Hooks::onBeforeInitialize",
+		"ResourceLoaderGetConfigVars": "CookieWarning\\Hooks::onResourceLoaderGetConfigVars"
 	},
 	"config": {
 		"CookieWarningEnabled": false,
@@ -125,11 +125,11 @@
 		"localBasePath": "",
 		"remoteExtPath": "CookieWarning"
 	},
+	"AutoloadNamespaces": {
+		"CookieWarning\\": "includes/"
+	},
 	"AutoloadClasses": {
-		"CookieWarningHooks": "includes/CookieWarningHooks.php",
-		"CookieWarningDecisions": "includes/CookieWarningDecisions.php",
-		"CookieWarningTestTemplate": "tests/phpunit/includes/CookieWarningTestTemplate.php",
-		"GeoLocation": "includes/GeoLocation.php"
+		"CookieWarning\\Tests\\TestTemplate": "tests/phpunit/includes/TestTemplate.php"
 	},
 	"ConfigRegistry": {
 		"cookiewarning": "GlobalVarConfig::newInstance"

@@ -1,9 +1,27 @@
 <?php
+
+namespace CookieWarning\Tests;
+
+use CookieWarning\GeoLocation;
+use CookieWarning\Hooks;
+use DerivativeContext;
+use FauxRequest;
+use MediaWikiLangTestCase;
+use MessageCache;
+use RequestContext;
+use SkinTemplate;
+use Title;
+use WikiPage;
+use WikitextContent;
+
 /**
- * @covers CookieWarningHooks
+ * @covers Hooks
  * @group Database
  */
-class CookieWarningHooksTest extends MediaWikiLangTestCase {
+class HooksTest extends MediaWikiLangTestCase {
+	/**
+	 * @throws \MWException
+	 */
 	protected function setUp() {
 		parent::setUp();
 		MessageCache::singleton()->enable();
@@ -11,6 +29,8 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider providerOnSkinTemplateOutputPageBeforeExec
+	 * @throws \MWException
+	 * @throws \ConfigException
 	 */
 	public function testOnSkinTemplateOutputPageBeforeExec( $enabled, $morelinkConfig,
 		$morelinkCookieWarningMsg, $morelinkCookiePolicyMsg, $expectedLink
@@ -33,8 +53,8 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 				"CookieWarning test" );
 		}
 		$sk = new SkinTemplate();
-		$tpl = new CookieWarningTestTemplate();
-		CookieWarningHooks::onSkinTemplateOutputPageBeforeExec( $sk, $tpl );
+		$tpl = new TestTemplate();
+		Hooks::onSkinTemplateOutputPageBeforeExec( $sk, $tpl );
 		$headElement = '';
 		if ( isset( $tpl->data['headelement'] ) ) {
 			$headElement = $tpl->data['headelement'];
@@ -120,6 +140,8 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider providerOnSkinTemplateOutputPageBeforeExecGeoLocation
+	 * @throws \MWException
+	 * @throws \ConfigException
 	 */
 	public function testOnSkinTemplateOutputPageBeforeExecGeoLocation( $ipAddress, $countryCodes,
 		$expected
@@ -137,8 +159,8 @@ class CookieWarningHooksTest extends MediaWikiLangTestCase {
 		$context->setRequest( $request );
 		$sk = new SkinTemplate();
 		$sk->setContext( $context );
-		$tpl = new CookieWarningTestTemplate();
-		CookieWarningHooks::onSkinTemplateOutputPageBeforeExec( $sk, $tpl );
+		$tpl = new TestTemplate();
+		Hooks::onSkinTemplateOutputPageBeforeExec( $sk, $tpl );
 
 		$this->assertEquals(
 			$expected,

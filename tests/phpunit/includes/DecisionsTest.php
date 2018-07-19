@@ -1,10 +1,20 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+namespace CookieWarning\Tests;
 
-class CookieWarningDecisionsTest extends MediaWikiTestCase {
+use ConfigException;
+use CookieWarning\Decisions;
+use CookieWarning\GeoLocation;
+use HashBagOStuff;
+use MediaWiki\MediaWikiServices;
+use MediaWikiTestCase;
+use MWException;
+use RequestContext;
+use WANObjectCache;
+
+class DecisionsTest extends MediaWikiTestCase {
 	/**
-	 * @covers CookieWarningDecisions::shouldShowCookieWarning()
+	 * @covers \CookieWarning\Decisions::shouldShowCookieWarning()
 	 * @throws ConfigException
 	 * @throws MWException
 	 */
@@ -22,7 +32,7 @@ class CookieWarningDecisionsTest extends MediaWikiTestCase {
 		$geoLocation->method( 'getCountryCode' )->willReturn( 'EU' );
 
 		$geoLocation->expects( $this->once() )->method( 'locate' );
-		$cookieWarningDecisions = new CookieWarningDecisions(
+		$cookieWarningDecisions = new Decisions(
 			MediaWikiServices::getInstance()->getService( 'CookieWarning.Config' ),
 			$geoLocation,
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] )

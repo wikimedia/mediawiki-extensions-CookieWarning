@@ -1,5 +1,7 @@
 <?php
 
+use CookieWarning\Decisions;
+use CookieWarning\GeoLocation;
 use MediaWiki\MediaWikiServices;
 
 return [
@@ -11,7 +13,7 @@ return [
 		return new GeoLocation( $services->getService( 'CookieWarning.Config' ) );
 	},
 	'CookieWarning.Decisions' => function ( MediaWikiServices $services ) {
-		return new CookieWarningDecisions( $services->getService( 'CookieWarning.Config' ),
+		return new Decisions( $services->getService( 'CookieWarning.Config' ),
 			$services->getService( 'GeoLocation' ), $services->getMainWANObjectCache() );
 	},
 ];

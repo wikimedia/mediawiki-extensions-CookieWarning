@@ -1,7 +1,16 @@
 <?php
+
+namespace CookieWarning;
+
 /**
  * GeoLocation implementation
  */
+
+use Config;
+use ConfigException;
+use Http;
+use InvalidArgumentException;
+use IP;
 
 /**
  * Implements the GeoLocation class, which allows to locate the user based on the IP address.

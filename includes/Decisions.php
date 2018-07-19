@@ -1,6 +1,14 @@
 <?php
 
-class CookieWarningDecisions {
+namespace CookieWarning;
+
+use Config;
+use ConfigException;
+use IContextSource;
+use MWException;
+use WANObjectCache;
+
+class Decisions {
 	private $config;
 	private $geoLocation;
 	private $cache;
