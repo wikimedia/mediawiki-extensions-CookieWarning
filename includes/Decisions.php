@@ -63,7 +63,7 @@ class Decisions {
 
 		$countryCode = $this->getCountryCodeFromIP( $context->getRequest()->getIP() );
 
-		return array_key_exists( $countryCode,
+		return $countryCode === '' || array_key_exists( $countryCode,
 			$this->config->get( 'CookieWarningForCountryCodes' ) );
 	}
 
@@ -78,7 +78,7 @@ class Decisions {
 
 	/**
 	 * @param $currentIP
-	 * @return bool|mixed|null|string
+	 * @return string The country code associated with the IP or empty string if not able to locate.
 	 * @throws ConfigException
 	 */
 	private function getCountryCodeFromIP( $currentIP ) {
@@ -93,9 +93,9 @@ class Decisions {
 		$located = $this->geoLocation->locate( $currentIP );
 		if ( !$located ) {
 			wfDebugLog( 'CookieWarning',
-				'Locating the user\'s IP address failed or is' . ' configured false.' );
+				'Locating the user\'s IP address failed or is misconfigured.' );
 
-			return true;
+			return '';
 		}
 
 		$lookedUpCountryCode = $this->geoLocation->getCountryCode();
