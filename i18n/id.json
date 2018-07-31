@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rex"
+		]
+	},
+	"cookiewarning-info": "Cookies membantu kami dalam memberikan layanan. Dengan menggunakan layanan ini, Anda menyetujui penggunaan cookies kami.",
+	"cookiewarning-desc": "Menampilkan notifikasi mengenai cookies di bagian atas halaman.",
+	"cookiewarning-moreinfo-label": "Informasi lebih lanjut",
+	"cookiewarning-ok-label": "OK"
+}
