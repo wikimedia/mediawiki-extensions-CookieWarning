@@ -39,6 +39,7 @@ class HooksTest extends MediaWikiLangTestCase {
 			'wgCookieWarningEnabled' => $enabled,
 			'wgCookieWarningMoreUrl' => $morelinkConfig,
 			'wgCookieWarningForCountryCodes' => false,
+			'wgUseMediaWikiUIEverywhere' => true,
 		] );
 		if ( $morelinkCookieWarningMsg ) {
 			$title = Title::newFromText( 'cookiewarning-more-link', NS_MEDIAWIKI );
@@ -65,7 +66,7 @@ class HooksTest extends MediaWikiLangTestCase {
 			// @codingStandardsIgnoreStart Generic.Files.LineLength
 			$expected =
 				str_replace( '$1', $expectedLink,
-					'<div class="mw-cookiewarning-container banner-container"><div class="mw-cookiewarning-text"><span>Cookies help us deliver our services. By using our services, you agree to our use of cookies.</span>$1<form method="POST"><input name="disablecookiewarning" class="mw-cookiewarning-dismiss" type="submit" value="OK"/></form></div></div>' );
+					'<div class="mw-cookiewarning-container banner-container"><div class="mw-cookiewarning-text"><span>Cookies help us deliver our services. By using our services, you agree to our use of cookies.</span>$1<form method="POST"><input name="disablecookiewarning" class="mw-cookiewarning-dismiss mw-ui-button" type="submit" value="OK"/></form></div></div>' );
 			// @codingStandardsIgnoreEnd
 		}
 		$this->assertEquals( $expected, $headElement );
