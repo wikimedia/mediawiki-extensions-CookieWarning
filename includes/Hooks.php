@@ -71,7 +71,7 @@ class Hooks {
 		$moreLink = self::getMoreLink();
 
 		if ( $moreLink ) {
-			$moreLink = '&#160;' . Html::element(
+			$moreLink = "\u{00A0}" . Html::element(
 				'a',
 				[ 'href' => $moreLink ],
 				$sk->msg( 'cookiewarning-moreinfo-label' )->text()
@@ -92,7 +92,7 @@ class Hooks {
 			Html::closeElement( 'form' );
 
 		$cookieImage = Html::openElement( 'div', [ 'class' => 'mw-cookiewarning-cimage' ] ) .
-			'&#127850;' .
+			"\u{1F36A}" .
 			Html::closeElement( 'div' );
 
 		$isMobile = ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&

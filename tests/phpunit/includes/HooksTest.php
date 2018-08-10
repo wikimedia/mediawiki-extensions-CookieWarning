@@ -98,21 +98,21 @@ class HooksTest extends MediaWikiLangTestCase {
 				'http://google.de',
 				false,
 				false,
-				'&#160;<a href="http://google.de">More information</a>',
+				"\u{00A0}<a href=\"http://google.de\">More information</a>",
 			],
 			[
 				true,
 				'',
 				'http://google.de',
 				false,
-				'&#160;<a href="http://google.de">More information</a>',
+				"\u{00A0}<a href=\"http://google.de\">More information</a>",
 			],
 			[
 				true,
 				'',
 				false,
 				'http://google.de',
-				'&#160;<a href="http://google.de">More information</a>',
+				"\u{00A0}<a href=\"http://google.de\">More information</a>",
 			],
 			// the config should be the used, if set (no matter if the messages are used or not)
 			[
@@ -120,21 +120,21 @@ class HooksTest extends MediaWikiLangTestCase {
 				'http://google.de',
 				false,
 				'http://google123.de',
-				'&#160;<a href="http://google.de">More information</a>',
+				"\u{00A0}<a href=\"http://google.de\">More information</a>",
 			],
 			[
 				true,
 				'http://google.de',
 				'http://google1234.de',
 				'http://google123.de',
-				'&#160;<a href="http://google.de">More information</a>',
+				"\u{00A0}<a href=\"http://google.de\">More information</a>",
 			],
 			[
 				true,
 				'',
 				'http://google.de',
 				'http://google123.de',
-				'&#160;<a href="http://google.de">More information</a>',
+				"\u{00A0}<a href=\"http://google.de\">More information</a>",
 			],
 		];
 	}
