@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "deadf457_af94528b",
+        "filename": "includes/GeoLocation.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 562
+      },
+      "writtenOn": "2018-08-10T19:04:50Z",
+      "side": 1,
+      "message": "Too much indenting and mixed tabs and spaces.",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 9
+      },
+      "revId": "3f2c67fde6e591dcc22438fe51fcd3891e43c6f9",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
