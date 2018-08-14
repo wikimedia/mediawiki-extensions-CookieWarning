@@ -209,7 +209,7 @@ class Hooks {
 	}
 
 	/**
-	 * Retruns the Config object for the CookieWarning extension.
+	 * Returns the Config object for the CookieWarning extension.
 	 *
 	 * @return Config
 	 */
