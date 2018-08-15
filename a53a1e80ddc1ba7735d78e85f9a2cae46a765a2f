@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34f3ff32_c6d747f4",
+        "filename": "extension.json",
+        "patchSetId": 30
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 562
+      },
+      "writtenOn": "2018-08-15T20:56:38Z",
+      "side": 1,
+      "message": "Such a hard coded absolute path is problematic. Is there a better solution?",
+      "range": {
+        "startLine": 33,
+        "startChar": 30,
+        "endLine": 33,
+        "endChar": 47
+      },
+      "revId": "a53a1e80ddc1ba7735d78e85f9a2cae46a765a2f",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
