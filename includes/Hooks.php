@@ -141,12 +141,12 @@ class Hooks {
 
 		$cookieWarningMessage = wfMessage( 'cookiewarning-more-link' );
 		if ( $cookieWarningMessage->exists() && !$cookieWarningMessage->isDisabled() ) {
-			return $cookieWarningMessage->escaped();
+			return $cookieWarningMessage->text();
 		}
 
 		$cookiePolicyMessage = wfMessage( 'cookie-policy-link' );
 		if ( $cookiePolicyMessage->exists() && !$cookiePolicyMessage->isDisabled() ) {
-			return $cookiePolicyMessage->escaped();
+			return $cookiePolicyMessage->text();
 		}
 
 		return null;
