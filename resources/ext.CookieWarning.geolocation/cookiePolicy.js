@@ -20,7 +20,7 @@
 					// Store the result in a cookie (ah, the sweet, sweet irony) to
 					// avoid hitting the geolocation service unnecessarily
 					$.cookie( 'euCookieWarningCountryCode', countryCode, {
-						domain: window.mw.config.get( 'wgCookieDomain' ),
+						domain: mw.config.get( 'wgCookieDomain' ),
 						path: '/',
 						expires: 30
 					} );
