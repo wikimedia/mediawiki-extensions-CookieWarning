@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toniher"
+		]
+	},
+	"cookiewarning-info": "Les galetes ens ajuden a proporcionar els nostres serveis. En utilitzar-los, accepteu l'ús de les galetes.",
+	"cookiewarning-desc": "Proporciona un avís sobre les galetes a la part superior de la pàgina",
+	"cookiewarning-moreinfo-label": "Més informació",
+	"cookiewarning-ok-label": "D'acord"
+}
