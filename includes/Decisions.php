@@ -90,20 +90,19 @@ class Decisions {
 		}
 
 		wfDebugLog( 'CookieWarning', 'Try to locate the user\'s IP address.' );
-		$located = $this->geoLocation->locate( $currentIP );
-		if ( !$located ) {
+		$location = $this->geoLocation->locate( $currentIP );
+		if ( $location === null ) {
 			wfDebugLog( 'CookieWarning',
 				'Locating the user\'s IP address failed or is misconfigured.' );
 
 			return '';
 		}
 
-		$lookedUpCountryCode = $this->geoLocation->getCountryCode();
-		$this->cache->set( $cacheKey, $lookedUpCountryCode );
+		$this->cache->set( $cacheKey, $location );
 
-		wfDebugLog( 'CookieWarning', 'Locating the user was successful, located' . ' region: ' .
-			$lookedUpCountryCode );
+		wfDebugLog( 'CookieWarning',
+			'Locating the user was successful, located region: ' . $location );
 
-		return $lookedUpCountryCode;
+		return $location;
 	}
 }

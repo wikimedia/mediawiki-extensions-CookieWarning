@@ -28,8 +28,7 @@ class DecisionsTest extends MediaWikiTestCase {
 		$geoLocation = $this->getMockBuilder( GeoLocation::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$geoLocation->method( 'locate' )->willReturn( true );
-		$geoLocation->method( 'getCountryCode' )->willReturn( 'EU' );
+		$geoLocation->method( 'locate' )->willReturn( 'EU' );
 
 		$geoLocation->expects( $this->once() )->method( 'locate' );
 		$cookieWarningDecisions = new Decisions(

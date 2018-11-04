@@ -191,8 +191,7 @@ class HooksTest extends MediaWikiLangTestCase {
 		$geoLocation = $this->getMockBuilder( GeoLocation::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$geoLocation->method( 'locate' )->willReturn( true );
-		$geoLocation->method( 'getCountryCode' )->willReturn( 'US' );
+		$geoLocation->method( 'locate' )->willReturn( 'US' );
 		$this->setService( 'GeoLocation', $geoLocation );
 	}
 }

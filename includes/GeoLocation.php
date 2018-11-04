@@ -2,73 +2,13 @@
 
 namespace CookieWarning;
 
-/**
- * GeoLocation implementation
- */
-
-use Config;
-use ConfigException;
-use Http;
-use InvalidArgumentException;
-use IP;
-
-/**
- * Implements the GeoLocation class, which allows to locate the user based on the IP address.
- */
-class GeoLocation {
-	private $config;
-	private $countryCode;
-
+interface GeoLocation {
 	/**
-	 * @param Config $config
-	 */
-	public function __construct( Config $config ) {
-		$this->config = $config;
-	}
-
-	/**
-	 * Returns the country code, if the last call to self::locate() returned true. Otherwise, NULL.
-	 *
-	 * @return null|string
-	 */
-	public function getCountryCode() {
-		return $this->countryCode;
-	}
-
-	/**
-	 * Tries to locate the IP address set with self::setIP() using the geolocation service
-	 * configured with the $wgCookieWarningGeoIPServiceURL configuration variable. If the config
-	 * isn't set, this function returns NULL. If the config is set, but the URL is invalid or an
-	 * other problem occures which resulted in a failed locating process, this function returns
-	 * false, otherwise it returns true.
+	 * Tries to locate the given IP address.
 	 *
 	 * @param string $ip The IP address to lookup
-	 * @return bool|null NULL if no geolocation service configured, false on error, true otherwise.
-	 * @throws ConfigException
+	 * @return null|string NULL on error or if locating the IP was not possible, the country
+	 * code otherwise
 	 */
-	public function locate( $ip ) {
-		$this->countryCode = null;
-		if ( !IP::isValid( $ip ) ) {
-			throw new InvalidArgumentException( "$ip is not a valid IP address." );
-		}
-		if ( !$this->config->get( 'CookieWarningGeoIPServiceURL' ) ) {
-			return null;
-		}
-		$requestUrl = $this->config->get( 'CookieWarningGeoIPServiceURL' );
-		if ( substr( $requestUrl, -1 ) !== '/' ) {
-			$requestUrl .= '/';
-		}
-		$json = Http::get( $requestUrl . $ip, [
-			'timeout' => '2'
-		] );
-		if ( !$json ) {
-			return false;
-		}
-		$returnObject = json_decode( $json );
-		if ( $returnObject === null || !property_exists( $returnObject, 'country_code' ) ) {
-			return false;
-		}
-		$this->countryCode = $returnObject->country_code;
-		return true;
-	}
+	public function locate( $ip );
 }
