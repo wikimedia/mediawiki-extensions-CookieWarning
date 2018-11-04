@@ -17,7 +17,7 @@ class Decisions {
 
 	/**
 	 * @param Config $config
-	 * @param GeoLocation $geoLocation
+	 * @param HttpBackedGeoLocation $geoLocation
 	 * @param WANObjectCache $cache
 	 */
 	public function __construct( Config $config, GeoLocation $geoLocation, WANObjectCache $cache ) {
