@@ -16,6 +16,24 @@
       "revId": "c5b21713fe9f750166e049c68d575ea9e0b4f2e2",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8df386f1_13ced555",
+        "filename": "includes/GeoLocation.php",
+        "patchSetId": 32
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2018-11-04T14:25:55Z",
+      "side": 1,
+      "message": "Thanks! :)",
+      "parentUuid": "47306a53_72eb9a52",
+      "revId": "c5b21713fe9f750166e049c68d575ea9e0b4f2e2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
