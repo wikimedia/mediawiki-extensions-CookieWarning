@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47306a53_72eb9a52",
+        "filename": "includes/GeoLocation.php",
+        "patchSetId": 32
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2018-11-04T14:24:30Z",
+      "side": 1,
+      "message": "bähh :P This looks like a hack here :D Let\u0027s rethink this a little bit. The GeoLocation class was never thought to support multiple ways of locating an IP address. However, if we want to support multiple providers it would be a better approach (in my opinion) to recreate GeoLocation as an interface and let different providers implement it. The currently used provider could then be configured in extension.json (or elsewhere) and created as a Service in the ServiceWiring file :)\n\nI\u0027ll start working on this, let\u0027s see :)",
+      "revId": "c5b21713fe9f750166e049c68d575ea9e0b4f2e2",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
