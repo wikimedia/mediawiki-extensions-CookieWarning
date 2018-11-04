@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8d232d7_661ab503",
+        "filename": "includes/ServiceWiring.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2018-11-04T15:24:33Z",
+      "side": 1,
+      "message": "We should probably return NoopGeoLocation by default.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 55
+      },
+      "revId": "dc3e26c5653653966e952b7196a07a50ef4d02f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
