@@ -22,6 +22,30 @@
       "revId": "dc3e26c5653653966e952b7196a07a50ef4d02f3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca953c90_a9e787a6",
+        "filename": "includes/ServiceWiring.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2018-11-04T15:54:57Z",
+      "side": 1,
+      "message": "how about:\n\n\t\t$geoIPServiceURL \u003d $services\n\t\t\t-\u003egetService( \u0027CookieWarning.Config\u0027 )\n\t\t\t-\u003eget( \u0027CookieWarningGeoIPServiceURL\u0027 );\n\n\t\tif ( $geoIPServiceURL ) {\n\t\t\treturn new HttpBackedGeoLocation( $geoIPServiceURL );\n\t\t}\n\n\t\treturn return new NoopGeoLocation();\n\nWould that work?",
+      "parentUuid": "c8d232d7_661ab503",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 55
+      },
+      "revId": "dc3e26c5653653966e952b7196a07a50ef4d02f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
