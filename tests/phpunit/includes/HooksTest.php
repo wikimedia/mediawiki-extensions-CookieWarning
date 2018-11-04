@@ -6,6 +6,7 @@ use CookieWarning\GeoLocation;
 use CookieWarning\Hooks;
 use DerivativeContext;
 use FauxRequest;
+use MediaWiki\MediaWikiServices;
 use MediaWikiLangTestCase;
 use MessageCache;
 use RequestContext;
@@ -24,6 +25,10 @@ class HooksTest extends MediaWikiLangTestCase {
 	 */
 	protected function setUp() {
 		parent::setUp();
+
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$this->setContentLang( $contLang );
+
 		MessageCache::singleton()->enable();
 	}
 
