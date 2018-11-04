@@ -1,7 +1,8 @@
 <?php
 
 use CookieWarning\Decisions;
-use CookieWarning\GeoLocation;
+use CookieWarning\HttpBackedGeoLocation;
+use CookieWarning\NoopGeoLocation;
 use MediaWiki\MediaWikiServices;
 
 return [
@@ -10,7 +11,14 @@ return [
 			->makeConfig( 'cookiewarning' );
 	},
 	'GeoLocation' => function ( MediaWikiServices $services ) {
-		return new GeoLocation( $services->getService( 'CookieWarning.Config' ) );
+		$geoIPServiceURL = $services
+			->getService( 'CookieWarning.Config' )
+			->get( 'CookieWarningGeoIPServiceURL' );
+
+		if ( !is_string( $geoIPServiceURL ) || !$geoIPServiceURL ) {
+			return new NoopGeoLocation();
+		}
+		return new HttpBackedGeoLocation( $geoIPServiceURL );
 	},
 	'CookieWarning.Decisions' => function ( MediaWikiServices $services ) {
 		return new Decisions( $services->getService( 'CookieWarning.Config' ),
