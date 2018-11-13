@@ -46,6 +46,30 @@
       "revId": "dc3e26c5653653966e952b7196a07a50ef4d02f3",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26790c97_04988951",
+        "filename": "includes/ServiceWiring.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2018-11-13T17:04:26Z",
+      "side": 1,
+      "message": "Hmm, this would also return a HttpBackedGeoLocation if the URL is a boolean or just an object or whatever, so removing the is_string is probably not a really good idea. Leaving this aside will reduce your suggestion to swapping around the if (returning the HttpBackedGeoLocation in the positive path), I don\u0027t see any benefit in this :)",
+      "parentUuid": "ca953c90_a9e787a6",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 55
+      },
+      "revId": "dc3e26c5653653966e952b7196a07a50ef4d02f3",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
