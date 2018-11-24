@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "e4124d41_00b151e9",
+        "filename": "package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2018-11-24T22:07:14Z",
+      "side": 1,
+      "message": "Seems like you also need to explicitly depend upon \"stylelint\": 9.2.0, for example https://gerrit.wikimedia.org/g/mediawiki/extensions/3D/+/e748718bc439ff15418c2f95fb452dbaa9c3da69/package.json",
+      "range": {
+        "startLine": 9,
+        "startChar": 2,
+        "endLine": 9,
+        "endChar": 17
+      },
+      "revId": "5c5394c32c5554aa7431a52717051ded4d9994e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6b1eb2e_e6f43780",
         "filename": "package.json",
         "patchSetId": 1
