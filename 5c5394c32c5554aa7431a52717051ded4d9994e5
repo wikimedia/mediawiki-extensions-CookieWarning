@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e5c870f_4409865f",
+        "filename": "Gruntfile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2018-11-24T22:04:36Z",
+      "side": 1,
+      "message": "This can be removed now",
+      "range": {
+        "startLine": 15,
+        "startChar": 1,
+        "endLine": 15,
+        "endChar": 4
+      },
+      "revId": "5c5394c32c5554aa7431a52717051ded4d9994e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6b1eb2e_e6f43780",
+        "filename": "package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2018-11-24T22:04:36Z",
+      "side": 1,
+      "message": "We pin to a specific version instead of using ^",
+      "range": {
+        "startLine": 11,
+        "startChar": 33,
+        "endLine": 11,
+        "endChar": 34
+      },
+      "revId": "5c5394c32c5554aa7431a52717051ded4d9994e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8785f70f_09426315",
+        "filename": "package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2018-11-24T22:04:36Z",
+      "side": 1,
+      "message": "Can be removed as well",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 6
+      },
+      "revId": "5c5394c32c5554aa7431a52717051ded4d9994e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc70aa83_4f3962a7",
+        "filename": "package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 458
+      },
+      "writtenOn": "2018-11-24T22:04:36Z",
+      "side": 1,
+      "message": "Should also be pinned.",
+      "range": {
+        "startLine": 17,
+        "startChar": 22,
+        "endLine": 17,
+        "endChar": 23
+      },
+      "revId": "5c5394c32c5554aa7431a52717051ded4d9994e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
