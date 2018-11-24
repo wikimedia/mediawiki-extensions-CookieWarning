@@ -11,7 +11,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-eslint' );
-	grunt.loadNpmTasks( 'grunt-contrib-csslint' );
+	grunt.loadNpmTasks( 'grunt-stylelint' );
 
 	grunt.initConfig( {
 		banana: conf.MessagesDirs,
@@ -29,15 +29,15 @@ module.exports = function ( grunt ) {
 				'!vendor/**'
 			]
 		},
-		csslint: {
+		stylelint: {
 			options: {
-				csslintrc: '.csslintrc'
+				syntax: 'less'
 			},
-			all: 'resources/**/*.css'
+			src: [ 'resources/**/*.{css,less}' ]
 		}
 	} );
 
-	grunt.registerTask( 'lint', [ 'eslint', 'csslint', 'jsonlint', 'banana' ] );
+	grunt.registerTask( 'lint', [ 'eslint', 'stylelint', 'jsonlint', 'banana' ] );
 	grunt.registerTask( 'test', [ 'lint', 'banana' ] );
 	grunt.registerTask( 'default', 'test' );
 };
