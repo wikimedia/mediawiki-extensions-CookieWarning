@@ -22,6 +22,30 @@
       "revId": "25d5cccbd3b0fd2f9ccbfc014866a17bd321ff46",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f049425f_328eef42",
+        "filename": "resources/ext.CookieWarning/ext.CookieWarning.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5501
+      },
+      "writtenOn": "2018-11-24T22:22:00Z",
+      "side": 0,
+      "message": "umm, I have been trying before pushing this patch. Now when i rechecked it, it does not work :( Sorry. Also sorry for leaving these csslint dependiences, I forgot to commit and rebase it.",
+      "parentUuid": "d81a2cb3_b399e8db",
+      "range": {
+        "startLine": 32,
+        "startChar": 24,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "25d5cccbd3b0fd2f9ccbfc014866a17bd321ff46",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
