@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34e15cdf_a83cc741",
+        "filename": "resources/ext.CookieWarning/ext.CookieWarning.less",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2604
+      },
+      "writtenOn": "2018-11-25T18:26:55Z",
+      "side": 1,
+      "message": "That\u0027s an interesting approach, although it might not be useful. Did you test this? MW does have a setting to change the default anchor\u0027s `text-decoration` visual treatment and it also differs from theme to theme. I wouldn\u0027t change this, especially not in an “unrelated” patch like this to limit scope to the original reason for the patch and – if you think and that\u0027s the better approach to put it in a follow-up patch.",
+      "revId": "2afc0b86a2ecfc69a2a8a3b48baf1d6016becb34",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
