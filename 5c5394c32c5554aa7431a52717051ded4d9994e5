@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "80e049cf_38acabbf",
+        "filename": "Gruntfile.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2604
+      },
+      "writtenOn": "2018-11-25T00:14:21Z",
+      "side": 1,
+      "message": "You don\u0027t need this either. That\u0027s the default for stylelint. \nWhat\u0027s recommendable though is to add `syntax: \u0027less\u0027` into options.",
+      "revId": "5c5394c32c5554aa7431a52717051ded4d9994e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4124d41_00b151e9",
         "filename": "package.json",
         "patchSetId": 1
@@ -114,6 +131,23 @@
       "revId": "5c5394c32c5554aa7431a52717051ded4d9994e5",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da4c615d_aa024a2c",
+        "filename": "resources/ext.CookieWarning/ext.CookieWarning.less",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2604
+      },
+      "writtenOn": "2018-11-25T00:14:21Z",
+      "side": 1,
+      "message": "Minor nitpicky recommendation, it\u0027s best-practice to order selectors from general to higher specific ones. So when adding a line break here, I\u0027d reorder starting with `a` first line and `.mw-cookiewarning-dismiss` in second. Reordering doesn\u0027t have any style rendering impact, it\u0027s just for code readability.",
+      "revId": "5c5394c32c5554aa7431a52717051ded4d9994e5",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
