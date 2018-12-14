@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hedda"
+		]
+	},
+	"cookiewarning-info": "Çerezler hizmetlerimizi sunmamıza yardımcı olur. Hizmetlerimizi kullanarak çerezleri kullanmamızı kabul etmektesiniz.",
+	"cookiewarning-desc": "Sayfa başında çerezler hakkında bir bildirim oluşturur",
+	"cookiewarning-moreinfo-label": "Daha fazla bilgi",
+	"cookiewarning-ok-label": "Tamam"
+}
