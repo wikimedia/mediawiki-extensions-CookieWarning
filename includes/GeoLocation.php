@@ -51,24 +51,41 @@ class GeoLocation {
 		if ( !IP::isValid( $ip ) ) {
 			throw new InvalidArgumentException( "$ip is not a valid IP address." );
 		}
-		if ( !$this->config->get( 'CookieWarningGeoIPServiceURL' ) ) {
+		if ( $this->config->get( 'CookieWarningGeoIp2' ) ) {
+			if ( !file_exists( $this->config->get( 'CookieWarningGeoIp2Path' ) ) ||
+				!class_exists( '\GeoIp2\Database\Reader' ) ) {
+				return null;
+			}
+
+			try {
+				$reader = new \GeoIp2\Database\Reader( $this->config->get( 'CookieWarningGeoIp2Path' ) );
+				$record = $reader->city( $ip );
+				$this->countryCode = $record->country->isoCode;
+			} catch ( \Throwable $ex ) {
+				return null;
+			} catch ( \Exception $ex ) {
+				return null;
+			}
+		} elseif ( $this->config->get( 'CookieWarningGeoIPServiceURL' ) ) {
+			$requestUrl = $this->config->get( 'CookieWarningGeoIPServiceURL' );
+			if ( substr( $requestUrl, -1 ) !== '/' ) {
+				$requestUrl .= '/';
+			}
+			$json = Http::get( $requestUrl . $ip, [
+				'timeout' => '2'
+			] );
+			if ( !$json ) {
+				return false;
+			}
+			$returnObject = json_decode( $json );
+			if ( $returnObject === null || !property_exists( $returnObject, 'country_code' ) ) {
+				return false;
+			}
+			$this->countryCode = $returnObject->country_code;
+		} else {
 			return null;
 		}
-		$requestUrl = $this->config->get( 'CookieWarningGeoIPServiceURL' );
-		if ( substr( $requestUrl, -1 ) !== '/' ) {
-			$requestUrl .= '/';
-		}
-		$json = Http::get( $requestUrl . $ip, [
-			'timeout' => '2'
-		] );
-		if ( !$json ) {
-			return false;
-		}
-		$returnObject = json_decode( $json );
-		if ( $returnObject === null || !property_exists( $returnObject, 'country_code' ) ) {
-			return false;
-		}
-		$this->countryCode = $returnObject->country_code;
+
 		return true;
 	}
 }
