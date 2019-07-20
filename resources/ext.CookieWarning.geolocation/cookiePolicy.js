@@ -12,21 +12,21 @@
 			 */
 			var countryCode = 'EU';
 
-			if ( !$.cookie( 'euCookieWarningCountryCode' ) ) {
+			if ( !mw.cookie.get( 'euCookieWarningCountryCode' ) ) {
 				// @see http://www.dwuser.com/education/content/web-services-made-practical-where-are-your-visitors-from/
 				$.get( mw.config.get( 'wgCookieWarningGeoIPServiceURL' ), function ( data ) {
 					// Get the country code
 					countryCode = data.country_code;
 					// Store the result in a cookie (ah, the sweet, sweet irony) to
 					// avoid hitting the geolocation service unnecessarily
-					$.cookie( 'euCookieWarningCountryCode', countryCode, {
+					mw.cookie.set( 'euCookieWarningCountryCode', countryCode, {
 						domain: mw.config.get( 'wgCookieDomain' ),
 						path: '/',
 						expires: 30
 					} );
 				}, 'jsonp' );
 			} else if ( $.cookie( 'euCookieWarningCountryCode' ) !== null ) {
-				countryCode = $.cookie( 'euCookieWarningCountryCode' );
+				countryCode = mw.cookie.get( 'euCookieWarningCountryCode' );
 			}
 
 			return countryCode;

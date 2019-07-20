@@ -106,7 +106,7 @@
 			"scripts": "resources/ext.CookieWarning.geolocation/cookiePolicy.js",
 			"dependencies": [
 				"ext.CookieWarning",
-				"jquery.cookie"
+				"mediawiki.cookie"
 			],
 			"targets": [
 				"mobile",
