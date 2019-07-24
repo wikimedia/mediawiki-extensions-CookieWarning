@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad4c5721_19b3f9c7",
+        "filename": "resources/ext.CookieWarning.geolocation/cookiePolicy.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 34
+      },
+      "writtenOn": "2019-07-24T17:56:09Z",
+      "side": 1,
+      "message": "These two must use the same method, otherwise they might not work correctly.",
+      "range": {
+        "startLine": 28,
+        "startChar": 15,
+        "endLine": 29,
+        "endChar": 31
+      },
+      "revId": "a6ee76a2ca0ec28a960786d80d3804c7028a4077",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    }
+  ]
+}
