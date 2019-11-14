@@ -13,7 +13,7 @@ class Decisions {
 	private $geoLocation;
 	private $cache;
 
-	const CACHE_KEY = 'cookieWarningIpLookupCache:';
+	private const CACHE_KEY = 'cookieWarningIpLookupCache:';
 
 	/**
 	 * @param Config $config
