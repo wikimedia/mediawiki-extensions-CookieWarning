@@ -22,7 +22,7 @@ class HooksTest extends MediaWikiLangTestCase {
 	/**
 	 * @throws \MWException
 	 */
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		MessageCache::singleton()->enable();
 	}
