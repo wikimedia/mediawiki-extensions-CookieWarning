@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Milicevic01"
+			"Milicevic01",
+			"Zoranzoki21"
 		]
 	},
 	"cookiewarning-info": "Овај сајт користи колачиће, коришћењем овог сајта прихватате и његове колачиће.",
+	"cookiewarning-desc": "Пружа обавештење на дну странице о колачићима",
 	"cookiewarning-moreinfo-label": "Више информација",
 	"cookiewarning-ok-label": "У реду"
 }
