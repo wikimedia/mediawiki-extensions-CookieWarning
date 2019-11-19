@@ -2,12 +2,14 @@
 
 namespace CookieWarning\Tests;
 
+use CommentStoreComment;
 use CookieWarning\GeoLocation;
 use CookieWarning\Hooks;
 use DerivativeContext;
 use FauxRequest;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
-use MessageCache;
 use RequestContext;
 use SkinTemplate;
 use Title;
@@ -19,13 +21,6 @@ use WikitextContent;
  * @group Database
  */
 class HooksTest extends MediaWikiLangTestCase {
-	/**
-	 * @throws \MWException
-	 */
-	protected function setUp() {
-		parent::setUp();
-		MessageCache::singleton()->enable();
-	}
 
 	/**
 	 * @dataProvider providerOnSkinTemplateOutputPageBeforeExec
@@ -41,17 +36,20 @@ class HooksTest extends MediaWikiLangTestCase {
 			'wgCookieWarningForCountryCodes' => false,
 			'wgUseMediaWikiUIEverywhere' => true,
 		] );
+		MediaWikiServices::getInstance()->getMessageCache()->enable();
 		if ( $morelinkCookieWarningMsg ) {
 			$title = Title::newFromText( 'cookiewarning-more-link', NS_MEDIAWIKI );
 			$wikiPage = WikiPage::factory( $title );
-			$wikiPage->doEditContent( new WikitextContent( $morelinkCookieWarningMsg ),
-				"CookieWarning test" );
+			$pageUpdater = $wikiPage->newPageUpdater( \User::newFromName( 'UTSysop' ) );
+			$pageUpdater->setContent( SlotRecord::MAIN, new WikitextContent( $morelinkCookieWarningMsg ) );
+			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'CookieWarning test' ) );
 		}
 		if ( $morelinkCookiePolicyMsg ) {
 			$title = Title::newFromText( 'cookie-policy-link', NS_MEDIAWIKI );
 			$wikiPage = WikiPage::factory( $title );
-			$wikiPage->doEditContent( new WikitextContent( $morelinkCookiePolicyMsg ),
-				"CookieWarning test" );
+			$pageUpdater = $wikiPage->newPageUpdater( \User::newFromName( 'UTSysop' ) );
+			$pageUpdater->setContent( SlotRecord::MAIN, new WikitextContent( $morelinkCookiePolicyMsg ) );
+			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'CookieWarning test' ) );
 		}
 		$sk = new SkinTemplate();
 		$tpl = new \SkinFallbackTemplate();
