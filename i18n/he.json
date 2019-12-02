@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Guycn2"
+			"Guycn2",
+			"Amire80"
 		]
 	},
-	"cookiewarning-info": "השימוש בעוגיות (cookies) עוזר לנו לספק את השירותים שלנו. שימוש בשירותים שלנו מהווה את הסכמתך לשימוש בעוגיות.",
-	"cookiewarning-desc": "הצגת הודעה בראש הדף בנוגע לעוגיות (cookies)",
+	"cookiewarning-info": "עוגיות עוזרות לנו לספק את השירותים שלנו. שימוש בשירותים שלנו מהווה את הסכמתך לשימוש בעוגיות.",
+	"cookiewarning-desc": "הצגת הודעה בראש הדף בנוגע לעוגיות",
 	"cookiewarning-moreinfo-label": "מידע נוסף",
 	"cookiewarning-ok-label": "הבנתי"
 }
