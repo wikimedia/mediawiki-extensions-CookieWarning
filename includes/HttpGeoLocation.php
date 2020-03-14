@@ -4,7 +4,7 @@ namespace CookieWarning;
 
 use Http;
 use InvalidArgumentException;
-use IP;
+use Wikimedia\IPUtils;
 
 /**
  * Implements the GeoLocation class, which allows to locate the user based on the IP address.
@@ -32,7 +32,7 @@ class HttpGeoLocation implements GeoLocation {
 		if ( isset( $this->locatedIPs[$ip] ) ) {
 			return $this->locatedIPs[$ip];
 		}
-		if ( !IP::isValid( $ip ) ) {
+		if ( !IPUtils::isValid( $ip ) ) {
 			throw new InvalidArgumentException( "$ip is not a valid IP address." );
 		}
 		if ( substr( $this->geoIPServiceURL, -1 ) !== '/' ) {
