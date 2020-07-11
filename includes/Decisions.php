@@ -77,7 +77,7 @@ class Decisions {
 	}
 
 	/**
-	 * @param $currentIP
+	 * @param string $currentIP
 	 * @return string The country code associated with the IP or empty string if not able to locate.
 	 * @throws ConfigException
 	 */
