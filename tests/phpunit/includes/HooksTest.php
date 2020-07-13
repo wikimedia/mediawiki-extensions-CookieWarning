@@ -10,6 +10,7 @@ use FauxRequest;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
+use QuickTemplate;
 use RequestContext;
 use SkinTemplate;
 use Title;
@@ -52,7 +53,10 @@ class HooksTest extends MediaWikiLangTestCase {
 			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'CookieWarning test' ) );
 		}
 		$sk = new SkinTemplate();
-		$tpl = new \SkinFallbackTemplate();
+		$tpl = new class extends QuickTemplate {
+			public function execute() {
+			}
+		};
 		Hooks::onSkinTemplateOutputPageBeforeExec( $sk, $tpl );
 		$headElement = '';
 		if ( isset( $tpl->data['headelement'] ) ) {
@@ -158,7 +162,10 @@ class HooksTest extends MediaWikiLangTestCase {
 		$context->setRequest( $request );
 		$sk = new SkinTemplate();
 		$sk->setContext( $context );
-		$tpl = new \SkinFallbackTemplate();
+		$tpl = new class extends QuickTemplate {
+			public function execute() {
+			}
+		};
 		Hooks::onSkinTemplateOutputPageBeforeExec( $sk, $tpl );
 
 		$this->assertEquals(
