@@ -19,7 +19,8 @@
 		]
 	},
 	"Hooks": {
-		"SkinTemplateOutputPageBeforeExec": "CookieWarning\\Hooks::onSkinTemplateOutputPageBeforeExec",
+		"SkinAfterContent": "CookieWarning\\Hooks::onSkinAfterContent",
+		"SiteNoticeBefore": "CookieWarning\\Hooks::onSiteNoticeBefore",
 		"BeforePageDisplay": "CookieWarning\\Hooks::onBeforePageDisplay",
 		"GetPreferences": "CookieWarning\\Hooks::onGetPreferences",
 		"BeforeInitialize": "CookieWarning\\Hooks::onBeforeInitialize",
