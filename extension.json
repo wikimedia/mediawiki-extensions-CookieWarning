@@ -26,58 +26,73 @@
 		"ResourceLoaderGetConfigVars": "CookieWarning\\Hooks::onResourceLoaderGetConfigVars"
 	},
 	"config": {
-		"CookieWarningEnabled": false,
-		"CookieWarningMoreUrl": "",
-		"CookieWarningGeoIPServiceURL": "//freegeoip.net/json/",
-		"CookieWarningGeoIPLookup": "none",
+		"CookieWarningEnabled": {
+			"value": false,
+			"description": "Whether to enable CookieWarning."
+		},
+		"CookieWarningMoreUrl": {
+			"value": "",
+			"description": ""
+		},
+		"CookieWarningGeoIPServiceURL": {
+			"value": "//freegeoip.net/json/",
+			"description": ""
+		},
+		"CookieWarningGeoIPLookup": {
+			"value": "none",
+			"description": ""
+		},
 		"CookieWarningForCountryCodes": {
-			"EU": "Europe",
-			"AD": "Andorra",
-			"AL": "Albania",
-			"AT": "Austria",
-			"BA": "Bosnia and Herzegovina",
-			"BE": "Belgium",
-			"BG": "Bulgaria",
-			"BY": "Belarus",
-			"CH": "Switzerland",
-			"CS": "Serbia and Montenegro",
-			"CZ": "Czech Republic",
-			"DE": "Germany",
-			"DK": "Denmark",
-			"EE": "Estonia",
-			"ES": "Spain",
-			"FI": "Finland",
-			"FO": "Faroe Islands",
-			"FR": "France",
-			"FX": "France, Metropolitan",
-			"GB": "United Kingdom",
-			"GI": "Gibraltar",
-			"GR": "Greece",
-			"HR": "Croatia",
-			"HU": "Hungary",
-			"IE": "Ireland",
-			"IS": "Iceland",
-			"IT": "Italy",
-			"LI": "Liechtenstein",
-			"LT": "Lithuania",
-			"LU": "Luxembourg",
-			"LV": "Latvia",
-			"MC": "Monaco",
-			"MD": "Moldova, Republic of",
-			"MK": "Macedonia",
-			"MT": "Malta",
-			"NL": "Netherlands",
-			"NO": "Norway",
-			"PL": "Poland",
-			"PT": "Portugal",
-			"RO": "Romania",
-			"SE": "Sweden",
-			"SI": "Slovenia",
-			"SJ": "Svalbard and Jan Mayen",
-			"SK": "Slovakia",
-			"SM": "San Marino",
-			"UA": "Ukraine",
-			"VA": "Holy See (Vatican City State)"
+			"value": {
+				"EU": "Europe",
+				"AD": "Andorra",
+				"AL": "Albania",
+				"AT": "Austria",
+				"BA": "Bosnia and Herzegovina",
+				"BE": "Belgium",
+				"BG": "Bulgaria",
+				"BY": "Belarus",
+				"CH": "Switzerland",
+				"CS": "Serbia and Montenegro",
+				"CZ": "Czech Republic",
+				"DE": "Germany",
+				"DK": "Denmark",
+				"EE": "Estonia",
+				"ES": "Spain",
+				"FI": "Finland",
+				"FO": "Faroe Islands",
+				"FR": "France",
+				"FX": "France, Metropolitan",
+				"GB": "United Kingdom",
+				"GI": "Gibraltar",
+				"GR": "Greece",
+				"HR": "Croatia",
+				"HU": "Hungary",
+				"IE": "Ireland",
+				"IS": "Iceland",
+				"IT": "Italy",
+				"LI": "Liechtenstein",
+				"LT": "Lithuania",
+				"LU": "Luxembourg",
+				"LV": "Latvia",
+				"MC": "Monaco",
+				"MD": "Moldova, Republic of",
+				"MK": "Macedonia",
+				"MT": "Malta",
+				"NL": "Netherlands",
+				"NO": "Norway",
+				"PL": "Poland",
+				"PT": "Portugal",
+				"RO": "Romania",
+				"SE": "Sweden",
+				"SI": "Slovenia",
+				"SJ": "Svalbard and Jan Mayen",
+				"SK": "Slovakia",
+				"SM": "San Marino",
+				"UA": "Ukraine",
+				"VA": "Holy See (Vatican City State)"
+			},
+			"description": ""
 		}
 	},
 	"ResourceModules": {
@@ -87,23 +102,31 @@
 				"mediawiki.cookie",
 				"mediawiki.user"
 			],
-			"scripts": "resources/ext.CookieWarning/ext.CookieWarning.js",
+			"scripts": [
+				"resources/ext.CookieWarning/ext.CookieWarning.js"
+			],
 			"targets": [
 				"mobile",
 				"desktop"
 			]
 		},
 		"ext.CookieWarning.styles": {
-			"styles": "resources/ext.CookieWarning/ext.CookieWarning.less"
+			"styles": [
+				"resources/ext.CookieWarning/ext.CookieWarning.less"
+			]
 		},
 		"ext.CookieWarning.mobile.styles": {
-			"styles": "resources/ext.CookieWarning/ext.CookieWarning.mobile.less",
+			"styles": [
+				"resources/ext.CookieWarning/ext.CookieWarning.mobile.less"
+			],
 			"targets": [
 				"mobile"
 			]
 		},
 		"ext.CookieWarning.geolocation": {
-			"scripts": "resources/ext.CookieWarning.geolocation/cookiePolicy.js",
+			"scripts": [
+				"resources/ext.CookieWarning.geolocation/cookiePolicy.js"
+			],
 			"dependencies": [
 				"ext.CookieWarning",
 				"jquery.cookie"
@@ -114,7 +137,9 @@
 			]
 		},
 		"ext.CookieWarning.geolocation.styles": {
-			"styles": "resources/ext.CookieWarning.geolocation/styles.css",
+			"styles": [
+				"resources/ext.CookieWarning.geolocation/styles.css"
+			],
 			"targets": [
 				"mobile",
 				"desktop"
@@ -134,5 +159,5 @@
 	"ServiceWiringFiles": [
 		"includes/ServiceWiring.php"
 	],
-	"manifest_version": 1
+	"manifest_version": 2
 }
