@@ -10,7 +10,6 @@ use FauxRequest;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
-use QuickTemplate;
 use RequestContext;
 use SkinTemplate;
 use Title;
@@ -53,15 +52,8 @@ class HooksTest extends MediaWikiLangTestCase {
 			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'CookieWarning test' ) );
 		}
 		$sk = new SkinTemplate();
-		$tpl = new class extends QuickTemplate {
-			public function execute() {
-			}
-		};
-		Hooks::onSkinTemplateOutputPageBeforeExec( $sk, $tpl );
-		$headElement = '';
-		if ( isset( $tpl->data['headelement'] ) ) {
-			$headElement = $tpl->data['headelement'];
-		}
+		$data = '';
+		Hooks::onSkinAfterContent( $data, $sk );
 		if ( $expectedLink === false ) {
 			$expected = '';
 		} else {
@@ -71,7 +63,7 @@ class HooksTest extends MediaWikiLangTestCase {
 					'<div class="mw-cookiewarning-container banner-container"><div class="mw-cookiewarning-text"><span>Cookies help us deliver our services. By using our services, you agree to our use of cookies.</span>$1<form method="POST"><input name="disablecookiewarning" class="mw-cookiewarning-dismiss mw-ui-button" type="submit" value="OK"/></form></div></div>' );
 			// @codingStandardsIgnoreEnd
 		}
-		$this->assertEquals( $expected, $headElement );
+		$this->assertEquals( $expected, $data );
 	}
 
 	public function providerOnSkinTemplateOutputPageBeforeExec() {
@@ -162,15 +154,12 @@ class HooksTest extends MediaWikiLangTestCase {
 		$context->setRequest( $request );
 		$sk = new SkinTemplate();
 		$sk->setContext( $context );
-		$tpl = new class extends QuickTemplate {
-			public function execute() {
-			}
-		};
-		Hooks::onSkinTemplateOutputPageBeforeExec( $sk, $tpl );
+		$data = '';
+		Hooks::onSkinAfterContent( $data, $sk );
 
 		$this->assertEquals(
 			$expected,
-			isset( $tpl->data['headelement'] ) && (bool)$tpl->data['headelement']
+			(bool)$data
 		);
 	}
 
