@@ -10,19 +10,26 @@
 	font-weight: 500;
 	font-style: normal;
 	font-stretch: normal;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 
-	.mw-cookiewarning-cimage {
-		width: 28px;
-		height: 100%;
-		font-size: 28px;
-		margin-right: 15px;
-		float: left;
-		text-align: center;
-		line-height: 100%;
+	.mw-cookiewarning-text {
+		display: flex;
+		align-items: center;
+
+		.mw-cookiewarning-cimage {
+			width: 28px;
+			height: 100%;
+			font-size: 28px;
+			margin-right: 15px;
+			float: left;
+			text-align: center;
+			line-height: 100%;
+		}
 	}
 
 	form {
-		float: right;
 		margin-left: 5px;
 		/* borrowed from mediawiki/core Login Button, following `ButtonWidget (progressive)‎` from OOjs UI */
 		.mw-cookiewarning-dismiss {
