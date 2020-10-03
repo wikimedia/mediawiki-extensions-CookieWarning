@@ -19,7 +19,8 @@
 		]
 	},
 	"Hooks": {
-		"SkinTemplateOutputPageBeforeExec": "CookieWarning\\Hooks::onSkinTemplateOutputPageBeforeExec",
+		"SkinAfterContent": "CookieWarning\\Hooks::onSkinAfterContent",
+		"SiteNoticeAfter": "CookieWarning\\Hooks::onSiteNoticeAfter",
 		"BeforePageDisplay": "CookieWarning\\Hooks::onBeforePageDisplay",
 		"GetPreferences": "CookieWarning\\Hooks::onGetPreferences",
 		"BeforeInitialize": "CookieWarning\\Hooks::onBeforeInitialize",
@@ -98,6 +99,9 @@
 		},
 		"ext.CookieWarning.mobile.styles": {
 			"styles": "resources/ext.CookieWarning/ext.CookieWarning.mobile.less",
+			"skinStyles": {
+				"minerva": "skinStyles/ext.CookieWarning.minerva.styles.less"
+			},
 			"targets": [
 				"mobile"
 			]

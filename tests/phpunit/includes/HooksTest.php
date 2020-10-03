@@ -10,7 +10,6 @@ use FauxRequest;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
-use QuickTemplate;
 use RequestContext;
 use SkinTemplate;
 use Title;
@@ -24,11 +23,11 @@ use WikitextContent;
 class HooksTest extends MediaWikiLangTestCase {
 
 	/**
-	 * @dataProvider providerOnSkinTemplateOutputPageBeforeExec
+	 * @dataProvider providerOnSkinAfterContent
 	 * @throws \MWException
 	 * @throws \ConfigException
 	 */
-	public function testOnSkinTemplateOutputPageBeforeExec( $enabled, $morelinkConfig,
+	public function testOnSkinAfterContent( $enabled, $morelinkConfig,
 		$morelinkCookieWarningMsg, $morelinkCookiePolicyMsg, $expectedLink
 	) {
 		$this->setMwGlobals( [
@@ -53,15 +52,8 @@ class HooksTest extends MediaWikiLangTestCase {
 			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'CookieWarning test' ) );
 		}
 		$sk = new SkinTemplate();
-		$tpl = new class extends QuickTemplate {
-			public function execute() {
-			}
-		};
-		Hooks::onSkinTemplateOutputPageBeforeExec( $sk, $tpl );
-		$headElement = '';
-		if ( isset( $tpl->data['headelement'] ) ) {
-			$headElement = $tpl->data['headelement'];
-		}
+		$data = '';
+		Hooks::onSkinAfterContent( $data, $sk );
 		if ( $expectedLink === false ) {
 			$expected = '';
 		} else {
@@ -71,10 +63,10 @@ class HooksTest extends MediaWikiLangTestCase {
 					'<div class="mw-cookiewarning-container banner-container"><div class="mw-cookiewarning-text"><span>Cookies help us deliver our services. By using our services, you agree to our use of cookies.</span>$1<form method="POST"><input name="disablecookiewarning" class="mw-cookiewarning-dismiss mw-ui-button" type="submit" value="OK"/></form></div></div>' );
 			// @codingStandardsIgnoreEnd
 		}
-		$this->assertEquals( $expected, $headElement );
+		$this->assertEquals( $expected, $data );
 	}
 
-	public function providerOnSkinTemplateOutputPageBeforeExec() {
+	public function providerOnSkinAfterContent() {
 		return [
 			[
 				// $wgCookieWarningEnabled
@@ -142,11 +134,11 @@ class HooksTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider providerOnSkinTemplateOutputPageBeforeExecGeoLocation
+	 * @dataProvider provideronSkinAfterContentGeoLocation
 	 * @throws \MWException
 	 * @throws \ConfigException
 	 */
-	public function testOnSkinTemplateOutputPageBeforeExecGeoLocation( $ipAddress, $countryCodes,
+	public function testOnSkinAfterContentGeoLocation( $ipAddress, $countryCodes,
 		$expected
 	) {
 		$this->setMwGlobals( [
@@ -162,19 +154,16 @@ class HooksTest extends MediaWikiLangTestCase {
 		$context->setRequest( $request );
 		$sk = new SkinTemplate();
 		$sk->setContext( $context );
-		$tpl = new class extends QuickTemplate {
-			public function execute() {
-			}
-		};
-		Hooks::onSkinTemplateOutputPageBeforeExec( $sk, $tpl );
+		$data = '';
+		Hooks::onSkinAfterContent( $data, $sk );
 
 		$this->assertEquals(
 			$expected,
-			isset( $tpl->data['headelement'] ) && (bool)$tpl->data['headelement']
+			(bool)$data
 		);
 	}
 
-	public function providerOnSkinTemplateOutputPageBeforeExecGeoLocation() {
+	public function providerOnSkinAfterContentGeoLocation() {
 		return [
 			[
 				'8.8.8.8',

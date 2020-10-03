@@ -11,8 +11,7 @@ use MediaWiki\MediaWikiServices;
 use MobileContext;
 use MWException;
 use OutputPage;
-use QuickTemplate;
-use SkinTemplate;
+use Skin;
 use Title;
 use User;
 use WebRequest;
@@ -49,41 +48,87 @@ class Hooks {
 	}
 
 	/**
-	 * SkinTemplateOutputPageBeforeExec hook handler.
+	 * SkinAfterContent hook handler.
 	 *
-	 * Adds the CookieWarning information bar to the output html.
+	 * Adds the CookieWarning information bar to the output html for desktop.
 	 *
-	 * @param SkinTemplate &$sk
-	 * @param QuickTemplate &$tpl
+	 * @param string &$data
+	 * @param Skin $skin
 	 * @throws ConfigException
 	 * @throws MWException
+	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public static function onSkinTemplateOutputPageBeforeExec(
-		SkinTemplate &$sk, QuickTemplate &$tpl
+	public static function onSkinAfterContent( string &$data, Skin $skin ) {
+		/** @var Decisions $cookieWarningDecisions */
+		$cookieWarningDecisions = MediaWikiServices::getInstance()
+			->getService( 'CookieWarning.Decisions' );
+
+		if ( !$cookieWarningDecisions->shouldShowCookieWarning( $skin->getContext() ) ) {
+			return;
+		}
+
+		$isMobile = ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
+			MobileContext::singleton()->shouldDisplayMobileView();
+		if ( !$isMobile ) {
+			$data .= self::generateElements( $skin, $isMobile );
+		}
+
+		return true;
+	}
+
+	/**
+	 * SiteNoticeAfter hook handler.
+	 *
+	 * Adds the CookieWarning information bar to the output html for mobile.
+	 *
+	 * @param string &$siteNotice
+	 * @param Skin $skin
+	 * @throws ConfigException
+	 * @throws MWException
+	 * @return bool|void True or no return value to continue or false to abort
+	 */
+	public static function onSiteNoticeAfter(
+		string &$siteNotice,
+		Skin $skin
 	) {
 		/** @var Decisions $cookieWarningDecisions */
 		$cookieWarningDecisions = MediaWikiServices::getInstance()
 			->getService( 'CookieWarning.Decisions' );
 
-		if ( !$cookieWarningDecisions->shouldShowCookieWarning( $sk->getContext() ) ) {
+		if ( !$cookieWarningDecisions->shouldShowCookieWarning( $skin->getContext() ) ) {
 			return;
 		}
+
+		$isMobile = ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
+			MobileContext::singleton()->shouldDisplayMobileView();
+		if ( $isMobile ) {
+			$siteNotice .= self::generateElements( $skin, $isMobile );
+		}
+
+		return true;
+	}
+
+	/**
+	 * Generates the elements for the banner.
+	 *
+	 * @param Skin $skin
+	 * @param bool $isMobile This will return true if using mobile site.
+	 * @return string|null The html for cookie notice.
+	 */
+	private static function generateElements( Skin $skin, bool $isMobile ) {
 		$moreLink = self::getMoreLink();
 
 		if ( $moreLink ) {
 			$moreLink = "\u{00A0}" . Html::element(
 				'a',
 				[ 'href' => $moreLink ],
-				$sk->msg( 'cookiewarning-moreinfo-label' )->text()
+				$skin->msg( 'cookiewarning-moreinfo-label' )->text()
 			);
 		}
 
-		if ( !isset( $tpl->data['headelement'] ) ) {
-			$tpl->data['headelement'] = '';
-		}
 		$form = Html::openElement( 'form', [ 'method' => 'POST' ] ) .
 			Html::submitButton(
-				$sk->msg( 'cookiewarning-ok-label' )->text(),
+				$skin->msg( 'cookiewarning-ok-label' )->text(),
 				[
 					'name' => 'disablecookiewarning',
 					'class' => 'mw-cookiewarning-dismiss'
@@ -91,15 +136,7 @@ class Hooks {
 			) .
 			Html::closeElement( 'form' );
 
-		$cookieImage = Html::element(
-			'div',
-			[ 'class' => 'mw-cookiewarning-cimage' ],
-			"\u{1F36A}"
-		);
-
-		$isMobile = ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
-			MobileContext::singleton()->shouldDisplayMobileView();
-		$tpl->data['headelement'] .= Html::openElement(
+		return Html::openElement(
 				'div',
 				// banner-container marks this as a banner for Minerva
 				// Note to avoid this class, in future we may want to make use of SiteNotice
@@ -111,11 +148,10 @@ class Hooks {
 				'div',
 				[ 'class' => 'mw-cookiewarning-text' ]
 			) .
-			( $isMobile ? $cookieImage : '' ) .
 			Html::element(
 				'span',
 				[],
-				$sk->msg( 'cookiewarning-info' )->text()
+				$skin->msg( 'cookiewarning-info' )->text()
 			) .
 			$moreLink .
 			( !$isMobile ? $form : '' ) .
