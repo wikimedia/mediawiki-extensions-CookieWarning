@@ -2,6 +2,7 @@
 
 namespace CookieWarning\Tests;
 
+use CookieWarning\HttpGeoIP2GeoLocation;
 use CookieWarning\HttpGeoLocation;
 use CookieWarning\NoopGeoLocation;
 use MediaWiki\MediaWikiServices;
@@ -10,16 +11,16 @@ use MediaWikiTestCase;
 class ServiceWiringTest extends MediaWikiTestCase {
 
 	/**
-	 * @covers \CookieWarning\NoopGeoLocation
+	 * @covers \CookieWarning\HttpGeoIP2GeoLocation
 	 */
-	public function testGeoLocationWithoutServiceURL() {
+	public function testGeoIP2GeoLocationPath() {
 		$this->setMwGlobals( [
-			'wgCookieWarningGeoIPServiceURL' => null
+			'CookieWarningGeoIp2Path' => '/usr/local/share/GeoIP/GeoLite2-City.mmdb'
 		] );
 
 		$geoLocation = MediaWikiServices::getInstance()->getService( 'GeoLocation' );
 
-		$this->assertInstanceOf( NoopGeoLocation::class, $geoLocation );
+		$this->assertInstanceOf( HttpGeoIP2GeoLocation::class, $geoLocation );
 	}
 
 	/**
@@ -33,5 +34,18 @@ class ServiceWiringTest extends MediaWikiTestCase {
 		$geoLocation = MediaWikiServices::getInstance()->getService( 'GeoLocation' );
 
 		$this->assertInstanceOf( HttpGeoLocation::class, $geoLocation );
+	}
+
+	/**
+	 * @covers \CookieWarning\NoopGeoLocation
+	 */
+	public function testGeoLocationWithoutServiceURL() {
+		$this->setMwGlobals( [
+			'wgCookieWarningGeoIPServiceURL' => null
+		] );
+
+		$geoLocation = MediaWikiServices::getInstance()->getService( 'GeoLocation' );
+
+		$this->assertInstanceOf( NoopGeoLocation::class, $geoLocation );
 	}
 }
