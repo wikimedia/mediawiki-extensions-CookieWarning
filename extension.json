@@ -30,6 +30,7 @@
 		"CookieWarningEnabled": false,
 		"CookieWarningMoreUrl": "",
 		"CookieWarningGeoIPServiceURL": "//freegeoip.net/json/",
+		"CookieWarningGeoIp2Path": "",
 		"CookieWarningGeoIPLookup": "none",
 		"CookieWarningForCountryCodes": {
 			"EU": "Europe",
@@ -135,5 +136,6 @@
 	"ServiceWiringFiles": [
 		"includes/ServiceWiring.php"
 	],
+	"load_composer_autoloader": true,
 	"manifest_version": 1
 }
