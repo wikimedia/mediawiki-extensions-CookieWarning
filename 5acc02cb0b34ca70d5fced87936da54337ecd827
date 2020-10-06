@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0e4e86c_3e290337",
+        "filename": "includes/HttpGeoIP2GeoLocation.php",
+        "patchSetId": 47
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2020-10-06T02:00:43Z",
+      "side": 1,
+      "message": "should this be referencing `$this-\u003egeoIP2`? Just plain $geoIP2 doesn\u0027t seem to be defined here",
+      "range": {
+        "startLine": 33,
+        "startChar": 28,
+        "endLine": 33,
+        "endChar": 35
+      },
+      "revId": "5acc02cb0b34ca70d5fced87936da54337ecd827",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba1a85a0_14b86a5e",
+        "filename": "includes/HttpGeoIP2GeoLocation.php",
+        "patchSetId": 47
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2020-10-06T02:00:43Z",
+      "side": 1,
+      "message": "`Exception` implements `Throwable`[1], so just `Throwable` should be enough\n\n[1] See https://www.php.net/manual/en/class.exception.php",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 33
+      },
+      "revId": "5acc02cb0b34ca70d5fced87936da54337ecd827",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
