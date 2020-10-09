@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a41c479_93f33140",
+        "filename": "includes/Hooks.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2020-10-09T00:24:13Z",
+      "side": 1,
+      "message": "I\u0027m a bit dubious that this is needed. Usually calling shouldDisplayMobileView is a last resort. I\u0027ve asked a few questions below.",
+      "revId": "a17987bf26a3bba3ff0caab8bf26054b83e30487",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f42300ef_af92e1f3",
+        "filename": "includes/Hooks.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2020-10-09T00:24:13Z",
+      "side": 1,
+      "message": "Note isMobile could be true if Vector/Timeless is used as the mobile skin as well as Minerva.",
+      "revId": "a17987bf26a3bba3ff0caab8bf26054b83e30487",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e654d91d_373aa8e3",
+        "filename": "includes/Hooks.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2020-10-09T00:24:13Z",
+      "side": 1,
+      "message": "Can you expand on what the effect of this parameter is?",
+      "revId": "a17987bf26a3bba3ff0caab8bf26054b83e30487",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41ac3e4a_f89dfd23",
+        "filename": "includes/Hooks.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2020-10-09T00:24:13Z",
+      "side": 1,
+      "message": "won\u0027t this result in different HTML is MobileFrontend is installed?\nIf so can we avoid this?\n\nIt would be better to always return the same HTML and to rely on skinStyles to determine how to style the banner.",
+      "revId": "a17987bf26a3bba3ff0caab8bf26054b83e30487",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
