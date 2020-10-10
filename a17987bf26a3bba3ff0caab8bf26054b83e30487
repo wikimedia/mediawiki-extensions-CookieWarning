@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "900b6bcc_cbfc7d9a",
+        "filename": "includes/Hooks.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2020-10-10T23:36:18Z",
+      "side": 1,
+      "message": "This is correct, tested in both timeless and minerva (changing wgMFDefaultSkinClass to SkinTimeless).",
+      "parentUuid": "5a41c479_93f33140",
+      "revId": "a17987bf26a3bba3ff0caab8bf26054b83e30487",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f42300ef_af92e1f3",
         "filename": "includes/Hooks.php",
         "patchSetId": 14
@@ -33,6 +51,24 @@
       "revId": "a17987bf26a3bba3ff0caab8bf26054b83e30487",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a51dfa03_8ebdf196",
+        "filename": "includes/Hooks.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2020-10-10T23:36:18Z",
+      "side": 1,
+      "message": "I\u0027ve tuned some things, e.g applying the changed styles to minerva only. Tested on both timeless and minerva.",
+      "parentUuid": "f42300ef_af92e1f3",
+      "revId": "a17987bf26a3bba3ff0caab8bf26054b83e30487",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "23ce340d_0d100aa2",
+        "filename": "includes/Hooks.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2020-10-10T23:36:18Z",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "e654d91d_373aa8e3",
+      "revId": "a17987bf26a3bba3ff0caab8bf26054b83e30487",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "41ac3e4a_f89dfd23",
         "filename": "includes/Hooks.php",
         "patchSetId": 14
@@ -67,6 +121,24 @@
       "revId": "a17987bf26a3bba3ff0caab8bf26054b83e30487",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3ea60d5_cd7d132f",
+        "filename": "includes/Hooks.php",
+        "patchSetId": 14
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2020-10-10T23:36:18Z",
+      "side": 1,
+      "message": "I\u0027ve removed this part as you are right, it\u0027ll result in a slightly different html.",
+      "parentUuid": "41ac3e4a_f89dfd23",
+      "revId": "a17987bf26a3bba3ff0caab8bf26054b83e30487",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
