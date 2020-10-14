@@ -16,6 +16,24 @@
       "revId": "ff1fc5bacbff2f3e850cc58dd971d6b73ab6d9d1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acb25f8c_a10dfb0d",
+        "filename": "includes/Hooks.php",
+        "patchSetId": 17
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2020-10-14T21:04:16Z",
+      "side": 1,
+      "message": "Placing this in the SiteNotice hook didn\u0027t work correctly. E.g I couldn\u0027t press the more info button or press ok. I guess that\u0027s because it was made to be in the top, but still looks better like that then as a notice in the middle page on desktop.",
+      "parentUuid": "d6702101_446ec84c",
+      "revId": "ff1fc5bacbff2f3e850cc58dd971d6b73ab6d9d1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
