@@ -34,6 +34,24 @@
       "revId": "ff1fc5bacbff2f3e850cc58dd971d6b73ab6d9d1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "847c8576_28902eeb",
+        "filename": "includes/Hooks.php",
+        "patchSetId": 17
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 94
+      },
+      "writtenOn": "2020-10-14T21:10:38Z",
+      "side": 1,
+      "message": "Then we will need to make the necessary changes in SiteNotice. If you can show me a patch using that hook it will help me understand the challenges you are hitting and how we should fix it.\n\nSiteNotice hook is for displaying banners and this is a banner.\nSkinAfterContent hook is for displaying content after the content. This banner is being shown above.",
+      "parentUuid": "acb25f8c_a10dfb0d",
+      "revId": "ff1fc5bacbff2f3e850cc58dd971d6b73ab6d9d1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
