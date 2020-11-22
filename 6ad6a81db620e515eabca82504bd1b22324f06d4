@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a16ce87_e54b6ac9",
+        "filename": "includes/Hooks.php",
+        "patchSetId": 17
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2020-11-22T14:18:08Z",
+      "side": 0,
+      "message": "why removing my cookie 😭",
+      "range": {
+        "startLine": 94,
+        "startChar": 2,
+        "endLine": 98,
+        "endChar": 4
+      },
+      "revId": "6ad6a81db620e515eabca82504bd1b22324f06d4",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}

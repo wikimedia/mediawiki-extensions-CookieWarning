@@ -52,6 +52,24 @@
       "revId": "ff1fc5bacbff2f3e850cc58dd971d6b73ab6d9d1",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6d24d60_60f56f8e",
+        "filename": "includes/Hooks.php",
+        "patchSetId": 17
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 890
+      },
+      "writtenOn": "2020-11-22T14:18:08Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure it\u0027s just a little problem with where CookieWarning puts the z-index on. The fix should be simple, but requires to change the y-index on the siteNotice element itself, not sure if that is exactly what we want to do here :D",
+      "parentUuid": "847c8576_28902eeb",
+      "revId": "ff1fc5bacbff2f3e850cc58dd971d6b73ab6d9d1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
     }
   ]
 }
