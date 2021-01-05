@@ -28,7 +28,7 @@
 	"config": {
 		"CookieWarningEnabled": false,
 		"CookieWarningMoreUrl": "",
-		"CookieWarningGeoIPServiceURL": "//freegeoip.net/json/",
+		"CookieWarningGeoIPServiceURL": "",
 		"CookieWarningGeoIPLookup": "none",
 		"CookieWarningForCountryCodes": {
 			"EU": "Europe",
