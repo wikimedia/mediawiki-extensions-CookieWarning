@@ -1,49 +1,38 @@
-@z-index: 1999;
-
-/* stylelint-disable selector-max-id */
-#siteNotice {
-	z-index: @z-index;
-}
-/* stylelint-enable selector-max-id */
-
 .mw-cookiewarning-container {
 	position: fixed;
 	background-color: rgba( 90, 90, 90, 0.85 );
 	box-sizing: border-box;
-	color: #fff;
-	font-weight: bold;
-	font-size: 13px;
 	padding: 7px 15px;
-	top: 0;
+	bottom: 0;
 	left: 0;
 	width: 100%;
-	z-index: @z-index;
+	z-index: 1999;
+	display: flex;
+	justify-content: center;
 
-	a,
-	.mw-cookiewarning-dismiss {
-		background-color: #3c3c3c;
-		height: 100%;
-		padding: 3px 10px;
-		border-radius: 2px;
-		border: 0;
-		cursor: pointer;
-		text-decoration: none !important; /* stylelint-disable-line declaration-no-important */
-		color: #fff;
-		margin-right: 0.5em;
-		white-space: nowrap;
-		font-weight: bold;
-		font-size: 13px;
-	}
+	// Narrow mobile screens
+	// 550px is a mostly arbitrary number, though it's used by a few other exts and skins
+	@media screen and (max-width: 550px) {
+		flex-wrap: wrap;
 
-	.mw-cookiewarning-text {
-		display: inline-block;
-
-		span {
-			margin-right: 0.5em;
+		.mw-cookiewarning-text {
+			margin-bottom: 0.7em;
 		}
 	}
 
+	.mw-cookiewarning-text {
+		display: flex;
+		align-items: center;
+		color: #fff;
+		font-weight: bold;
+		font-size: 92%;
+	}
+
 	form {
-		display: inline-block;
+		flex-shrink: 0;
+
+		.oo-ui-widget {
+			margin: 0 0 0 8px !important;
+		}
 	}
 }
