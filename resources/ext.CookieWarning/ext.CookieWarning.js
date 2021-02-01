@@ -13,7 +13,7 @@
 			$( '.mw-cookiewarning-container' ).detach();
 		} else {
 			// Click handler for the "Ok" element in the cookiewarning information bar
-			$( '.mw-cookiewarning-dismiss' ).on( 'click', function ( ev ) {
+			$( '.mw-cookiewarning-container button' ).on( 'click', function ( ev ) {
 				// an anonymous user doesn't have preferences, so don't try to save this in
 				// the user preferences.
 				if ( !mw.user.isAnon() ) {
