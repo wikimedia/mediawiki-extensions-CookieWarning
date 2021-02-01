@@ -2,19 +2,14 @@
 
 namespace CookieWarning\Tests;
 
-use CommentStoreComment;
 use CookieWarning\GeoLocation;
 use CookieWarning\Hooks;
 use DerivativeContext;
 use FauxRequest;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
 use RequestContext;
 use SkinTemplate;
-use Title;
-use WikiPage;
-use WikitextContent;
 
 /**
  * @covers Hooks
@@ -24,49 +19,78 @@ class HooksTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider providerOnSiteNoticeAfter
+	 *
+	 * @param bool $enabled
+	 * @param false|string $morelinkConfig
+	 * @param false|string $morelinkCookieWarningMsg
+	 * @param false|string $morelinkCookiePolicyMsg
+	 * @param false|string $expectedLink
+	 *
 	 * @throws \MWException
-	 * @throws \ConfigException
 	 */
-	public function testOnSiteNoticeAfter( $enabled, $morelinkConfig,
-		$morelinkCookieWarningMsg, $morelinkCookiePolicyMsg, $expectedLink
-	) {
+	public function testOnSiteNoticeAfter(
+		bool $enabled,
+		$morelinkConfig,
+		$morelinkCookieWarningMsg,
+		$morelinkCookiePolicyMsg,
+		$expectedLink
+	) : void {
 		$this->setMwGlobals( [
 			'wgCookieWarningEnabled' => $enabled,
 			'wgCookieWarningMoreUrl' => $morelinkConfig,
 			'wgCookieWarningForCountryCodes' => false,
-			'wgUseMediaWikiUIEverywhere' => true,
 		] );
 		MediaWikiServices::getInstance()->getMessageCache()->enable();
+
 		if ( $morelinkCookieWarningMsg ) {
-			$title = Title::newFromText( 'cookiewarning-more-link', NS_MEDIAWIKI );
-			$wikiPage = WikiPage::factory( $title );
-			$pageUpdater = $wikiPage->newPageUpdater( \User::newFromName( 'UTSysop' ) );
-			$pageUpdater->setContent( SlotRecord::MAIN, new WikitextContent( $morelinkCookieWarningMsg ) );
-			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'CookieWarning test' ) );
+			$this->editPage(
+				'cookiewarning-more-link',
+				strval( $morelinkCookieWarningMsg ),
+				'',
+				NS_MEDIAWIKI,
+				$this->getTestSysop()->getUser()
+			);
 		}
 		if ( $morelinkCookiePolicyMsg ) {
-			$title = Title::newFromText( 'cookie-policy-link', NS_MEDIAWIKI );
-			$wikiPage = WikiPage::factory( $title );
-			$pageUpdater = $wikiPage->newPageUpdater( \User::newFromName( 'UTSysop' ) );
-			$pageUpdater->setContent( SlotRecord::MAIN, new WikitextContent( $morelinkCookiePolicyMsg ) );
-			$pageUpdater->saveRevision( CommentStoreComment::newUnsavedComment( 'CookieWarning test' ) );
+			$this->editPage(
+				'cookie-policy-link',
+				strval( $morelinkCookiePolicyMsg ),
+				'',
+				NS_MEDIAWIKI,
+				$this->getTestSysop()->getUser()
+			);
 		}
+
 		$sk = new SkinTemplate();
+		// setup OOUI, that would be normally done in BeforePageDisplay hook
+		$sk->getOutput()->enableOOUI();
+
 		$data = '';
-		Hooks::onSiteNoticeAfter( $data, $sk );
-		if ( $expectedLink === false ) {
-			$expected = '';
+		Hooks::onSkinAfterContent( $data, $sk );
+
+		if ( $enabled ) {
+			$this->assertNotEmpty( $data, 'Cookie warning should be present' );
 		} else {
-			// @codingStandardsIgnoreStart Generic.Files.LineLength
-			$expected =
-				str_replace( '$1', $expectedLink,
-					'<div class="mw-cookiewarning-container banner-container"><div class="mw-cookiewarning-text"><span>Cookies help us deliver our services. By using our services, you agree to our use of cookies.</span>$1</div><form method="POST"><input name="disablecookiewarning" class="mw-cookiewarning-dismiss mw-ui-button" type="submit" value="OK"/></form></div>' );
-			// @codingStandardsIgnoreEnd
+			$this->assertEmpty( $data, 'Cookie warning should not be present' );
+			return;
 		}
-		$this->assertEquals( $expected, $data );
+
+		if ( $expectedLink === false ) {
+			$this->assertNotRegExp(
+				'/<a[^>]+href=[\'"]([^\'"]+)[\'"].+?>/',
+				$data,
+				'More information link should not be present'
+			);
+		} else {
+			$this->assertRegExp(
+				'/<a[^>]+href=[\'"]' . preg_quote( $expectedLink, '/' ) . '[\'"].+?>/',
+				$data,
+				'More information link should be present and match the expectation'
+			);
+		}
 	}
 
-	public function providerOnSiteNoticeAfter() {
+	public function providerOnSiteNoticeAfter() : array {
 		return [
 			[
 				// $wgCookieWarningEnabled
@@ -78,7 +102,7 @@ class HooksTest extends MediaWikiLangTestCase {
 				// MediaWiki:Cookie-policy-link
 				false,
 				// expected cookie warning link (when string), nothing if false
-				'',
+				false,
 			],
 			[
 				false,
@@ -92,21 +116,21 @@ class HooksTest extends MediaWikiLangTestCase {
 				'http://google.de',
 				false,
 				false,
-				"\u{00A0}<a href=\"http://google.de\">More information</a>",
+				'http://google.de',
 			],
 			[
 				true,
 				'',
 				'http://google.de',
 				false,
-				"\u{00A0}<a href=\"http://google.de\">More information</a>",
+				'http://google.de',
 			],
 			[
 				true,
 				'',
 				false,
 				'http://google.de',
-				"\u{00A0}<a href=\"http://google.de\">More information</a>",
+				'http://google.de',
 			],
 			// the config should be the used, if set (no matter if the messages are used or not)
 			[
@@ -114,21 +138,21 @@ class HooksTest extends MediaWikiLangTestCase {
 				'http://google.de',
 				false,
 				'http://google123.de',
-				"\u{00A0}<a href=\"http://google.de\">More information</a>",
+				'http://google.de',
 			],
 			[
 				true,
 				'http://google.de',
 				'http://google1234.de',
 				'http://google123.de',
-				"\u{00A0}<a href=\"http://google.de\">More information</a>",
+				'http://google.de',
 			],
 			[
 				true,
 				'',
 				'http://google.de',
 				'http://google123.de',
-				"\u{00A0}<a href=\"http://google.de\">More information</a>",
+				'http://google.de',
 			],
 		];
 	}
@@ -155,7 +179,7 @@ class HooksTest extends MediaWikiLangTestCase {
 		$sk = new SkinTemplate();
 		$sk->setContext( $context );
 		$data = '';
-		Hooks::onSiteNoticeAfter( $data, $sk );
+		Hooks::onSkinAfterContent( $data, $sk );
 
 		$this->assertEquals(
 			$expected,

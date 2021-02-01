@@ -4,12 +4,13 @@ namespace CookieWarning;
 
 use Config;
 use ConfigException;
-use ExtensionRegistry;
 use Html;
 use MediaWiki;
 use MediaWiki\MediaWikiServices;
-use MobileContext;
 use MWException;
+use OOUI\ButtonInputWidget;
+use OOUI\ButtonWidget;
+use OOUI\HorizontalLayout;
 use OutputPage;
 use Skin;
 use Title;
@@ -38,7 +39,7 @@ class Hooks {
 			return;
 		}
 
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$user->setOption( 'cookiewarning_dismissed', 1 );
 			$user->saveSettings();
 		} else {
@@ -48,20 +49,16 @@ class Hooks {
 	}
 
 	/**
-	 * SiteNoticeAfter hook handler.
+	 * SkinAfterContent hook handler.
 	 *
-	 * Adds the CookieWarning information bar to the output html for mobile.
+	 * Adds the CookieWarning information bar to the output html.
 	 *
-	 * @param string &$siteNotice
+	 * @param string &$data
 	 * @param Skin $skin
-	 * @throws ConfigException
+	 *
 	 * @throws MWException
-	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public static function onSiteNoticeAfter(
-		string &$siteNotice,
-		Skin $skin
-	) {
+	public static function onSkinAfterContent( string &$data, Skin $skin ) {
 		/** @var Decisions $cookieWarningDecisions */
 		$cookieWarningDecisions = MediaWikiServices::getInstance()
 			->getService( 'CookieWarning.Decisions' );
@@ -70,64 +67,53 @@ class Hooks {
 			return;
 		}
 
-		$isMobile = ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
-			MobileContext::singleton()->shouldDisplayMobileView();
-
-		$siteNotice .= self::generateElements( $skin, $isMobile );
+		$data .= self::generateElements( $skin );
 	}
 
 	/**
 	 * Generates the elements for the banner.
 	 *
 	 * @param Skin $skin
-	 * @param bool $isMobile This will return true if using mobile site.
 	 * @return string|null The html for cookie notice.
 	 */
-	private static function generateElements( Skin $skin, bool $isMobile ) {
+	private static function generateElements( Skin $skin ) : ?string {
 		$moreLink = self::getMoreLink();
 
+		$buttons = [];
 		if ( $moreLink ) {
-			$moreLink = "\u{00A0}" . Html::element(
-				'a',
-				[ 'href' => $moreLink ],
-				$skin->msg( 'cookiewarning-moreinfo-label' )->text()
-			);
+			$buttons[] = new ButtonWidget( [
+				'href' => $moreLink,
+				'label' => $skin->msg( 'cookiewarning-moreinfo-label' )->text(),
+				'flags' => [ 'progressive' ]
+			] );
 		}
+		$buttons[] = new ButtonInputWidget( [
+			'type' => 'submit',
+			'label' => $skin->msg( 'cookiewarning-ok-label' )->text(),
+			'name' => 'disablecookiewarning',
+			'value' => 'OK',
+			'flags' => [ 'primary', 'progressive' ]
+		] );
 
-		$form = Html::openElement( 'form', [ 'method' => 'POST' ] ) .
-			Html::submitButton(
-				$skin->msg( 'cookiewarning-ok-label' )->text(),
-				[
-					'name' => 'disablecookiewarning',
-					'class' => 'mw-cookiewarning-dismiss'
-				]
-			) .
-			Html::closeElement( 'form' );
-
-		$cookieImage = Html::element(
-			'div',
-			[ 'class' => 'mw-cookiewarning-cimage' ],
-			"\u{1F36A}"
+		$form = Html::rawElement(
+			'form',
+			[ 'method' => 'POST' ],
+			new HorizontalLayout( [ 'items' => $buttons ] )
 		);
 
 		return Html::openElement(
 				'div',
-				// banner-container marks this as a banner for Minerva
-				// Note to avoid this class, in future we may want to make use of SiteNotice
-				// or banner display
-				[ 'class' => 'mw-cookiewarning-container banner-container' ]
+				[ 'class' => 'mw-cookiewarning-container' ]
 			) .
 			Html::openElement(
 				'div',
 				[ 'class' => 'mw-cookiewarning-text' ]
 			) .
-			( $isMobile ? $cookieImage : '' ) .
 			Html::element(
 				'span',
 				[],
 				$skin->msg( 'cookiewarning-info' )->text()
 			) .
-			$moreLink .
 			Html::closeElement( 'div' ) .
 			$form .
 			Html::closeElement( 'div' );
@@ -143,7 +129,7 @@ class Hooks {
 	 * @return string|null The url or null if none set
 	 * @throws ConfigException
 	 */
-	private static function getMoreLink() {
+	private static function getMoreLink() : ?string {
 		$conf = self::getConfig();
 		if ( $conf->get( 'CookieWarningMoreUrl' ) ) {
 			return $conf->get( 'CookieWarningMoreUrl' );
@@ -180,15 +166,8 @@ class Hooks {
 			return;
 		}
 
-		if (
-			ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
-			MobileContext::singleton()->shouldDisplayMobileView()
-		) {
-			$moduleStyles = [ 'ext.CookieWarning.mobile.styles' ];
-		} else {
-			$moduleStyles = [ 'ext.CookieWarning.styles' ];
-		}
 		$modules = [ 'ext.CookieWarning' ];
+		$moduleStyles = [ 'ext.CookieWarning.styles' ];
 
 		if ( $cookieWarningDecisions->shouldAddResourceLoaderComponents() ) {
 			$modules[] = 'ext.CookieWarning.geolocation';
@@ -196,6 +175,7 @@ class Hooks {
 		}
 		$out->addModules( $modules );
 		$out->addModuleStyles( $moduleStyles );
+		$out->enableOOUI();
 	}
 
 	/**
