@@ -1,10 +1,11 @@
 {
 	"name": "CookieWarning",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"author": [
 		"Florian Schmidt",
 		"Liz Lee",
-		"Jack Phoenix"
+		"Jack Phoenix",
+		"Ostrzyciel"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:CookieWarning",
 	"descriptionmsg": "cookiewarning-desc",
@@ -19,10 +20,10 @@
 		]
 	},
 	"Hooks": {
-		"SiteNoticeAfter": "CookieWarning\\Hooks::onSiteNoticeAfter",
-		"BeforePageDisplay": "CookieWarning\\Hooks::onBeforePageDisplay",
+		"SkinAfterContent": "CookieWarning\\Hooks::onSkinAfterContent",
 		"GetPreferences": "CookieWarning\\Hooks::onGetPreferences",
 		"BeforeInitialize": "CookieWarning\\Hooks::onBeforeInitialize",
+		"BeforePageDisplay": "CookieWarning\\Hooks::onBeforePageDisplay",
 		"ResourceLoaderGetConfigVars": "CookieWarning\\Hooks::onResourceLoaderGetConfigVars"
 	},
 	"config": {
@@ -94,15 +95,10 @@
 			]
 		},
 		"ext.CookieWarning.styles": {
-			"styles": "resources/ext.CookieWarning/ext.CookieWarning.less"
-		},
-		"ext.CookieWarning.mobile.styles": {
-			"styles": "resources/ext.CookieWarning/ext.CookieWarning.mobile.less",
-			"skinStyles": {
-				"minerva": "skinStyles/ext.CookieWarning.minerva.styles.less"
-			},
+			"styles": "resources/ext.CookieWarning/ext.CookieWarning.less",
 			"targets": [
-				"mobile"
+				"mobile",
+				"desktop"
 			]
 		},
 		"ext.CookieWarning.geolocation": {
