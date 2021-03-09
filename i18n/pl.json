@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Chrumps",
+			"Ostrzyciel",
 			"Rail",
 			"Railfail536",
 			"Woytecr"
 		]
 	},
-	"cookiewarning-info": "Ciasteczka pomagają nam dostarczać nasze usługi. Korzystając z naszych usług, zgadzasz się na wykorzystywanie ciasteczek",
+	"cookiewarning-info": "Ciasteczka pomagają nam dostarczać nasze usługi. Korzystając z naszych usług, zgadzasz się na wykorzystywanie ciasteczek.",
 	"cookiewarning-desc": "Tworzy w górnej części strony powiadomienie o plikach cookie",
 	"cookiewarning-moreinfo-label": "Więcej informacji",
 	"cookiewarning-ok-label": "W porządku"
