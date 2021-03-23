@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CookieWarning\Tests;
 
-use CookieWarning\GeoLocation;
-use CookieWarning\Hooks;
+use MediaWiki\Extension\CookieWarning\GeoLocation\GeoLocation;
+use MediaWiki\Extension\CookieWarning\Hooks;
 use DerivativeContext;
 use FauxRequest;
 use MediaWiki\MediaWikiServices;
@@ -45,19 +47,19 @@ class HooksTest extends MediaWikiLangTestCase {
 		if ( $morelinkCookieWarningMsg ) {
 			$this->editPage(
 				'cookiewarning-more-link',
-				strval( $morelinkCookieWarningMsg ),
+                (string)$morelinkCookieWarningMsg,
 				'',
 				NS_MEDIAWIKI,
-				$this->getTestSysop()->getUser()
+				self::getTestSysop()->getUser()
 			);
 		}
 		if ( $morelinkCookiePolicyMsg ) {
 			$this->editPage(
 				'cookie-policy-link',
-				strval( $morelinkCookiePolicyMsg ),
+                (string)$morelinkCookiePolicyMsg,
 				'',
 				NS_MEDIAWIKI,
-				$this->getTestSysop()->getUser()
+				self::getTestSysop()->getUser()
 			);
 		}
 
@@ -66,23 +68,25 @@ class HooksTest extends MediaWikiLangTestCase {
 		$sk->getOutput()->enableOOUI();
 
 		$data = '';
-		Hooks::onSkinAfterContent( $data, $sk );
+
+		$hook = new Hooks\SkinHooks();
+		$hook->onSkinAfterContent($data, $sk );
 
 		if ( $enabled ) {
-			$this->assertNotEmpty( $data, 'Cookie warning should be present' );
+			self::assertNotEmpty( $data, 'Cookie warning should be present' );
 		} else {
-			$this->assertEmpty( $data, 'Cookie warning should not be present' );
+			self::assertEmpty( $data, 'Cookie warning should not be present' );
 			return;
 		}
 
 		if ( $expectedLink === false ) {
-			$this->assertNotRegExp(
+			self::assertNotRegExp(
 				'/<a[^>]+href=[\'"]([^\'"]+)[\'"].+?>/',
 				$data,
 				'More information link should not be present'
 			);
 		} else {
-			$this->assertRegExp(
+			self::assertRegExp(
 				'/<a[^>]+href=[\'"]' . preg_quote( $expectedLink, '/' ) . '[\'"].+?>/',
 				$data,
 				'More information link should be present and match the expectation'
@@ -179,9 +183,12 @@ class HooksTest extends MediaWikiLangTestCase {
 		$sk = new SkinTemplate();
 		$sk->setContext( $context );
 		$data = '';
-		Hooks::onSkinAfterContent( $data, $sk );
 
-		$this->assertEquals(
+
+        $hook = new Hooks\SkinHooks();
+        $hook->onSkinAfterContent($data, $sk );
+
+		self::assertEquals(
 			$expected,
 			(bool)$data
 		);
