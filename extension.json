@@ -5,7 +5,8 @@
 		"Florian Schmidt",
 		"Liz Lee",
 		"Jack Phoenix",
-		"Ostrzyciel"
+		"Ostrzyciel",
+		"Octfx"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:CookieWarning",
 	"descriptionmsg": "cookiewarning-desc",
@@ -20,65 +21,121 @@
 		]
 	},
 	"Hooks": {
-		"SkinAfterContent": "CookieWarning\\Hooks::onSkinAfterContent",
-		"GetPreferences": "CookieWarning\\Hooks::onGetPreferences",
-		"BeforeInitialize": "CookieWarning\\Hooks::onBeforeInitialize",
-		"BeforePageDisplay": "CookieWarning\\Hooks::onBeforePageDisplay",
-		"ResourceLoaderGetConfigVars": "CookieWarning\\Hooks::onResourceLoaderGetConfigVars"
+		"SkinAfterContent": "SkinHooks",
+		"GetPreferences": "PreferenceHooks",
+		"BeforeInitialize": "BeforeHooks",
+		"BeforePageDisplay": "BeforeHooks",
+		"PreferencesFormPreSave": "PreferenceHooks",
+		"WebResponseSetCookieHook": "CookieHooks"
+	},
+	"HookHandlers": {
+		"BeforeHooks": {
+			"class": "MediaWiki\\Extension\\CookieWarning\\Hooks\\BeforeHooks"
+		},
+		"PreferenceHooks": {
+			"class": "MediaWiki\\Extension\\CookieWarning\\Hooks\\PreferenceHooks"
+		},
+		"SkinHooks": {
+			"class": "MediaWiki\\Extension\\CookieWarning\\Hooks\\SkinHooks"
+		},
+		"CookieHooks": {
+			"class": "MediaWiki\\Extension\\CookieWarning\\Hooks\\CookieHooks"
+		}
 	},
 	"config": {
-		"CookieWarningEnabled": false,
-		"CookieWarningMoreUrl": "",
-		"CookieWarningGeoIPServiceURL": "",
-		"CookieWarningGeoIPLookup": "none",
+		"CookieWarningEnabled": {
+			"value": false,
+			"description": "Enables the extension"
+		},
+		"CookieWarningUnsetCookies": {
+			"value": false,
+			"description": "Removes all cookies that aren't necessary until the user gave his consent"
+		},
+		"CookieWarningRequiredCookies": {
+			"value": [
+				"cookiewarning_dismissed",
+				"cookiewarning_preferences",
+				"UserID",
+				"UserName",
+				"_session"
+			],
+			"description": "List of cookie names that are deemed required"
+		},
+		"CookieWarningPreferenceCookies": {
+			"value": [],
+			"description": "List of cookie names that are categorized as preference"
+		},
+		"CookieWarningStatisticCookies": {
+			"value": [],
+			"description": "List of cookie names that are categorized as statistics"
+		},
+		"CookieWarningMarketingCookies": {
+			"value": [],
+			"description": "List of cookie names that are categorized as marketing"
+		},
+		"CookieWarningMoreUrl": {
+			"value": "",
+			"description": ""
+		},
+		"CookieWarningGeoIPServiceURL": {
+			"value": "//freegeoip.net/json/",
+			"description": ""
+		},
+		"CookieWarningGeoIPLookup": {
+			"value": "none",
+			"description": ""
+		},
 		"CookieWarningForCountryCodes": {
-			"EU": "Europe",
-			"AD": "Andorra",
-			"AL": "Albania",
-			"AT": "Austria",
-			"BA": "Bosnia and Herzegovina",
-			"BE": "Belgium",
-			"BG": "Bulgaria",
-			"BY": "Belarus",
-			"CH": "Switzerland",
-			"CS": "Serbia and Montenegro",
-			"CZ": "Czech Republic",
-			"DE": "Germany",
-			"DK": "Denmark",
-			"EE": "Estonia",
-			"ES": "Spain",
-			"FI": "Finland",
-			"FO": "Faroe Islands",
-			"FR": "France",
-			"FX": "France, Metropolitan",
-			"GB": "United Kingdom",
-			"GI": "Gibraltar",
-			"GR": "Greece",
-			"HR": "Croatia",
-			"HU": "Hungary",
-			"IE": "Ireland",
-			"IS": "Iceland",
-			"IT": "Italy",
-			"LI": "Liechtenstein",
-			"LT": "Lithuania",
-			"LU": "Luxembourg",
-			"LV": "Latvia",
-			"MC": "Monaco",
-			"MD": "Moldova, Republic of",
-			"MK": "Macedonia",
-			"MT": "Malta",
-			"NL": "Netherlands",
-			"NO": "Norway",
-			"PL": "Poland",
-			"PT": "Portugal",
-			"RO": "Romania",
-			"SE": "Sweden",
-			"SI": "Slovenia",
-			"SJ": "Svalbard and Jan Mayen",
-			"SK": "Slovakia",
-			"SM": "San Marino",
-			"UA": "Ukraine",
-			"VA": "Holy See (Vatican City State)"
+			"value": {
+				"EU": "Europe",
+				"AD": "Andorra",
+				"AL": "Albania",
+				"AT": "Austria",
+				"BA": "Bosnia and Herzegovina",
+				"BE": "Belgium",
+				"BG": "Bulgaria",
+				"BY": "Belarus",
+				"CH": "Switzerland",
+				"CS": "Serbia and Montenegro",
+				"CZ": "Czech Republic",
+				"DE": "Germany",
+				"DK": "Denmark",
+				"EE": "Estonia",
+				"ES": "Spain",
+				"FI": "Finland",
+				"FO": "Faroe Islands",
+				"FR": "France",
+				"FX": "France, Metropolitan",
+				"GB": "United Kingdom",
+				"GI": "Gibraltar",
+				"GR": "Greece",
+				"HR": "Croatia",
+				"HU": "Hungary",
+				"IE": "Ireland",
+				"IS": "Iceland",
+				"IT": "Italy",
+				"LI": "Liechtenstein",
+				"LT": "Lithuania",
+				"LU": "Luxembourg",
+				"LV": "Latvia",
+				"MC": "Monaco",
+				"MD": "Moldova, Republic of",
+				"MK": "Macedonia",
+				"MT": "Malta",
+				"NL": "Netherlands",
+				"NO": "Norway",
+				"PL": "Poland",
+				"PT": "Portugal",
+				"RO": "Romania",
+				"SE": "Sweden",
+				"SI": "Slovenia",
+				"SJ": "Svalbard and Jan Mayen",
+				"SK": "Slovakia",
+				"SM": "San Marino",
+				"UA": "Ukraine",
+				"VA": "Holy See (Vatican City State)"
+			},
+			"description": ""
 		}
 	},
 	"ResourceModules": {
@@ -86,23 +143,30 @@
 			"dependencies": [
 				"mediawiki.api",
 				"mediawiki.cookie",
-				"mediawiki.user"
+				"mediawiki.user",
+				"mediawiki.base"
 			],
-			"scripts": "resources/ext.CookieWarning/ext.CookieWarning.js",
+			"scripts": [
+				"resources/ext.CookieWarning/ext.CookieWarning.js"
+			],
 			"targets": [
 				"mobile",
 				"desktop"
 			]
 		},
 		"ext.CookieWarning.styles": {
-			"styles": "resources/ext.CookieWarning/ext.CookieWarning.less",
+			"styles": [
+				"resources/ext.CookieWarning/ext.CookieWarning.less"
+			],
 			"targets": [
 				"mobile",
 				"desktop"
 			]
 		},
 		"ext.CookieWarning.geolocation": {
-			"scripts": "resources/ext.CookieWarning.geolocation/cookiePolicy.js",
+			"scripts": [
+				"resources/ext.CookieWarning.geolocation/cookiePolicy.js"
+			],
 			"dependencies": [
 				"ext.CookieWarning",
 				"jquery.cookie"
@@ -113,7 +177,9 @@
 			]
 		},
 		"ext.CookieWarning.geolocation.styles": {
-			"styles": "resources/ext.CookieWarning.geolocation/styles.css",
+			"styles": [
+				"resources/ext.CookieWarning.geolocation/styles.css"
+			],
 			"targets": [
 				"mobile",
 				"desktop"
@@ -125,7 +191,7 @@
 		"remoteExtPath": "CookieWarning"
 	},
 	"AutoloadNamespaces": {
-		"CookieWarning\\": "includes/"
+		"MediaWiki\\Extension\\CookieWarning\\": "includes/"
 	},
 	"ConfigRegistry": {
 		"cookiewarning": "GlobalVarConfig::newInstance"
@@ -133,5 +199,5 @@
 	"ServiceWiringFiles": [
 		"includes/ServiceWiring.php"
 	],
-	"manifest_version": 1
+	"manifest_version": 2
 }
