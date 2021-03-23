@@ -8,5 +8,10 @@
 	"cookiewarning-desc": "Provides a notice at the top of the page about cookies",
 	"cookiewarning-moreinfo-label": "More information",
 	"cookiewarning-more-link": "-",
-	"cookiewarning-ok-label": "OK"
+	"cookiewarning-ok-label": "OK",
+	"cookiewarning-required-cookies-label": "Required Cookies",
+	"cookiewarning-preference-cookies-label": "Preference Cookies",
+	"cookiewarning-statistic-cookies-label": "Statistic Cookies",
+	"cookiewarning-marketing-cookies-label": "Marketing Cookies",
+	"prefs-cookiewarning-label": "Cookie Settings"
 }
