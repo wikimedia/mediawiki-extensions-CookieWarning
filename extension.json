@@ -5,7 +5,8 @@
 		"Florian Schmidt",
 		"Liz Lee",
 		"Jack Phoenix",
-		"Ostrzyciel"
+		"Ostrzyciel",
+		"Octfx"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:CookieWarning",
 	"descriptionmsg": "cookiewarning-desc",
@@ -20,14 +21,40 @@
 		]
 	},
 	"Hooks": {
-		"SkinAfterContent": "CookieWarning\\Hooks::onSkinAfterContent",
-		"GetPreferences": "CookieWarning\\Hooks::onGetPreferences",
-		"BeforeInitialize": "CookieWarning\\Hooks::onBeforeInitialize",
-		"BeforePageDisplay": "CookieWarning\\Hooks::onBeforePageDisplay",
-		"ResourceLoaderGetConfigVars": "CookieWarning\\Hooks::onResourceLoaderGetConfigVars"
+		"SkinAfterContent": "SkinHooks",
+		"GetPreferences": "PreferenceHooks",
+		"BeforeInitialize": "BeforeHooks",
+		"BeforePageDisplay": "BeforeHooks",
+		"PreferencesFormPreSave": "PreferenceHooks",
+		"WebResponseSetCookieHook": "CookieHooks"
+	},
+	"HookHandlers": {
+		"BeforeHooks": {
+			"class": "MediaWiki\\Extension\\CookieWarning\\Hooks\\BeforeHooks"
+		},
+		"PreferenceHooks": {
+			"class": "MediaWiki\\Extension\\CookieWarning\\Hooks\\PreferenceHooks"
+		},
+		"SkinHooks": {
+			"class": "MediaWiki\\Extension\\CookieWarning\\Hooks\\SkinHooks"
+		},
+		"CookieHooks": {
+			"class": "MediaWiki\\Extension\\CookieWarning\\Hooks\\CookieHooks"
+		}
 	},
 	"config": {
 		"CookieWarningEnabled": false,
+		"CookieWarningUnsetCookies": false,
+		"CookieWarningRequiredCookies": [
+			"cookiewarning_dismissed",
+			"cookiewarning_preferences",
+			"UserID",
+			"UserName",
+			"_session"
+		],
+		"CookieWarningPreferenceCookies": [],
+		"CookieWarningStatisticCookies": [],
+		"CookieWarningMarketingCookies": [],
 		"CookieWarningMoreUrl": "",
 		"CookieWarningGeoIPServiceURL": "",
 		"CookieWarningGeoIPLookup": "none",
@@ -86,7 +113,8 @@
 			"dependencies": [
 				"mediawiki.api",
 				"mediawiki.cookie",
-				"mediawiki.user"
+				"mediawiki.user",
+				"mediawiki.base"
 			],
 			"scripts": "resources/ext.CookieWarning/ext.CookieWarning.js",
 			"targets": [
@@ -125,7 +153,7 @@
 		"remoteExtPath": "CookieWarning"
 	},
 	"AutoloadNamespaces": {
-		"CookieWarning\\": "includes/"
+		"MediaWiki\\Extension\\CookieWarning\\": "includes/"
 	},
 	"ConfigRegistry": {
 		"cookiewarning": "GlobalVarConfig::newInstance"
