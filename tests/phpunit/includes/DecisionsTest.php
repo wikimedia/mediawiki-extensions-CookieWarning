@@ -1,11 +1,13 @@
 <?php
 
-namespace CookieWarning\Tests;
+declare( strict_types=1 );
+
+namespace MediaWiki\Extension\CookieWarning\Tests;
 
 use ConfigException;
-use CookieWarning\Decisions;
-use CookieWarning\GeoLocation;
 use HashBagOStuff;
+use MediaWiki\Extension\CookieWarning\Decisions;
+use MediaWiki\Extension\CookieWarning\GeoLocation\GeoLocation;
 use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
 use MWException;
@@ -14,7 +16,7 @@ use WANObjectCache;
 
 class DecisionsTest extends MediaWikiTestCase {
 	/**
-	 * @covers \CookieWarning\Decisions::shouldShowCookieWarning()
+	 * @covers \MediaWiki\Extension\CookieWarning\Decisions::shouldShowCookieWarning()
 	 * @throws ConfigException
 	 * @throws MWException
 	 */

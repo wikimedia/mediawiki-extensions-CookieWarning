@@ -8,5 +8,11 @@
 	"cookiewarning-desc": "Provides a notice at the top of the page about cookies",
 	"cookiewarning-moreinfo-label": "More information",
 	"cookiewarning-more-link": "-",
-	"cookiewarning-ok-label": "OK"
+	"cookiewarning-ok-label": "OK",
+	"cookiewarning-required-cookies-label": "Required Cookies",
+	"cookiewarning-preference-cookies-label": "Preference / Functional Cookies",
+	"cookiewarning-statistic-cookies-label": "Statistic Cookies",
+	"cookiewarning-marketing-cookies-label": "Marketing Cookies",
+	"prefs-cookiewarning-label": "Cookie Settings",
+	"prefs-cookiewarning-help": "Accepted cookie groups. Note that 'required' cookies can't be declined, as they are strictly necessary for site opertation. Preference / functional cookies usually contain cookies belonging to gadgets or the visual editor. Statistics and marketing cookies may not be used by your wiki, you should consult further information like the privacy notice."
 }
