@@ -38,7 +38,7 @@
 		 * @return {boolean}
 		 */
 		isInRegion: function () {
-			return mw.config.get( 'wgCookieWarningForCountryCodes' ).hasOwnProperty( this.getCountryCode() );
+			return Object.prototype.hasOwnProperty.call( mw.config.get( 'wgCookieWarningForCountryCodes' ), this.getCountryCode() );
 		}
 	};
 

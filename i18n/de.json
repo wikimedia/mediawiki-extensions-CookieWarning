@@ -9,5 +9,10 @@
 	"cookiewarning-info": "Cookies helfen uns bei der Bereitstellung von {{SITENAME}}. Durch die Nutzung von {{SITENAME}} erklärst du dich damit einverstanden, dass wir Cookies speichern.",
 	"cookiewarning-desc": "Blendet einen Hinweis zur Verwendung von Cookies beim Besuch des Wikis ein",
 	"cookiewarning-moreinfo-label": "Weitere Informationen",
-	"cookiewarning-ok-label": "Okay"
+	"cookiewarning-ok-label": "Okay",
+	"cookiewarning-required-cookies-label": "Benötigte Cookies",
+	"cookiewarning-preference-cookies-label": "Funktionale Cookies",
+	"cookiewarning-statistic-cookies-label": "Statistik Cookies",
+	"cookiewarning-marketing-cookies-label": "Marketing Cookies",
+	"prefs-cookiewarning-label": "Cookie Einstellungen"
 }
