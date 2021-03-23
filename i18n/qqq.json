@@ -9,5 +9,10 @@
 	"cookiewarning-desc": "{{desc|name=CookieWarning|url=https://www.mediawiki.org/wiki/Extension:CookieWarning}}",
 	"cookiewarning-moreinfo-label": "Label for the \"More information\" link in the cookiewarning information bar.\n{{Identical|More information}}",
 	"cookiewarning-more-link": "{{notranslate}}\nUsed as an on-wiki way to edit the target of the more information link.",
-	"cookiewarning-ok-label": "The label for the \"OK\" button in the cookiewarning information bar.\n{{Identical|OK}}"
+	"cookiewarning-ok-label": "The label for the \"OK\" button in the cookiewarning information bar.\n{{Identical|OK}}",
+	"cookiewarning-required-cookies-label": "The Label for 'required cookies'",
+	"cookiewarning-preference-cookies-label": "The Label for 'preference cookies'",
+	"cookiewarning-statistic-cookies-label": "The Label for 'statistic cookies'",
+	"cookiewarning-marketing-cookies-label": "The Label for 'marketing cookies'",
+	"prefs-cookiewarning-label": "Label used in user preferences"
 }
