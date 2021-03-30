@@ -21,7 +21,11 @@ return [
 		return new HttpGeoLocation( $geoIPServiceURL );
 	},
 	'CookieWarning.Decisions' => function ( MediaWikiServices $services ) {
-		return new Decisions( $services->getService( 'CookieWarning.Config' ),
-			$services->getService( 'GeoLocation' ), $services->getMainWANObjectCache() );
+		return new Decisions(
+			$services->getService( 'CookieWarning.Config' ),
+			$services->getService( 'GeoLocation' ),
+			$services->getMainWANObjectCache(),
+			$services->getUserOptionsLookup()
+		);
 	},
 ];
