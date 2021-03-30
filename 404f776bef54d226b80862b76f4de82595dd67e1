@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6dfea61_24888737",
+        "filename": "includes/Decisions.php",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-03-30T20:19:20Z",
+      "side": 1,
+      "message": "User::getBoolOption doesn\u0027t accept a second parameter, so this did nothing, but UserOptionsLookup::getBoolOption *does* accept a third parameter, and it has to be an int, so this is wrong - suggest removing (no idea what the intended behavior was)",
+      "range": {
+        "startLine": 51,
+        "startChar": 79,
+        "endLine": 51,
+        "endChar": 84
+      },
+      "revId": "404f776bef54d226b80862b76f4de82595dd67e1",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
