@@ -34,7 +34,8 @@ class DecisionsTest extends MediaWikiTestCase {
 		$cookieWarningDecisions = new Decisions(
 			MediaWikiServices::getInstance()->getService( 'CookieWarning.Config' ),
 			$geoLocation,
-			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] )
+			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
+			MediaWikiServices::getInstance()->getUserOptionsLookup()
 		);
 
 		$cookieWarningDecisions->shouldShowCookieWarning( RequestContext::getMain() );

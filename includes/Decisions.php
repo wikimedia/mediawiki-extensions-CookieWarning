@@ -5,6 +5,7 @@ namespace CookieWarning;
 use Config;
 use ConfigException;
 use IContextSource;
+use MediaWiki\User\UserOptionsLookup;
 use MWException;
 use WANObjectCache;
 
@@ -12,6 +13,7 @@ class Decisions {
 	private $config;
 	private $geoLocation;
 	private $cache;
+	private $userOptionsLookup;
 
 	private const CACHE_KEY = 'cookieWarningIpLookupCache:';
 
@@ -19,11 +21,18 @@ class Decisions {
 	 * @param Config $config
 	 * @param GeoLocation $geoLocation
 	 * @param WANObjectCache $cache
+	 * @param UserOptionsLookup $userOptionsLookup
 	 */
-	public function __construct( Config $config, GeoLocation $geoLocation, WANObjectCache $cache ) {
+	public function __construct(
+		Config $config,
+		GeoLocation $geoLocation,
+		WANObjectCache $cache,
+		UserOptionsLookup $userOptionsLookup
+	) {
 		$this->config = $config;
 		$this->geoLocation = $geoLocation;
 		$this->cache = $cache;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/**
@@ -39,7 +48,7 @@ class Decisions {
 		$user = $context->getUser();
 
 		return $this->config->get( 'CookieWarningEnabled' ) &&
-			!$user->getBoolOption( 'cookiewarning_dismissed', false ) &&
+			!$this->userOptionsLookup->getBoolOption( $user, 'cookiewarning_dismissed' ) &&
 			!$context->getRequest()->getCookie( 'cookiewarning_dismissed' ) &&
 			( $this->config->get( 'CookieWarningGeoIPLookup' ) === 'js' ||
 				$this->isInConfiguredRegion( $context ) );
