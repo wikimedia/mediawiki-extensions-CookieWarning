@@ -1,6 +1,6 @@
 <?php
 
-namespace CookieWarning;
+namespace MediaWiki\Extension\CookieWarning\GeoLocation;
 
 class NoopGeoLocation implements GeoLocation {
 

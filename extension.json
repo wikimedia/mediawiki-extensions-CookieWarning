@@ -20,11 +20,11 @@
 		]
 	},
 	"Hooks": {
-		"SkinAfterContent": "CookieWarning\\Hooks::onSkinAfterContent",
-		"GetPreferences": "CookieWarning\\Hooks::onGetPreferences",
-		"BeforeInitialize": "CookieWarning\\Hooks::onBeforeInitialize",
-		"BeforePageDisplay": "CookieWarning\\Hooks::onBeforePageDisplay",
-		"ResourceLoaderGetConfigVars": "CookieWarning\\Hooks::onResourceLoaderGetConfigVars"
+		"SkinAfterContent": "MediaWiki\\Extension\\CookieWarning\\Hooks\\Hooks::onSkinAfterContent",
+		"GetPreferences": "MediaWiki\\Extension\\CookieWarning\\Hooks\\Hooks::onGetPreferences",
+		"BeforeInitialize": "MediaWiki\\Extension\\CookieWarning\\Hooks\\Hooks::onBeforeInitialize",
+		"BeforePageDisplay": "MediaWiki\\Extension\\CookieWarning\\Hooks\\Hooks::onBeforePageDisplay",
+		"ResourceLoaderGetConfigVars": "MediaWiki\\Extension\\CookieWarning\\Hooks\\Hooks::onResourceLoaderGetConfigVars"
 	},
 	"config": {
 		"CookieWarningEnabled": false,
@@ -125,7 +125,7 @@
 		"remoteExtPath": "CookieWarning"
 	},
 	"AutoloadNamespaces": {
-		"CookieWarning\\": "includes/"
+		"MediaWiki\\Extension\\CookieWarning\\": "includes/"
 	},
 	"ConfigRegistry": {
 		"cookiewarning": "GlobalVarConfig::newInstance"
