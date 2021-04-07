@@ -2,8 +2,8 @@
 
 namespace CookieWarning\Tests;
 
-use CookieWarning\GeoLocation;
-use CookieWarning\Hooks;
+use MediaWiki\Extension\CookieWarning\GeoLocation\GeoLocation;
+use MediaWiki\Extension\CookieWarning\Hooks\Hooks;
 use DerivativeContext;
 use FauxRequest;
 use MediaWiki\MediaWikiServices;
