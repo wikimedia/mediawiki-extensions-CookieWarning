@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2381aa61_95c33d93",
+        "filename": ".eslintignore",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T16:25:45Z",
+      "side": 1,
+      "message": "This is a big change, and it might be a good idea to split it up. Eg this addition and the addition of lint:fix:js and lint:js scripts in package.json can be done separately, unrelated to the rest",
+      "revId": "e73f752cd8f0c994dc705b9b7d6c30c8f06d609c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71c91c82_d435bdb0",
+        "filename": "extension.json",
+        "patchSetId": 25
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T16:25:45Z",
+      "side": 1,
+      "message": "also can be done separately: migrating existing hooks to the new hook handler system",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 29,
+        "endChar": 43
+      },
+      "revId": "e73f752cd8f0c994dc705b9b7d6c30c8f06d609c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e358e15_21f93721",
+        "filename": "extension.json",
+        "patchSetId": 25
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T16:25:45Z",
+      "side": 1,
+      "message": "also can be done separately: the changes in this file to unrelated stuff, like manifest version, using arrays in the resource loader modules, using the new format for documenting config options",
+      "range": {
+        "startLine": 214,
+        "startChar": 21,
+        "endLine": 214,
+        "endChar": 22
+      },
+      "revId": "e73f752cd8f0c994dc705b9b7d6c30c8f06d609c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f82e7a9a_b714ab74",
+        "filename": "includes/Decisions.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T16:25:45Z",
+      "side": 1,
+      "message": "More things that can be done separately: adding strict types and typehints, and changing the namespace, adding the license to the top of the files",
+      "revId": "e73f752cd8f0c994dc705b9b7d6c30c8f06d609c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2be19dc_170ffc75",
+        "filename": "includes/Hooks/BeforeHooks.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T16:25:45Z",
+      "side": 1,
+      "message": "if using the new hook handler system, dependencies should be injected",
+      "range": {
+        "startLine": 59,
+        "startChar": 13,
+        "endLine": 59,
+        "endChar": 71
+      },
+      "revId": "e73f752cd8f0c994dc705b9b7d6c30c8f06d609c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac5e522f_6e9653bc",
+        "filename": "includes/Hooks/BeforeHooks.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T16:25:45Z",
+      "side": 1,
+      "message": "same, should be injected",
+      "range": {
+        "startLine": 107,
+        "startChar": 28,
+        "endLine": 108,
+        "endChar": 45
+      },
+      "revId": "e73f752cd8f0c994dc705b9b7d6c30c8f06d609c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90a0bd82_87661a8b",
+        "filename": "includes/Hooks/BeforeHooks.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T16:25:45Z",
+      "side": 1,
+      "message": "indented too far, plus the services here should be injected (UserOptionsManager, CookieWarning, and MainConfig)",
+      "range": {
+        "startLine": 141,
+        "startChar": 3,
+        "endLine": 141,
+        "endChar": 4
+      },
+      "revId": "e73f752cd8f0c994dc705b9b7d6c30c8f06d609c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b643c6b_6f0c560f",
+        "filename": "includes/Hooks/BeforeHooks.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T16:25:45Z",
+      "side": 1,
+      "message": "suggest putting on the next line for readability",
+      "range": {
+        "startLine": 155,
+        "startChar": 5,
+        "endLine": 155,
+        "endChar": 8
+      },
+      "revId": "e73f752cd8f0c994dc705b9b7d6c30c8f06d609c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08479525_f9be78b3",
+        "filename": "includes/Hooks/CookieHooks.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T16:25:45Z",
+      "side": 1,
+      "message": "should be injected - other hook handlers also should have services injected, not going to post this comment each time",
+      "range": {
+        "startLine": 40,
+        "startChar": 19,
+        "endLine": 40,
+        "endChar": 83
+      },
+      "revId": "e73f752cd8f0c994dc705b9b7d6c30c8f06d609c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65cc03c4_2855503c",
+        "filename": "maintenance/removeDismissedState.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T16:25:45Z",
+      "side": 1,
+      "message": "suggest naming $dbw to reflect this is a DB_MASTER / write connection",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 5
+      },
+      "revId": "e73f752cd8f0c994dc705b9b7d6c30c8f06d609c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92007783_9704ef7f",
+        "filename": "maintenance/removeDismissedState.php",
+        "patchSetId": 25
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T16:25:45Z",
+      "side": 1,
+      "message": "suggest formatting as\n\n```\n$db-\u003edelete(\n\t\u0027user_properties\u0027,\n\t[ \u0027up_property\u0027 \u003d\u003e \u0027cookiewarning_dismissed\u0027 ],\n\t__METHOD__\n);\n```\nfor readability and to include __METHOD__ to document the caller for logs",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 6
+      },
+      "revId": "e73f752cd8f0c994dc705b9b7d6c30c8f06d609c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
