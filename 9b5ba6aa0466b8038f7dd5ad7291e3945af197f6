@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "110b8f47_a621e63d",
+        "filename": "extension.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T20:42:36Z",
+      "side": 1,
+      "message": "can you add documentation? Same applies below where its currently set to an empty string. If not, the \"description\" entry should just be omitted, instead of including it with an empty string",
+      "range": {
+        "startLine": 36,
+        "startChar": 18,
+        "endLine": 36,
+        "endChar": 20
+      },
+      "revId": "9b5ba6aa0466b8038f7dd5ad7291e3945af197f6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8b837f0_3bbf4cef",
+        "filename": "extension.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-07T20:42:36Z",
+      "side": 1,
+      "message": "this changes the default configuration and should be done in a separate commit if this commit is for cleanup",
+      "range": {
+        "startLine": 39,
+        "startChar": 13,
+        "endLine": 39,
+        "endChar": 34
+      },
+      "revId": "9b5ba6aa0466b8038f7dd5ad7291e3945af197f6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
