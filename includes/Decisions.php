@@ -1,10 +1,11 @@
 <?php
 
-namespace CookieWarning;
+namespace MediaWiki\Extension\CookieWarning;
 
 use Config;
 use ConfigException;
 use IContextSource;
+use MediaWiki\Extension\CookieWarning\GeoLocation\GeoLocation;
 use MediaWiki\User\UserOptionsLookup;
 use MWException;
 use WANObjectCache;

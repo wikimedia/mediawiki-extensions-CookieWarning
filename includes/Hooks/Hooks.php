@@ -1,11 +1,12 @@
 <?php
 
-namespace CookieWarning;
+namespace MediaWiki\Extension\CookieWarning\Hooks;
 
 use Config;
 use ConfigException;
 use Html;
 use MediaWiki;
+use MediaWiki\Extension\CookieWarning\Decisions;
 use MediaWiki\MediaWikiServices;
 use MWException;
 use OOUI\ButtonInputWidget;
