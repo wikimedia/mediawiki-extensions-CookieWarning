@@ -1,16 +1,16 @@
 <?php
 
-namespace CookieWarning\Tests;
+namespace MediaWiki\Extension\CookieWarning\Tests;
 
-use CookieWarning\HttpGeoLocation;
-use CookieWarning\NoopGeoLocation;
+use MediaWiki\Extension\CookieWarning\GeoLocation\HttpGeoLocation;
+use MediaWiki\Extension\CookieWarning\GeoLocation\NoopGeoLocation;
 use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
 
 class ServiceWiringTest extends MediaWikiTestCase {
 
 	/**
-	 * @covers \CookieWarning\NoopGeoLocation
+	 * @covers \MediaWiki\Extension\CookieWarning\GeoLocation\NoopGeoLocation
 	 */
 	public function testGeoLocationWithoutServiceURL() {
 		$this->setMwGlobals( [
@@ -23,7 +23,7 @@ class ServiceWiringTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \CookieWarning\HttpGeoLocation
+	 * @covers \MediaWiki\Extension\CookieWarning\GeoLocation\HttpGeoLocation
 	 */
 	public function testGeoLocationWithServiceURL() {
 		$this->setMwGlobals( [

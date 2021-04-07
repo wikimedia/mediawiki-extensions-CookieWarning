@@ -1,8 +1,8 @@
 <?php
 
-use CookieWarning\Decisions;
-use CookieWarning\HttpGeoLocation;
-use CookieWarning\NoopGeoLocation;
+use MediaWiki\Extension\CookieWarning\Decisions;
+use MediaWiki\Extension\CookieWarning\GeoLocation\HttpGeoLocation;
+use MediaWiki\Extension\CookieWarning\GeoLocation\NoopGeoLocation;
 use MediaWiki\MediaWikiServices;
 
 return [

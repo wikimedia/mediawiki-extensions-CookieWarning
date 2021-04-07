@@ -1,11 +1,11 @@
 <?php
 
-namespace CookieWarning\Tests;
+namespace MediaWiki\Extension\CookieWarning\Tests;
 
-use CookieWarning\GeoLocation;
-use CookieWarning\Hooks;
 use DerivativeContext;
 use FauxRequest;
+use MediaWiki\Extension\CookieWarning\GeoLocation\GeoLocation;
+use MediaWiki\Extension\CookieWarning\Hooks\Hooks;
 use MediaWiki\MediaWikiServices;
 use MediaWikiLangTestCase;
 use RequestContext;
