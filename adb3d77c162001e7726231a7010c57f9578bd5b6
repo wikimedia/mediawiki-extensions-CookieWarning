@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e84ef7d_bebcf317",
+        "filename": "tests/phpunit/includes/DecisionsTest.php",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2021-04-08T06:17:11Z",
+      "side": 1,
+      "message": "should the tests also be changed to MediaWiki\\Extension\\CookieWarning\\Tests ?",
+      "range": {
+        "startLine": 3,
+        "startChar": 10,
+        "endLine": 3,
+        "endChar": 30
+      },
+      "revId": "adb3d77c162001e7726231a7010c57f9578bd5b6",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    }
+  ]
+}
