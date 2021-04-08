@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8910e498_16e2e241",
+        "filename": "resources/ext.CookieWarning/ext.CookieWarning.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7311
+      },
+      "writtenOn": "2021-04-08T06:20:35Z",
+      "side": 1,
+      "message": "Well why use jQuery for tasks that can be done relatively trivially by pure js\nThis commit just prepares the file for the checkboxes and upos in the \"parent\" commit",
+      "parentUuid": "ad923ebb_fb988e27",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 48
+      },
+      "revId": "3e349ba63d11919c86144cfff10dfa0599511b6c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88aed41e_3007138f",
         "filename": "resources/ext.CookieWarning/ext.CookieWarning.js",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "3e349ba63d11919c86144cfff10dfa0599511b6c",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4e42614_9f251388",
+        "filename": "resources/ext.CookieWarning/ext.CookieWarning.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7311
+      },
+      "writtenOn": "2021-04-08T06:20:35Z",
+      "side": 1,
+      "message": "That slipped through by mistake",
+      "parentUuid": "88aed41e_3007138f",
+      "range": {
+        "startLine": 23,
+        "startChar": 3,
+        "endLine": 23,
+        "endChar": 53
+      },
+      "revId": "3e349ba63d11919c86144cfff10dfa0599511b6c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": false
     }
   ]
 }
