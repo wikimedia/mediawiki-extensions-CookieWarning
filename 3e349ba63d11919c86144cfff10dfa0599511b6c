@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "db644eae_9c088dba",
+        "filename": "resources/ext.CookieWarning/ext.CookieWarning.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7311
+      },
+      "writtenOn": "2021-04-08T06:34:22Z",
+      "side": 1,
+      "message": "In that case I think this patch can be abandoned",
+      "parentUuid": "fab1a904_a2c52add",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 48
+      },
+      "revId": "3e349ba63d11919c86144cfff10dfa0599511b6c",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "88aed41e_3007138f",
         "filename": "resources/ext.CookieWarning/ext.CookieWarning.js",
         "patchSetId": 1
