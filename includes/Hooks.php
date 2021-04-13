@@ -40,8 +40,9 @@ class Hooks {
 		}
 
 		if ( $user->isRegistered() ) {
-			$user->setOption( 'cookiewarning_dismissed', 1 );
-			$user->saveSettings();
+			$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
+			$userOptionsManager->setOption( $user, 'cookiewarning_dismissed', 1 );
+			$userOptionsManager->saveOptions( $user );
 		} else {
 			$request->response()->setCookie( 'cookiewarning_dismissed', true );
 		}
