@@ -6,11 +6,11 @@ use CookieWarning\NoopGeoLocation;
 use MediaWiki\MediaWikiServices;
 
 return [
-	'CookieWarning.Config' => function ( MediaWikiServices $services ) {
+	'CookieWarning.Config' => static function ( MediaWikiServices $services ) {
 		return $services->getService( 'ConfigFactory' )
 			->makeConfig( 'cookiewarning' );
 	},
-	'GeoLocation' => function ( MediaWikiServices $services ) {
+	'GeoLocation' => static function ( MediaWikiServices $services ) {
 		$geoIPServiceURL = $services
 			->getService( 'CookieWarning.Config' )
 			->get( 'CookieWarningGeoIPServiceURL' );
@@ -20,7 +20,7 @@ return [
 		}
 		return new HttpGeoLocation( $geoIPServiceURL );
 	},
-	'CookieWarning.Decisions' => function ( MediaWikiServices $services ) {
+	'CookieWarning.Decisions' => static function ( MediaWikiServices $services ) {
 		return new Decisions(
 			$services->getService( 'CookieWarning.Config' ),
 			$services->getService( 'GeoLocation' ),
