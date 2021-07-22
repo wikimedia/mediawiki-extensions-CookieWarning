@@ -77,7 +77,7 @@ class Hooks {
 	 * @param Skin $skin
 	 * @return string|null The html for cookie notice.
 	 */
-	private static function generateElements( Skin $skin ) : ?string {
+	private static function generateElements( Skin $skin ): ?string {
 		$moreLink = self::getMoreLink();
 
 		$buttons = [];
@@ -130,7 +130,7 @@ class Hooks {
 	 * @return string|null The url or null if none set
 	 * @throws ConfigException
 	 */
-	private static function getMoreLink() : ?string {
+	private static function getMoreLink(): ?string {
 		$conf = self::getConfig();
 		if ( $conf->get( 'CookieWarningMoreUrl' ) ) {
 			return $conf->get( 'CookieWarningMoreUrl' );

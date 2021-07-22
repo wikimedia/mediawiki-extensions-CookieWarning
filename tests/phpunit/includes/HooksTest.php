@@ -34,7 +34,7 @@ class HooksTest extends MediaWikiLangTestCase {
 		$morelinkCookieWarningMsg,
 		$morelinkCookiePolicyMsg,
 		$expectedLink
-	) : void {
+	): void {
 		$this->setMwGlobals( [
 			'wgCookieWarningEnabled' => $enabled,
 			'wgCookieWarningMoreUrl' => $morelinkConfig,
@@ -90,7 +90,7 @@ class HooksTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function providerOnSiteNoticeAfter() : array {
+	public function providerOnSiteNoticeAfter(): array {
 		return [
 			[
 				// $wgCookieWarningEnabled
