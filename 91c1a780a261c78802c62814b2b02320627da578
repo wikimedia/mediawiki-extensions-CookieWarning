@@ -1,0 +1,7 @@
+Code-Review+2: Libraryupgrader <tools.libraryupgrader@tools.wmflabs.org>
+Verified+2: jenkins-bot
+Submitted-by: jenkins-bot
+Submitted-at: Sat, 04 Sep 2021 19:36:36 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/c/mediawiki/extensions/CookieWarning/+/718756
+Project: mediawiki/extensions/CookieWarning
+Branch: refs/heads/master
