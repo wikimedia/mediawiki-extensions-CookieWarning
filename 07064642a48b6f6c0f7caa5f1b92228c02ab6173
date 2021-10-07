@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1eea2e0_423ad4b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2021-10-07T19:07:35Z",
+      "side": 1,
+      "message": "Resubmit\n\nnpm ERR! request to https://registry.npmjs.org/zwitch/-/zwitch-1.0.5.tgz failed, reason: getaddrinfo EAI_AGAIN registry.npmjs.org",
+      "revId": "07064642a48b6f6c0f7caa5f1b92228c02ab6173",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
+    }
+  ]
+}
