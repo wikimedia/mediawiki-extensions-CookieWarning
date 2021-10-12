@@ -7,12 +7,12 @@ use CookieWarning\Decisions;
 use CookieWarning\GeoLocation;
 use HashBagOStuff;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use MWException;
 use RequestContext;
 use WANObjectCache;
 
-class DecisionsTest extends MediaWikiTestCase {
+class DecisionsTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \CookieWarning\Decisions::shouldShowCookieWarning()
 	 * @throws ConfigException

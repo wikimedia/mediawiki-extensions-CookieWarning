@@ -5,9 +5,9 @@ namespace CookieWarning\Tests;
 use CookieWarning\HttpGeoLocation;
 use CookieWarning\NoopGeoLocation;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
-class ServiceWiringTest extends MediaWikiTestCase {
+class ServiceWiringTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \CookieWarning\NoopGeoLocation
