@@ -66,7 +66,7 @@ class HooksTest extends MediaWikiLangTestCase {
 		$sk->getOutput()->enableOOUI();
 
 		$data = '';
-		Hooks::onSkinAfterContent( $data, $sk );
+		( new Hooks() )->onSkinAfterContent( $data, $sk );
 
 		if ( $enabled ) {
 			$this->assertNotEmpty( $data, 'Cookie warning should be present' );
@@ -179,7 +179,7 @@ class HooksTest extends MediaWikiLangTestCase {
 		$sk = new SkinTemplate();
 		$sk->setContext( $context );
 		$data = '';
-		Hooks::onSkinAfterContent( $data, $sk );
+		( new Hooks() )->onSkinAfterContent( $data, $sk );
 
 		$this->assertEquals(
 			$expected,

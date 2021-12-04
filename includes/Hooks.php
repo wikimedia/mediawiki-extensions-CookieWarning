@@ -6,7 +6,12 @@ use Config;
 use ConfigException;
 use Html;
 use MediaWiki;
+use MediaWiki\Hook\BeforeInitializeHook;
+use MediaWiki\Hook\BeforePageDisplayHook;
+use MediaWiki\Hook\SkinAfterContentHook;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\Hook\GetPreferencesHook;
+use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
 use MWException;
 use OOUI\ButtonInputWidget;
 use OOUI\ButtonWidget;
@@ -17,24 +22,28 @@ use Title;
 use User;
 use WebRequest;
 
-class Hooks {
+class Hooks implements
+	SkinAfterContentHook,
+	GetPreferencesHook,
+	BeforeInitializeHook,
+	BeforePageDisplayHook,
+	ResourceLoaderGetConfigVarsHook
+{
 	/**
 	 * BeforeInitialize hook handler.
 	 *
 	 * If the disablecookiewarning POST data is send, disables the cookiewarning bar with a
 	 * cookie or a user preference, if the user is logged in.
 	 *
-	 * @param Title &$title
-	 * @param null &$unused
-	 * @param OutputPage &$output
-	 * @param User &$user
+	 * @param Title $title
+	 * @param null $unused
+	 * @param OutputPage $output
+	 * @param User $user
 	 * @param WebRequest $request
 	 * @param MediaWiki $mediawiki
 	 * @throws MWException
 	 */
-	public static function onBeforeInitialize( Title &$title, &$unused, OutputPage &$output,
-		User &$user, WebRequest $request, MediaWiki $mediawiki
-	) {
+	public function onBeforeInitialize( $title, $unused, $output, $user, $request, $mediawiki ) {
 		if ( !$request->wasPosted() || !$request->getVal( 'disablecookiewarning' ) ) {
 			return;
 		}
@@ -59,7 +68,7 @@ class Hooks {
 	 *
 	 * @throws MWException
 	 */
-	public static function onSkinAfterContent( string &$data, Skin $skin ) {
+	public function onSkinAfterContent( &$data, $skin ) {
 		/** @var Decisions $cookieWarningDecisions */
 		$cookieWarningDecisions = MediaWikiServices::getInstance()
 			->getService( 'CookieWarning.Decisions' );
@@ -155,10 +164,11 @@ class Hooks {
 	 * Adds the required style and JS module, if cookiewarning is enabled.
 	 *
 	 * @param OutputPage $out
+	 * @param Skin $skin
 	 * @throws ConfigException
 	 * @throws MWException
 	 */
-	public static function onBeforePageDisplay( OutputPage $out ) {
+	public function onBeforePageDisplay( $out, $skin ): void {
 		/** @var Decisions $cookieWarningDecisions */
 		$cookieWarningDecisions = MediaWikiServices::getInstance()
 			->getService( 'CookieWarning.Decisions' );
@@ -183,9 +193,12 @@ class Hooks {
 	 * ResourceLoaderGetConfigVars hook handler.
 	 *
 	 * @param array &$vars
+	 * @param string $skin
+	 * @param Config $config
+	 *
 	 * @throws ConfigException
 	 */
-	public static function onResourceLoaderGetConfigVars( array &$vars ) {
+	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ): void {
 		/** @var Decisions $cookieWarningDecisions */
 		$cookieWarningDecisions = MediaWikiServices::getInstance()
 			->getService( 'CookieWarning.Decisions' );
@@ -204,7 +217,7 @@ class Hooks {
 	 *
 	 * @return Config
 	 */
-	private static function getConfig() {
+	private static function getConfig(): Config {
 		return MediaWikiServices::getInstance()->getService( 'CookieWarning.Config' );
 	}
 
@@ -217,7 +230,7 @@ class Hooks {
 	 * @param array &$defaultPreferences
 	 * @return bool
 	 */
-	public static function onGetPreferences( User $user, &$defaultPreferences ) {
+	public function onGetPreferences( $user, &$defaultPreferences ): bool {
 		$defaultPreferences['cookiewarning_dismissed'] = [
 			'type' => 'api',
 			'default' => '0',

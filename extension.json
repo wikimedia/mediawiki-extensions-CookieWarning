@@ -19,12 +19,17 @@
 			"i18n"
 		]
 	},
+	"HookHandlers": {
+		"main": {
+			"class": "CookieWarning\\Hooks"
+		}
+	},
 	"Hooks": {
-		"SkinAfterContent": "CookieWarning\\Hooks::onSkinAfterContent",
-		"GetPreferences": "CookieWarning\\Hooks::onGetPreferences",
-		"BeforeInitialize": "CookieWarning\\Hooks::onBeforeInitialize",
-		"BeforePageDisplay": "CookieWarning\\Hooks::onBeforePageDisplay",
-		"ResourceLoaderGetConfigVars": "CookieWarning\\Hooks::onResourceLoaderGetConfigVars"
+		"SkinAfterContent": "main",
+		"GetPreferences": "main",
+		"BeforeInitialize": "main",
+		"BeforePageDisplay": "main",
+		"ResourceLoaderGetConfigVars": "main"
 	},
 	"config": {
 		"CookieWarningEnabled": false,
