@@ -16,6 +16,23 @@
       "message": "lgtm",
       "revId": "37f46abdbb98735180af090838c717e8c28a9946",
       "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5b7c9e9_ccc4a6f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 243
+      },
+      "writtenOn": "2021-12-07T12:18:24Z",
+      "side": 1,
+      "message": "Per Ostrzyciel\u0027s CR.",
+      "revId": "37f46abdbb98735180af090838c717e8c28a9946",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
     }
   ]
 }
