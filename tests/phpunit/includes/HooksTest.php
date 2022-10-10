@@ -76,13 +76,13 @@ class HooksTest extends MediaWikiLangTestCase {
 		}
 
 		if ( $expectedLink === false ) {
-			$this->assertNotRegExp(
+			$this->assertDoesNotMatchRegularExpression(
 				'/<a[^>]+href=[\'"]([^\'"]+)[\'"].+?>/',
 				$data,
 				'More information link should not be present'
 			);
 		} else {
-			$this->assertRegExp(
+			$this->assertMatchesRegularExpression(
 				'/<a[^>]+href=[\'"]' . preg_quote( $expectedLink, '/' ) . '[\'"].+?>/',
 				$data,
 				'More information link should be present and match the expectation'
