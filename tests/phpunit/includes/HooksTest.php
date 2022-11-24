@@ -69,9 +69,9 @@ class HooksTest extends MediaWikiLangTestCase {
 		( new Hooks() )->onSkinAfterContent( $data, $sk );
 
 		if ( $enabled ) {
-			$this->assertNotEmpty( $data, 'Cookie warning should be present' );
+			$this->assertNotSame( '', $data, 'Cookie warning should be present' );
 		} else {
-			$this->assertEmpty( $data, 'Cookie warning should not be present' );
+			$this->assertSame( '', $data, 'Cookie warning should not be present' );
 			return;
 		}
 
