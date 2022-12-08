@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Seipinne"
+			"Seipinne",
+			"Yupik"
 		]
 	},
+	"cookiewarning-moreinfo-label": "Lasetiäđuh",
 	"cookiewarning-ok-label": "OK"
 }
