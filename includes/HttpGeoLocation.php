@@ -2,8 +2,8 @@
 
 namespace CookieWarning;
 
-use Http;
 use InvalidArgumentException;
+use MediaWiki\Http\HttpRequestFactory;
 use Wikimedia\IPUtils;
 
 /**
@@ -13,14 +13,19 @@ class HttpGeoLocation implements GeoLocation {
 	private $geoIPServiceURL;
 	private $locatedIPs = [];
 
+	/** @var HttpRequestFactory */
+	private $httpRequestFactory;
+
 	/**
 	 * @param string $geoIPServiceURL
+	 * @param HttpRequestFactory $httpRequestFactory
 	 */
-	public function __construct( $geoIPServiceURL ) {
+	public function __construct( $geoIPServiceURL, HttpRequestFactory $httpRequestFactory ) {
 		if ( !is_string( $geoIPServiceURL ) || !$geoIPServiceURL ) {
 			throw new InvalidArgumentException( 'The geoIPServiceUL is invalid' );
 		}
 		$this->geoIPServiceURL = $geoIPServiceURL;
+		$this->httpRequestFactory = $httpRequestFactory;
 	}
 
 	/**
@@ -38,7 +43,7 @@ class HttpGeoLocation implements GeoLocation {
 		if ( substr( $this->geoIPServiceURL, -1 ) !== '/' ) {
 			$this->geoIPServiceURL .= '/';
 		}
-		$json = Http::get( $this->geoIPServiceURL . $ip, [
+		$json = $this->httpRequestFactory->get( $this->geoIPServiceURL . $ip, [
 			'timeout' => '2',
 		] );
 		if ( !$json ) {

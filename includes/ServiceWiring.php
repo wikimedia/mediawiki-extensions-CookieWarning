@@ -18,7 +18,7 @@ return [
 		if ( !is_string( $geoIPServiceURL ) || !$geoIPServiceURL ) {
 			return new NoopGeoLocation();
 		}
-		return new HttpGeoLocation( $geoIPServiceURL );
+		return new HttpGeoLocation( $geoIPServiceURL, $services->getHttpRequestFactory() );
 	},
 	'CookieWarning.Decisions' => static function ( MediaWikiServices $services ) {
 		return new Decisions(
