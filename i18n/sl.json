@@ -4,6 +4,8 @@
 			"Eleassar"
 		]
 	},
+	"cookiewarning-info": "Piškotki nam pomagajo zagotavljati naše storitve. Z uporabo naših storitev izražate strinjanje z našo uporabo piškotkov.",
+	"cookiewarning-desc": "Zagotovi obvestilo o piškotkih na vrhu strani",
 	"cookiewarning-moreinfo-label": "Več informacij",
 	"cookiewarning-ok-label": "V redu"
 }
