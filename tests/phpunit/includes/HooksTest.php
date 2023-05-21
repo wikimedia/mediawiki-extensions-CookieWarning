@@ -90,7 +90,7 @@ class HooksTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function providerOnSiteNoticeAfter(): array {
+	public static function providerOnSiteNoticeAfter(): array {
 		return [
 			[
 				// $wgCookieWarningEnabled
@@ -187,7 +187,7 @@ class HooksTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function providerOnSiteNoticeAfterGeoLocation() {
+	public static function providerOnSiteNoticeAfterGeoLocation() {
 		return [
 			[
 				'8.8.8.8',
