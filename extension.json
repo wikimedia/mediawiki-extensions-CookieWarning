@@ -93,36 +93,20 @@
 				"mediawiki.cookie",
 				"mediawiki.user"
 			],
-			"scripts": "resources/ext.CookieWarning/ext.CookieWarning.js",
-			"targets": [
-				"mobile",
-				"desktop"
-			]
+			"scripts": "resources/ext.CookieWarning/ext.CookieWarning.js"
 		},
 		"ext.CookieWarning.styles": {
-			"styles": "resources/ext.CookieWarning/ext.CookieWarning.less",
-			"targets": [
-				"mobile",
-				"desktop"
-			]
+			"styles": "resources/ext.CookieWarning/ext.CookieWarning.less"
 		},
 		"ext.CookieWarning.geolocation": {
 			"scripts": "resources/ext.CookieWarning.geolocation/cookiePolicy.js",
 			"dependencies": [
 				"ext.CookieWarning",
 				"jquery.cookie"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.CookieWarning.geolocation.styles": {
-			"styles": "resources/ext.CookieWarning.geolocation/styles.css",
-			"targets": [
-				"mobile",
-				"desktop"
-			]
+			"styles": "resources/ext.CookieWarning.geolocation/styles.css"
 		}
 	},
 	"ResourceFileModulePaths": {
