@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"cookiewarning-info": "Kolačići nam pomažu omogućujući naše usluge. Korištenjem ovih usluga prihvaćate našu politiku kolačića",
+	"cookiewarning-desc": "Stavi obavještenje o kolačićima na vrhu stranice",
+	"cookiewarning-moreinfo-label": "Više informacija",
+	"cookiewarning-ok-label": "U redu"
+}
