@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "c0e4e86c_3e290337",
         "filename": "includes/HttpGeoIP2GeoLocation.php",
@@ -20,10 +21,34 @@
         "endChar": 35
       },
       "revId": "5acc02cb0b34ca70d5fced87936da54337ecd827",
-      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
-      "unresolved": true
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "669889de_70df85e0",
+        "filename": "includes/HttpGeoIP2GeoLocation.php",
+        "patchSetId": 47
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2023-11-22T18:16:37Z",
+      "side": 1,
+      "message": "Forgot to close this as resolved, thanks.",
+      "parentUuid": "c0e4e86c_3e290337",
+      "range": {
+        "startLine": 33,
+        "startChar": 28,
+        "endLine": 33,
+        "endChar": 35
+      },
+      "revId": "5acc02cb0b34ca70d5fced87936da54337ecd827",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "ba1a85a0_14b86a5e",
         "filename": "includes/HttpGeoIP2GeoLocation.php",
@@ -43,8 +68,31 @@
         "endChar": 33
       },
       "revId": "5acc02cb0b34ca70d5fced87936da54337ecd827",
-      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951",
-      "unresolved": true
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40c33ed3_2a6de7f3",
+        "filename": "includes/HttpGeoIP2GeoLocation.php",
+        "patchSetId": 47
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1665
+      },
+      "writtenOn": "2023-11-22T18:16:37Z",
+      "side": 1,
+      "message": "Forgot to close this as resolved, thanks.",
+      "parentUuid": "ba1a85a0_14b86a5e",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 33
+      },
+      "revId": "5acc02cb0b34ca70d5fced87936da54337ecd827",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
     }
   ]
 }
