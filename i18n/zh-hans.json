@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"LittlePaw365",
 			"Liuxinyu970226"
 		]
 	},
-	"cookiewarning-info": "Cookie帮助我们提供我们的服务。通过使用我们的服务，您同意我们使用cookie。",
-	"cookiewarning-desc": "在页面顶部提供有关cookie的通知。",
+	"cookiewarning-info": "我们提供服务需要使用Cookie。您使用我们的服务，即表示您同意我们使用Cookie。",
+	"cookiewarning-desc": "在页面顶部提供有关Cookie的通知。",
 	"cookiewarning-moreinfo-label": "更多信息",
 	"cookiewarning-ok-label": "确定"
 }
