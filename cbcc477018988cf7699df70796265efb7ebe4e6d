@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00c4beda_a7a9ebb6",
+        "filename": "extension.json",
+        "patchSetId": 56
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8573
+      },
+      "writtenOn": "2024-03-05T21:02:25Z",
+      "side": 1,
+      "message": "I feel like casing should be changed to CookieWarningGeoIP2Path if only for consistency with everything else. But just a minor suggestion.",
+      "revId": "cbcc477018988cf7699df70796265efb7ebe4e6d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9435714_da6e7fc1",
+        "filename": "includes/HttpGeoIP2GeoLocation.php",
+        "patchSetId": 56
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 8573
+      },
+      "writtenOn": "2024-03-05T21:02:25Z",
+      "side": 1,
+      "message": "You can use Reader::class for minor simplification if desired",
+      "revId": "cbcc477018988cf7699df70796265efb7ebe4e6d",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
+    }
+  ]
+}
