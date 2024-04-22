@@ -12,7 +12,7 @@ use RequestContext;
 use SkinTemplate;
 
 /**
- * @covers Hooks
+ * @covers \CookieWarning\Hooks
  * @group Database
  */
 class HooksTest extends MediaWikiLangTestCase {
