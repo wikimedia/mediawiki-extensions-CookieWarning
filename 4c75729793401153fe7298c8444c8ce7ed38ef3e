@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99337ad7_4712cfa2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6729
+      },
+      "writtenOn": "2024-05-10T05:35:26Z",
+      "side": 1,
+      "message": "unrelated failure\n\u003e ResourcesTest::testValidDependencies",
+      "revId": "4c75729793401153fe7298c8444c8ce7ed38ef3e",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
+    }
+  ]
+}
