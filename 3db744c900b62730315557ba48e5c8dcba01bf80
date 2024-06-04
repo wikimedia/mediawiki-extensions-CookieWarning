@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1fe58dc_120671a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2024-06-04T10:02:42Z",
+      "side": 1,
+      "message": "I wrote a few comments but decided to post my suggestions as a second patchset instead. 😄 Please feel free to decide how you want to proceed.",
+      "revId": "3db744c900b62730315557ba48e5c8dcba01bf80",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
+    }
+  ]
+}
