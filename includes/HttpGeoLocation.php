@@ -10,7 +10,9 @@ use Wikimedia\IPUtils;
  * Implements the GeoLocation class, which allows to locate the user based on the IP address.
  */
 class HttpGeoLocation implements GeoLocation {
+	/** @var string */
 	private $geoIPServiceURL;
+	/** @var array */
 	private $locatedIPs = [];
 
 	/** @var HttpRequestFactory */
