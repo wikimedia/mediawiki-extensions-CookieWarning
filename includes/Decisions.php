@@ -10,19 +10,13 @@ use MWException;
 use WANObjectCache;
 
 class Decisions {
-	private $config;
-	private $geoLocation;
-	private $cache;
-	private $userOptionsLookup;
+	private Config $config;
+	private GeoLocation $geoLocation;
+	private WANObjectCache $cache;
+	private UserOptionsLookup $userOptionsLookup;
 
 	private const CACHE_KEY = 'cookieWarningIpLookupCache:';
 
-	/**
-	 * @param Config $config
-	 * @param GeoLocation $geoLocation
-	 * @param WANObjectCache $cache
-	 * @param UserOptionsLookup $userOptionsLookup
-	 */
 	public function __construct(
 		Config $config,
 		GeoLocation $geoLocation,
