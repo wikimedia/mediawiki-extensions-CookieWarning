@@ -19,10 +19,10 @@ class DecisionsTest extends MediaWikiIntegrationTestCase {
 	 * @throws MWException
 	 */
 	public function testShouldNotCallGeoLocationMultiple() {
-		$this->setMwGlobals( [
-			'wgCookieWarningEnabled' => true,
-			'wgCookieWarningGeoIPLookup' => 'php',
-			'wgCookieWarningForCountryCodes' => [ 'EU' => 'European Union' ],
+		$this->overrideConfigValues( [
+			'CookieWarningEnabled' => true,
+			'CookieWarningGeoIPLookup' => 'php',
+			'CookieWarningForCountryCodes' => [ 'EU' => 'European Union' ],
 		] );
 
 		$geoLocation = $this->getMockBuilder( GeoLocation::class )

@@ -13,8 +13,8 @@ class ServiceWiringTest extends MediaWikiIntegrationTestCase {
 	 * @covers \CookieWarning\NoopGeoLocation
 	 */
 	public function testGeoLocationWithoutServiceURL() {
-		$this->setMwGlobals( [
-			'wgCookieWarningGeoIPServiceURL' => null
+		$this->overrideConfigValues( [
+			'CookieWarningGeoIPServiceURL' => null
 		] );
 
 		$geoLocation = MediaWikiServices::getInstance()->getService( 'GeoLocation' );
@@ -26,8 +26,8 @@ class ServiceWiringTest extends MediaWikiIntegrationTestCase {
 	 * @covers \CookieWarning\HttpGeoLocation
 	 */
 	public function testGeoLocationWithServiceURL() {
-		$this->setMwGlobals( [
-			'wgCookieWarningGeoIPServiceURL' => 'http://localhost/'
+		$this->overrideConfigValues( [
+			'CookieWarningGeoIPServiceURL' => 'http://localhost/'
 		] );
 
 		$geoLocation = MediaWikiServices::getInstance()->getService( 'GeoLocation' );

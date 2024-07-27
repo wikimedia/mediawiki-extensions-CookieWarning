@@ -35,10 +35,10 @@ class HooksTest extends MediaWikiLangTestCase {
 		$morelinkCookiePolicyMsg,
 		$expectedLink
 	): void {
-		$this->setMwGlobals( [
-			'wgCookieWarningEnabled' => $enabled,
-			'wgCookieWarningMoreUrl' => $morelinkConfig,
-			'wgCookieWarningForCountryCodes' => false,
+		$this->overrideConfigValues( [
+			'CookieWarningEnabled' => $enabled,
+			'CookieWarningMoreUrl' => $morelinkConfig,
+			'CookieWarningForCountryCodes' => false,
 		] );
 		MediaWikiServices::getInstance()->getMessageCache()->enable();
 
@@ -165,10 +165,10 @@ class HooksTest extends MediaWikiLangTestCase {
 	public function testOnSiteNoticeAfterGeoLocation( $ipAddress, $countryCodes,
 		$expected
 	) {
-		$this->setMwGlobals( [
-			'wgCookieWarningEnabled' => true,
-			'wgCookieWarningGeoIPLookup' => is_array( $countryCodes ) ? 'php' : 'none',
-			'wgCookieWarningForCountryCodes' => $countryCodes,
+		$this->overrideConfigValues( [
+			'CookieWarningEnabled' => true,
+			'CookieWarningGeoIPLookup' => is_array( $countryCodes ) ? 'php' : 'none',
+			'CookieWarningForCountryCodes' => $countryCodes,
 		] );
 		$this->mockGeoLocationService();
 
