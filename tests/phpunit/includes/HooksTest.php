@@ -16,6 +16,15 @@ use SkinTemplate;
  */
 class HooksTest extends MediaWikiLangTestCase {
 
+	private function newHooks(): Hooks {
+		$services = $this->getServiceContainer();
+		return new Hooks(
+			$services->getService( 'CookieWarning.Config' ),
+			$services->getService( 'CookieWarning.Decisions' ),
+			$services->getUserOptionsManager()
+		);
+	}
+
 	/**
 	 * @dataProvider providerOnSiteNoticeAfter
 	 *
@@ -65,7 +74,7 @@ class HooksTest extends MediaWikiLangTestCase {
 		$sk->getOutput()->enableOOUI();
 
 		$data = '';
-		( new Hooks() )->onSkinAfterContent( $data, $sk );
+		$this->newHooks()->onSkinAfterContent( $data, $sk );
 
 		if ( $enabled ) {
 			$this->assertNotSame( '', $data, 'Cookie warning should be present' );
@@ -178,7 +187,7 @@ class HooksTest extends MediaWikiLangTestCase {
 		$sk = new SkinTemplate();
 		$sk->setContext( $context );
 		$data = '';
-		( new Hooks() )->onSkinAfterContent( $data, $sk );
+		$this->newHooks()->onSkinAfterContent( $data, $sk );
 
 		$this->assertEquals(
 			$expected,

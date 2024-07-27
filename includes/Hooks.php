@@ -9,9 +9,9 @@ use MediaWiki;
 use MediaWiki\Hook\BeforeInitializeHook;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\SkinAfterContentHook;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
+use MediaWiki\User\Options\UserOptionsManager;
 use MWException;
 use OOUI\ButtonInputWidget;
 use OOUI\ButtonWidget;
@@ -29,6 +29,20 @@ class Hooks implements
 	BeforePageDisplayHook,
 	ResourceLoaderGetConfigVarsHook
 {
+	private Config $config;
+	private Decisions $decisions;
+	private UserOptionsManager $userOptionsManager;
+
+	public function __construct(
+		Config $config,
+		Decisions $decisions,
+		UserOptionsManager $userOptionsManager
+	) {
+		$this->config = $config;
+		$this->decisions = $decisions;
+		$this->userOptionsManager = $userOptionsManager;
+	}
+
 	/**
 	 * BeforeInitialize hook handler.
 	 *
@@ -49,9 +63,8 @@ class Hooks implements
 		}
 
 		if ( $user->isRegistered() ) {
-			$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
-			$userOptionsManager->setOption( $user, 'cookiewarning_dismissed', 1 );
-			$userOptionsManager->saveOptions( $user );
+			$this->userOptionsManager->setOption( $user, 'cookiewarning_dismissed', 1 );
+			$this->userOptionsManager->saveOptions( $user );
 		} else {
 			$request->response()->setCookie( 'cookiewarning_dismissed', true );
 		}
@@ -69,15 +82,11 @@ class Hooks implements
 	 * @throws MWException
 	 */
 	public function onSkinAfterContent( &$data, $skin ) {
-		/** @var Decisions $cookieWarningDecisions */
-		$cookieWarningDecisions = MediaWikiServices::getInstance()
-			->getService( 'CookieWarning.Decisions' );
-
-		if ( !$cookieWarningDecisions->shouldShowCookieWarning( $skin->getContext() ) ) {
+		if ( !$this->decisions->shouldShowCookieWarning( $skin->getContext() ) ) {
 			return;
 		}
 
-		$data .= self::generateElements( $skin );
+		$data .= $this->generateElements( $skin );
 	}
 
 	/**
@@ -86,8 +95,8 @@ class Hooks implements
 	 * @param Skin $skin
 	 * @return string|null The html for cookie notice.
 	 */
-	private static function generateElements( Skin $skin ): ?string {
-		$moreLink = self::getMoreLink();
+	private function generateElements( Skin $skin ): ?string {
+		$moreLink = $this->getMoreLink();
 
 		$buttons = [];
 		if ( $moreLink ) {
@@ -139,10 +148,9 @@ class Hooks implements
 	 * @return string|null The url or null if none set
 	 * @throws ConfigException
 	 */
-	private static function getMoreLink(): ?string {
-		$conf = self::getConfig();
-		if ( $conf->get( 'CookieWarningMoreUrl' ) ) {
-			return $conf->get( 'CookieWarningMoreUrl' );
+	private function getMoreLink(): ?string {
+		if ( $this->config->get( 'CookieWarningMoreUrl' ) ) {
+			return $this->config->get( 'CookieWarningMoreUrl' );
 		}
 
 		$cookieWarningMessage = wfMessage( 'cookiewarning-more-link' );
@@ -169,18 +177,14 @@ class Hooks implements
 	 * @throws MWException
 	 */
 	public function onBeforePageDisplay( $out, $skin ): void {
-		/** @var Decisions $cookieWarningDecisions */
-		$cookieWarningDecisions = MediaWikiServices::getInstance()
-			->getService( 'CookieWarning.Decisions' );
-
-		if ( !$cookieWarningDecisions->shouldShowCookieWarning( $out->getContext() ) ) {
+		if ( !$this->decisions->shouldShowCookieWarning( $out->getContext() ) ) {
 			return;
 		}
 
 		$modules = [ 'ext.CookieWarning' ];
 		$moduleStyles = [ 'ext.CookieWarning.styles' ];
 
-		if ( $cookieWarningDecisions->shouldAddResourceLoaderComponents() ) {
+		if ( $this->decisions->shouldAddResourceLoaderComponents() ) {
 			$modules[] = 'ext.CookieWarning.geolocation';
 			$moduleStyles[] = 'ext.CookieWarning.geolocation.styles';
 		}
@@ -199,26 +203,12 @@ class Hooks implements
 	 * @throws ConfigException
 	 */
 	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ): void {
-		/** @var Decisions $cookieWarningDecisions */
-		$cookieWarningDecisions = MediaWikiServices::getInstance()
-			->getService( 'CookieWarning.Decisions' );
-		$conf = self::getConfig();
-
-		if ( $cookieWarningDecisions->shouldAddResourceLoaderComponents() ) {
+		if ( $this->decisions->shouldAddResourceLoaderComponents() ) {
 			$vars += [
-				'wgCookieWarningGeoIPServiceURL' => $conf->get( 'CookieWarningGeoIPServiceURL' ),
-				'wgCookieWarningForCountryCodes' => $conf->get( 'CookieWarningForCountryCodes' ),
+				'wgCookieWarningGeoIPServiceURL' => $this->config->get( 'CookieWarningGeoIPServiceURL' ),
+				'wgCookieWarningForCountryCodes' => $this->config->get( 'CookieWarningForCountryCodes' ),
 			];
 		}
-	}
-
-	/**
-	 * Returns the Config object for the CookieWarning extension.
-	 *
-	 * @return Config
-	 */
-	private static function getConfig(): Config {
-		return MediaWikiServices::getInstance()->getService( 'CookieWarning.Config' );
 	}
 
 	/**
