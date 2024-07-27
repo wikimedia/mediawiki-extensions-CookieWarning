@@ -21,7 +21,12 @@
 	},
 	"HookHandlers": {
 		"main": {
-			"class": "CookieWarning\\Hooks"
+			"class": "CookieWarning\\Hooks",
+			"services": [
+				"CookieWarning.Config",
+				"CookieWarning.Decisions",
+				"UserOptionsManager"
+			]
 		}
 	},
 	"Hooks": {
