@@ -6,7 +6,6 @@ use ConfigException;
 use CookieWarning\Decisions;
 use CookieWarning\GeoLocation;
 use HashBagOStuff;
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use MWException;
 use RequestContext;
@@ -32,10 +31,10 @@ class DecisionsTest extends MediaWikiIntegrationTestCase {
 
 		$geoLocation->expects( $this->once() )->method( 'locate' );
 		$cookieWarningDecisions = new Decisions(
-			MediaWikiServices::getInstance()->getService( 'CookieWarning.Config' ),
+			$this->getServiceContainer()->getService( 'CookieWarning.Config' ),
 			$geoLocation,
 			new WANObjectCache( [ 'cache' => new HashBagOStuff() ] ),
-			MediaWikiServices::getInstance()->getUserOptionsLookup()
+			$this->getServiceContainer()->getUserOptionsLookup()
 		);
 
 		$cookieWarningDecisions->shouldShowCookieWarning( RequestContext::getMain() );

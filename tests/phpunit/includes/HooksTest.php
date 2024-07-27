@@ -6,7 +6,6 @@ use CookieWarning\GeoLocation;
 use CookieWarning\Hooks;
 use DerivativeContext;
 use FauxRequest;
-use MediaWiki\MediaWikiServices;
 use MediaWikiLangTestCase;
 use RequestContext;
 use SkinTemplate;
@@ -40,7 +39,7 @@ class HooksTest extends MediaWikiLangTestCase {
 			'CookieWarningMoreUrl' => $morelinkConfig,
 			'CookieWarningForCountryCodes' => false,
 		] );
-		MediaWikiServices::getInstance()->getMessageCache()->enable();
+		$this->getServiceContainer()->getMessageCache()->enable();
 
 		if ( $morelinkCookieWarningMsg ) {
 			$this->editPage(

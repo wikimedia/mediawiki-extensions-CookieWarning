@@ -4,7 +4,6 @@ namespace CookieWarning\Tests;
 
 use CookieWarning\HttpGeoLocation;
 use CookieWarning\NoopGeoLocation;
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 
 class ServiceWiringTest extends MediaWikiIntegrationTestCase {
@@ -17,7 +16,7 @@ class ServiceWiringTest extends MediaWikiIntegrationTestCase {
 			'CookieWarningGeoIPServiceURL' => null
 		] );
 
-		$geoLocation = MediaWikiServices::getInstance()->getService( 'GeoLocation' );
+		$geoLocation = $this->getServiceContainer()->getService( 'GeoLocation' );
 
 		$this->assertInstanceOf( NoopGeoLocation::class, $geoLocation );
 	}
@@ -30,7 +29,7 @@ class ServiceWiringTest extends MediaWikiIntegrationTestCase {
 			'CookieWarningGeoIPServiceURL' => 'http://localhost/'
 		] );
 
-		$geoLocation = MediaWikiServices::getInstance()->getService( 'GeoLocation' );
+		$geoLocation = $this->getServiceContainer()->getService( 'GeoLocation' );
 
 		$this->assertInstanceOf( HttpGeoLocation::class, $geoLocation );
 	}
