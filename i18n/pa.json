@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Satdeep gill"
+			"Satdeep gill",
+			"Cabal"
 		]
 	},
+	"cookiewarning-moreinfo-label": "ਹੋਰ ਜਾਣਕਾਰੀ",
 	"cookiewarning-ok-label": "ਠੀਕ ਹੈ"
 }
