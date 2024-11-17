@@ -131,7 +131,7 @@ class Hooks implements
 			Html::element(
 				'span',
 				[],
-				$skin->msg( 'cookiewarning-info' )->text()
+				$skin->msg( 'cookiewarning-info' )->parse()
 			) .
 			Html::closeElement( 'div' ) .
 			$form .
