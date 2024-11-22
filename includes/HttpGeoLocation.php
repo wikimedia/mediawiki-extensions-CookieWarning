@@ -10,19 +10,14 @@ use Wikimedia\IPUtils;
  * Implements the GeoLocation class, which allows to locate the user based on the IP address.
  */
 class HttpGeoLocation implements GeoLocation {
-	/** @var string */
-	private $geoIPServiceURL;
-	/** @var array */
-	private $locatedIPs = [];
+	private string $geoIPServiceURL;
+	private array $locatedIPs = [];
+	private HttpRequestFactory $httpRequestFactory;
 
-	/** @var HttpRequestFactory */
-	private $httpRequestFactory;
-
-	/**
-	 * @param string $geoIPServiceURL
-	 * @param HttpRequestFactory $httpRequestFactory
-	 */
-	public function __construct( $geoIPServiceURL, HttpRequestFactory $httpRequestFactory ) {
+	public function __construct(
+		string $geoIPServiceURL,
+		HttpRequestFactory $httpRequestFactory
+	) {
 		if ( !is_string( $geoIPServiceURL ) || !$geoIPServiceURL ) {
 			throw new InvalidArgumentException( 'The geoIPServiceUL is invalid' );
 		}
@@ -35,7 +30,7 @@ class HttpGeoLocation implements GeoLocation {
 	 * @param string $ip The IP address to lookup
 	 * @return string|null
 	 */
-	public function locate( $ip ) {
+	public function locate( string $ip ): ?string {
 		if ( isset( $this->locatedIPs[$ip] ) ) {
 			return $this->locatedIPs[$ip];
 		}
