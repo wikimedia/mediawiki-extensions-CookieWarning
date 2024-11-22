@@ -38,7 +38,7 @@ class Decisions {
 	 * @throws ConfigException
 	 * @throws MWException
 	 */
-	public function shouldShowCookieWarning( IContextSource $context ) {
+	public function shouldShowCookieWarning( IContextSource $context ): bool {
 		$user = $context->getUser();
 
 		return $this->config->get( 'CookieWarningEnabled' ) &&
@@ -56,7 +56,7 @@ class Decisions {
 	 * @throws ConfigException
 	 * @throws MWException
 	 */
-	private function isInConfiguredRegion( IContextSource $context ) {
+	private function isInConfiguredRegion( IContextSource $context ): bool {
 		if ( !$this->config->get( 'CookieWarningForCountryCodes' ) ||
 			$this->config->get( 'CookieWarningGeoIPLookup' ) === 'none' ) {
 			wfDebugLog( 'CookieWarning', 'IP geolocation not configured, skipping.' );
@@ -74,7 +74,7 @@ class Decisions {
 	 * @return bool
 	 * @throws ConfigException
 	 */
-	public function shouldAddResourceLoaderComponents() {
+	public function shouldAddResourceLoaderComponents(): bool {
 		return $this->config->get( 'CookieWarningGeoIPLookup' ) === 'js' &&
 			is_array( $this->config->get( 'CookieWarningForCountryCodes' ) );
 	}
@@ -84,7 +84,7 @@ class Decisions {
 	 * @return string The country code associated with the IP or empty string if not able to locate.
 	 * @throws ConfigException
 	 */
-	private function getCountryCodeFromIP( $currentIP ) {
+	private function getCountryCodeFromIP( string $currentIP ): string {
 		$cacheKey = $this->cache->makeGlobalKey( __CLASS__, self::CACHE_KEY . $currentIP );
 		$lookedUpCountryCode = $this->cache->get( $cacheKey );
 

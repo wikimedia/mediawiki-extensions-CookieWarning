@@ -10,5 +10,5 @@ interface GeoLocation {
 	 * @return null|string NULL on error or if locating the IP was not possible, the country
 	 * code otherwise
 	 */
-	public function locate( $ip );
+	public function locate( string $ip ): ?string;
 }

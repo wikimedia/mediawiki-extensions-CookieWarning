@@ -7,9 +7,9 @@ class NoopGeoLocation implements GeoLocation {
 	/**
 	 * {@inheritdoc}
 	 * @param string $ip The IP address to lookup
-	 * @return bool|null NULL if no geolocation service configured, false on error, true otherwise.
+	 * @return string|null
 	 */
-	public function locate( $ip ) {
+	public function locate( string $ip ): ?string {
 		return null;
 	}
 }
