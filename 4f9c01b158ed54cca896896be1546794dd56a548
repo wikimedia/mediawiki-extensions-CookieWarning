@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71e089aa_61fe455e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2025-01-30T17:33:19Z",
+      "side": 1,
+      "message": "Looks good, as far as I can see. But I\u0027m not very familiar with this codebase.",
+      "revId": "4f9c01b158ed54cca896896be1546794dd56a548",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0051876a_15cc134b",
+        "filename": "includes/HttpGeoLocation.php",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1453
+      },
+      "writtenOn": "2025-01-30T17:33:19Z",
+      "side": 1,
+      "message": "This is dead code now and can be removed.",
+      "range": {
+        "startLine": 21,
+        "startChar": 7,
+        "endLine": 21,
+        "endChar": 37
+      },
+      "revId": "4f9c01b158ed54cca896896be1546794dd56a548",
+      "serverId": "e9e9afe9-4712-486d-8885-f54b72dd1951"
+    }
+  ]
+}
