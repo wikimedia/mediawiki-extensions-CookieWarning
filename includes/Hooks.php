@@ -4,13 +4,14 @@ namespace CookieWarning;
 
 use Config;
 use ConfigException;
-use Html;
 use MediaWiki;
 use MediaWiki\Hook\BeforeInitializeHook;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\SkinAfterContentHook;
+use MediaWiki\Html\Html;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
+use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsManager;
 use MWException;
 use OOUI\ButtonInputWidget;
@@ -18,7 +19,6 @@ use OOUI\ButtonWidget;
 use OOUI\HorizontalLayout;
 use OutputPage;
 use Skin;
-use Title;
 use User;
 use WebRequest;
 

@@ -5,7 +5,7 @@ namespace CookieWarning\Tests;
 use CookieWarning\GeoLocation;
 use CookieWarning\Hooks;
 use DerivativeContext;
-use FauxRequest;
+use MediaWiki\Request\FauxRequest;
 use MediaWikiLangTestCase;
 use RequestContext;
 use SkinTemplate;
