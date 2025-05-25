@@ -25,6 +25,9 @@ module.exports = function ( grunt ) {
 			]
 		},
 		stylelint: {
+			options: {
+				cache: true
+			},
 			src: [ 'resources/**/*.{css,less}' ]
 		}
 	} );
