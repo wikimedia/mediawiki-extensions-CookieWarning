@@ -138,7 +138,7 @@
 		"CookieWarning\\": "includes/"
 	},
 	"ConfigRegistry": {
-		"cookiewarning": "GlobalVarConfig::newInstance"
+		"cookiewarning": "MediaWiki\\Config\\GlobalVarConfig::newInstance"
 	},
 	"ServiceWiringFiles": [
 		"includes/ServiceWiring.php"
