@@ -8,8 +8,8 @@
 			"Wladek92"
 		]
 	},
-	"cookiewarning-info": "Les cookies nous aident à fournir nos services. En utilisant nos services, vous acceptez notre utilisation de cookies.",
-	"cookiewarning-desc": "Fournit une note à propos des cookies en haut de la page.",
+	"cookiewarning-info": "Les témoins (''cookies'') nous aident à fournir nos services. En utilisant nos services, vous acceptez notre utilisation de témoins.",
+	"cookiewarning-desc": "Fournit une note à propos des témoins (''cookies'') en haut de la page.",
 	"cookiewarning-moreinfo-label": "Davantage d’informations",
 	"cookiewarning-ok-label": "OK"
 }
