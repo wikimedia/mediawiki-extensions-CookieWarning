@@ -47,7 +47,7 @@ class Hooks implements
 	 * BeforeInitialize hook handler.
 	 *
 	 * If the disablecookiewarning POST data is send, disables the cookiewarning bar with a
-	 * cookie or a user preference, if the user is logged in.
+	 * cookie or a user preference, if the user is logged in and not a temporary user.
 	 *
 	 * @param Title $title
 	 * @param null $unused
@@ -62,7 +62,7 @@ class Hooks implements
 			return;
 		}
 
-		if ( $user->isRegistered() ) {
+		if ( $user->isNamed() ) {
 			$this->userOptionsManager->setOption( $user, 'cookiewarning_dismissed', 1 );
 			$this->userOptionsManager->saveOptions( $user );
 		} else {
